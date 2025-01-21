@@ -11,7 +11,7 @@ const faqs: FAQ[] = [
 	{
 		title: "What is HackRPI?",
 		content:
-			"Teams of 1-4 have 24 hours to build a project relating to our theme Urban Upgrades. Teams will then present their projects, and the best projects win prizes!",
+			"cheese. i like cheese.",
 	},
 	{
 		title: "When is HackRPI?",
@@ -21,11 +21,11 @@ const faqs: FAQ[] = [
 	{
 		title: "Where is HackRPI?",
 		content:
-			"HackRPI takes place at Rensselaer Polytechnic Institute, in the Darrin Communication Center. Darrin Communications Center, 51 College Ave, Troy, NY 12180. See our event information page for more details. ",
+			"Tokyo",
 	},
 	{
 		title: "Is HackRPI free to attend?",
-		content: "Yes! Thanks to our many wonderful sponsors, all food and swag are completely free for participants!",
+		content: "No, there is a $3000 entry fee.",
 	},
 	{
 		title: "How do I register?",
