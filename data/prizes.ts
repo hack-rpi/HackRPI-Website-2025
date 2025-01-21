@@ -1,21 +1,22 @@
-import ai_prize from "@/public/prizes/AiPrize.jpg";
-import sustainability_prize from "@/public/prizes/sustainability.png";
-import education_prize from "@/public/prizes/education.jpg";
-import quantum_prize from "@/public/prizes/quantum_computer.jpg";
-import cybersecurity_prize from "@/public/prizes/cybersecurity.jpg";
-import mobile_prize from "@/public/prizes/mobile_app.jpg";
-import startup_prize from "@/public/prizes/startup.png";
-import data_science_prize from "@/public/prizes/data_science.jpg";
-import beginner_prize from "@/public/prizes/coding.webp";
-import ugly_code_prize from "@/public/prizes/ugly_code.png";
-import thin_air from "@/public/sponsors/sponsor_logos/ThinAir.png";
-import palantir from "@/public/sponsors/sponsor_logos/Palantir.png";
-import accessibility_prize from "@/public/prizes/Accessibility.webp";
-import midnight from "@/public/prizes/midnight.webp";
-import cloudflare from "@/public/prizes/cloudflare.webp";
-import tech from "@/public/prizes/tech.webp";
-import hashicorp from "@/public/prizes/hashicorp.webp";
-import databricks from "@/public/prizes/databricks.webp";
+import firstPrizeImage from "@/public/prizes/submitty duck.png";
+import ai_prize from "@/public/prizes/submitty duck.png";
+import sustainability_prize from "@/public/prizes/submitty duck.png";
+import education_prize from "@/public/prizes/submitty duck.png";
+import quantum_prize from "@/public/prizes/submitty duck.png";
+import cybersecurity_prize from "@/public/prizes/submitty duck.png";
+import mobile_prize from "@/public/prizes/submitty duck.png";
+import startup_prize from "@/public/prizes/submitty duck.png";
+import data_science_prize from "@/public/prizes/submitty duck.png";
+import beginner_prize from "@/public/prizes/submitty duck.png";
+import ugly_code_prize from "@/public/prizes/submitty duck.png";
+import thin_air from "@/public/prizes/submitty duck.png";
+import palantir from "@/public/prizes/submitty duck.png";
+import accessibility_prize from "@/public/prizes/submitty duck.png";
+import midnight from "@/public/prizes/submitty duck.png";
+import cloudflare from "@/public/prizes/submitty duck.png";
+import tech from "@/public/prizes/submitty duck.png";
+import hashicorp from "@/public/prizes/submitty duck.png";
+import databricks from "@/public/prizes/submitty duck.png";
 
 import { StaticImageData } from "next/image";
 
@@ -28,16 +29,18 @@ export interface Prize {
 
 export const podiumPrizes: Prize[] = [
 	{
-		name: "1st",
-		amount: "$1500",
-		description: "",
+	  name: "1st",
+	  amount: "$1500",
+	  description: "First place prize for the best overall project.",
+	  imagePath: firstPrizeImage, // Add the imported image
 	},
 	{
-		name: "2nd",
-		amount: "$750",
-		description: "",
+	  name: "2nd",
+	  amount: "$750",
+	  description: "Second place prize for the runner-up project.",
 	},
-];
+  ];
+  
 
 export const majorPrizes: Prize[] = [
 	{
