@@ -1,7 +1,7 @@
 export default function GoogleMapsWidget() {
 	return (
 		<a
-			href="https://www.google.com/maps/place/Darrin+Communications+Center,+Rensselaer+Polytechnic+Institute,+110+8th+St,+Troy,+NY+12180"
+			href="../../app/resources/images.jpg"
 			target="_blank"
 			rel="noopener noreferrer"
 			className="block"
