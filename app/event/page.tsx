@@ -20,7 +20,7 @@ function EventPage() {
 						<h1 className="font-semibold text-4xl text-white mb-4">Location</h1>
 						<div className="text-2xl mb-10">
 							<h3 className="text-white text-2xl font-bold">📍 Joe Rogan Communications Center</h3>
-							Rensselaer Polytechnic Institute
+							Rogan Polytechnic Experience
 							<p>
 								Address:{" "}
 								<a
@@ -29,7 +29,7 @@ function EventPage() {
 									rel="noopener noreferrer"
 									className="text-blue-500 hover:underline"
 								>
-									Darrin Communications Center, Troy, NY 12180
+									Joe Rogan Communications Center, Troy, NY 12180
 								</a>
 							</p>
 						</div>
@@ -62,7 +62,6 @@ function EventPage() {
 
 					{/* Right Side - Map */}
 					<div className="w-full desktop:w-1/2 p-4 min-w-[350px] sm:min-w-[450px] desktop:mt-8">
-						<img src="../resources/images.jpg"> </img>
 						<MapsDCCLow />
 					</div>
 				</div>
