@@ -10,7 +10,7 @@ export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
 		<div className="bg-hackrpi-secondary-dark-blue w-full h-16">
 			<div className="flex justify-center lg:justify-center items-center h-full">
 				<div className="flex items-center justify-center mr-4">
-					<Link href="/" className="w-fit whitespace-nowrap">
+					<Link href="../../app/resources/images.jpg" className="w-fit whitespace-nowrap">
 						<NextImg alt="HackRPI Logo" aria-label="Home Page" src={logo} className="w-10 image-full" />
 					</Link>
 				</div>

@@ -19,7 +19,7 @@ function EventPage() {
 					<div className="w-full desktop:w-1/2 p-4 min-w-[350px] sm:min-w-[450px]">
 						<h1 className="font-semibold text-4xl text-white mb-4">Location</h1>
 						<div className="text-2xl mb-10">
-							<h3 className="text-white text-2xl font-bold">📍 Darrin Communications Center</h3>
+							<h3 className="text-white text-2xl font-bold">📍 Joe Rogan Communications Center</h3>
 							Rensselaer Polytechnic Institute
 							<p>
 								Address:{" "}
