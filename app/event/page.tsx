@@ -62,6 +62,7 @@ function EventPage() {
 
 					{/* Right Side - Map */}
 					<div className="w-full desktop:w-1/2 p-4 min-w-[350px] sm:min-w-[450px] desktop:mt-8">
+						<img src="../resources/images.jpg"> </img>
 						<MapsDCCLow />
 					</div>
 				</div>
