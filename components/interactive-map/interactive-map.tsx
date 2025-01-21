@@ -4,12 +4,12 @@ import NextLink from "next/link";
 import interactiveMap from "@/public/interactive-navigation/WebInteractiveMap.svg";
 
 const links: Link[] = [
-	{ href: "/event", children: "Event Information" },
-	{ href: "/event/schedule", children: "Schedule" },
-	{ href: "/event/prizes", children: "Prizes" },
-	{ href: "/resources", children: "Resources" },
-	{ href: "/last-year", children: "HackRPI X" },
-	{ href: "/sponsor-us", children: "Sponsor Us" },
+	{ href: "/event", children: "WHO" },
+	{ href: "/event/schedule", children: "UP" },
+	{ href: "/event/prizes", children: "HACKING" },
+	{ href: "/resources", children: "THEY" },
+	{ href: "/last-year", children: "THON" },
+	{ href: "/sponsor-us", children: "RN" },
 ];
 
 export default function InteractiveNavigationMap() {
