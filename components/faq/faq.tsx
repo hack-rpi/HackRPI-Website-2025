@@ -16,7 +16,7 @@ const faqs: FAQ[] = [
 	{
 		title: "When is HackRPI?",
 		content:
-			"HackRPI takes place on November 9th and 10th, 2024. Arrival and check-in takes place from 9-10 AM. Our opening ceremony starts at 10 AM, and hacking begins at 11am. Your projects must be on Devpost by 10 AM Sunday, and all coding must stop at 11 AM Sunday. Teams will present, and the event will end around 4PM on Sunday. We are excited to see you there!",
+			"2930",
 	},
 	{
 		title: "Where is HackRPI?",
@@ -39,7 +39,7 @@ const faqs: FAQ[] = [
 	{
 		title: "Who can participate?",
 		content:
-			"Everyone is welcome to participate, whether you are a hackathon veteran or this is your first hackathon, this is a great opportunity to learn, experiment with new technologies, and grow your skills. Our team of experienced mentors is here to help you in every step of the way.",
+			"no one",
 	},
 	{
 		title: "I'm under 18, can I still participate?",
@@ -47,9 +47,9 @@ const faqs: FAQ[] = [
 			"Students under 18 are welcome to attend, but are not allowed to stay overnight in the sleep rooms. Students under the age of 17 must have an adult (21+) chaperone with them at all times during the event.",
 	},
 	{
-		title: "Do I have to be an RPI student?",
+		title: "I like cheese.",
 		content:
-			"No! HackRPI is open to everyone, students of all experience levels from all colleges and universities are welcome to attend. Did you know that students from over 45 other colleges attended HackRPI!",
+			"no one asked",
 	},
 	{
 		title: "Does HackRPI provide travel reimbursement?",
