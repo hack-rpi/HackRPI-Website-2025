@@ -4,12 +4,12 @@ import NextLink from "next/link";
 import interactiveMap from "@/public/interactive-navigation/WebInteractiveMap.svg";
 
 const links: Link[] = [
-	{ href: "/event", children: "Event Information" },
-	{ href: "/event/schedule", children: "Schedule" },
-	{ href: "/event/prizes", children: "Prizes" },
-	{ href: "/resources", children: "Resources" },
-	{ href: "/last-year", children: "HackRPI X" },
-	{ href: "/sponsor-us", children: "Sponsor Us" },
+	{ href: "/event", children: ":)" },
+	{ href: "/event/schedule", children: ":(" },
+	{ href: "/event/prizes", children: ":O" },
+	{ href: "/resources", children: ":D" },
+	{ href: "/last-year", children: ":P" },
+	{ href: "/sponsor-us", children: ":>" },
 ];
 
 export default function InteractiveNavigationMap() {
@@ -36,6 +36,7 @@ export default function InteractiveNavigationMap() {
 
 /**
  * I know this is a bit of a mess, but it works so... ¯\_(ツ)_/¯
+ * If it works it works ¯\_(ツ)_/¯
  */
 
 function SubwayStops() {
