@@ -28,7 +28,7 @@ export type LeaderboardEntry = {
 export async function is_game_ready() {
 	const now = new Date();
 	const start = new Date(1731160800000); // November 9, 2024 10:00:00 AM
-	const end = new Date(1731254400000+86400000); // November 10, 2024 11:00:00 AM
+	const end = new Date(1731254400000 + 86400000); // November 10, 2024 11:00:00 AM
 
 	return now >= start && now <= end;
 }
@@ -62,13 +62,7 @@ export async function get_leaderboard() {
 	return data.map((entry) => entry as LeaderboardEntry);
 }
 
-export async function create_leaderboard_entry({
-	username,
-	score,
-}: {
-	username: string;
-	score: number;
-}) {
+export async function create_leaderboard_entry({ username, score }: { username: string; score: number }) {
 	const profanity = new Profanity({
 		wholeWord: false,
 		languages: ["en", "de", "es", "fr"],
@@ -80,12 +74,7 @@ export async function create_leaderboard_entry({
 		return { status: 401, message: "Usernames must be alphanumeric and less than 20 characters." };
 	}
 
-	if (
-		score < 0 ||
-		score > 200000 ||
-		isNaN(score) ||
-		score % 2 !== 0
-	) {
+	if (score < 0 || score > 200000 || isNaN(score) || score % 2 !== 0) {
 		return { status: 401, message: "Invalid score." };
 	}
 
