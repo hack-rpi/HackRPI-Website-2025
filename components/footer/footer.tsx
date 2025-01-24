@@ -32,7 +32,7 @@ export default function Footer() {
 				<p>
 					Made with <span className="text-red-600">❤️</span> by HackRPI.
 				</p>
-				<p>&copy; 2024 HackRPI</p>
+				<p>&copy; 2025 HackRPI</p>
 			</div>
 		</div>
 	);
