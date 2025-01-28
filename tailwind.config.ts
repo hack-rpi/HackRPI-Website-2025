@@ -13,15 +13,15 @@ const config: Config = {
 		},
 		extend: {
 			colors: {
-				"hackrpi-primary-blue": "#74b7ef",
-				"hackrpi-primary-dark-green": "#264e33",
-				"hackrpi-primary-light-green": "#88b63a",
-				"hackrpi-secondary-grey": "#efefef",
-				"hackrpi-secondary-light-blue": "#4a6277",
-				"hackrpi-secondary-dark-blue": "#27303b",
-				"hackrpi-secondary-dark-green": "#27303b",
-				"hackrpi-secondary-light-green": "#6d8740",
-				"hackrpi-secondary-yellow": "#edd559",
+				"hackrpi-primary-blue": " #733dbe", // changed to dark purple
+				"hackrpi-primary-dark-green": "  #9e40ee",
+				"hackrpi-primary-light-green": "  #e39036", // changed to orange
+				"hackrpi-secondary-grey": " #efefef", // no change
+				"hackrpi-secondary-light-blue": " #292333", // changed to dark blue
+				"hackrpi-secondary-dark-blue": "  #292333", // changed to dark blue
+				"hackrpi-secondary-dark-green": "  #e9bc59", // changed to yellow
+				"hackrpi-secondary-light-green": " #d5345d", // changed to pink
+				"hackrpi-secondary-yellow": "  #e9bc59", // changed to yellow
 				"subway-red": "#ef3a42",
 				"subway-blue": "#0058a9",
 				"subway-green": "#00a65c",
