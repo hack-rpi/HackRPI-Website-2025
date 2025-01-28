@@ -53,7 +53,7 @@ export default function AboutUs() {
 					</h2>
 					<div className=" w-11/12 flex flex-col md:flex-row lg:flex-col items-start justify-center md:justify-start md:items-center lg:items-start lg:justify-center">
 						<div className="pl-2 text-md xs:text-xl mb-4 md:mb-8 lg:mb-4 mt-2 w-1/2 md:min-w-80 ">
-							<p className="w-fit text-nowrap">November 9-10, 2024</p>
+							<p className="w-fit text-nowrap">November 15-16, 2024</p>
 							<p className="w-fit text-nowrap">Rensselaer Polytechnic Institute</p>
 							<p className="w-fit text-nowrap">Darrin Communications Center</p>
 						</div>
