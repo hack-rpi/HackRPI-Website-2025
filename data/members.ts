@@ -31,14 +31,14 @@ export const executive = {
 };
 
 export const teamColors = {
-	president: { bg: "#303ECF", text: "#ffffff" },
-	vicePresident: { bg: "#a12022", text: "#ffffff" },
-	Technology: { bg: "#773E8E", text: "#ffffff" },
-	Logistics: { bg: "#0185A2", text: "#ffffff" },
-	Marketing: { bg: "#E17619", text: "#ffffff" },
-	Outreach: { bg: "#DF0C32", text: "#ffffff" },
-	Finance: { bg: "#1E8549", text: "#ffffff" },
-	Sponsorship: { bg: "#0057A8", text: "#ffffff" },
+	president: { bg: "##9e40ee", text: "#ffffff" }, // updates color to color palette theme
+	vicePresident: { bg: "#733dbe", text: "#ffffff" },
+	Technology: { bg: "#e39036", text: "#ffffff" },
+	Logistics: { bg: "#e9bc59", text: "#ffffff" },
+	Marketing: { bg: "#d5345d", text: "#ffffff" },
+	Outreach: { bg: "#292333", text: "#ffffff" },
+	Finance: { bg: "#733dbe", text: "#ffffff" },
+	Sponsorship: { bg: "#9e40ee", text: "#ffffff" },
 };
 
 export interface Director {
