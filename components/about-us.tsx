@@ -66,3 +66,5 @@ export default function AboutUs() {
 		</div>
 	);
 }
+
+// this is a test where I changed the code by adding comments
