@@ -24,7 +24,7 @@ export const links: NavGroup[] = [
 		],
 	},
 	{
-		name: "HackRPI XI",
+		name: "HackRPI XI", // Changed the header from HackRPI X to HackRPI XI
 		links: [
 			{ href: "/last-year#winners", children: "Winners" },
 			{ href: "/last-year#photos", children: "Photos" },
