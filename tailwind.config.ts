@@ -27,6 +27,12 @@ const config: Config = {
 				"subway-green": "#00a65c",
 				"subway-yellow": "#f8a13a",
 				"subway-purple": "#b43c96",
+				"retro-light-purple": "#9e40ee", //for retro theme
+				"retro-dark-purple": "#733dbe", //for retro theme
+				"retro-orange": "#e39036", //for retro theme
+				"retro-yellow": "#e9bc59", //for retro theme
+				"retro-pink": "#d5345d", //for retro theme
+				"retro-dark-blue": "#292333",//for retro theme
 				gold: "#ffd700",
 				silver: "#C0C0C0",
 				bronze: "#cd7f32",
