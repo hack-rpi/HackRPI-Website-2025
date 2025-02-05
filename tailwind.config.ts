@@ -9,10 +9,11 @@ const config: Config = {
 	],
 	theme: {
 		fontFamily: {
-			sans: ["Helvetica", "Arial", "sans-serif"],
+			sans: ["Retro"],
 		},
-		extend: {
+		extend: { // Changing colors and fonts of this page to the new theme
 			colors: {
+<<<<<<< Updated upstream
 				"hackrpi-primary-blue": "#74b7ef", //DaisyUI Primary - Now dark purple
 				"hackrpi-primary-dark-green": "#264e33",
 				"hackrpi-primary-light-green": "#88b63a",
@@ -36,6 +37,16 @@ const config: Config = {
 				"hackrpi-pink": "#d5345d", //Secondary
 				"hackrpi-dark-blue": "#292333", //Background color
 
+=======
+				"hackrpi-primary-purple": "#9e40ee",
+				"hackrpi-primary-dark-purple": "#733dbe",
+				"hackrpi-primary-light-orange": "#e39036",
+				"hackrpi-secondary-yellow": "#e9bc59",
+				"hackrpi-secondary-red": "#d5345d",
+				"hackrpi-secondary-dark-blue": "#292333",
+				"hackrpi-secondary-dark-green": "#27303b",
+				"hackrpi-secondary-light-green": "#6d8740",
+>>>>>>> Stashed changes
 				gold: "#ffd700",
 				silver: "#C0C0C0",
 				bronze: "#cd7f32",
