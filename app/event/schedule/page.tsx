@@ -156,14 +156,15 @@ export default function Page() {
 				)}
 
 				{modalEvent && (
+					// Pop up block for event items
 					<div
 						className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-20"
 						onClick={() => {
 							setModalEvent(null);
 						}}
 					>
-						<div className="w-11/12 desktop:w-2/3 h-5/6 bg-hackrpi-secondary-light-blue rounded-lg p-4 overflow-y-auto z-30">
-							<div className="flex items-center justify-between mb-4 border-b-2 border-b-gray-400 h-24">
+						<div className="w-11/12 desktop:w-2/3 h-5/6 bg-hackrpi-secondary-light-blue rounded-lg p-4 overflow-x-hidden overflow-y-auto z-30">
+							<div className="flex items-center justify-between mb-4 border-b-2 border-b-gray-400 h-40">
 								<h1 className=" text-3xl xs:text-4xl md:text-5xl font-bold">{modalEvent.title}</h1>
 								<button
 									className="text-4xl font-bold text-black mr-4 hover:text-primary focus:text-primary"

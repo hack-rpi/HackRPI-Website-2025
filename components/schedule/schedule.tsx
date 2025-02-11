@@ -18,6 +18,7 @@ export default function Schedule(props: ScheduleProps) {
 	const [eventsInColumns] = useState<Event[][]>(() => arrangeEvents(props.events));
 
 	return (
+		// Entire schedule block
 		<div className="relative flex w-full h-fit items-center justify-center">
 			<div className="flex flex-col w-full h-fit items-start justify-start">
 				{props.times.map((time) => (
@@ -26,6 +27,7 @@ export default function Schedule(props: ScheduleProps) {
 			</div>
 			<div className="absolute top-0 right-0 flex-grow flex-shrink basis-auto w-full h-full pl-24 sm:pl-28 flex items-start justify-start">
 				{eventsInColumns.map((column, index) => (
+					// Columns defined here
 					<div key={index} className="relative flex flex-col flex-grow flex-shrink basis-auto h-full mx-0.5 sm:mx-1">
 						{column.map((event) => {
 							const { top, height } = calculateTopAndHeightOfEvent(event, props.times);
@@ -52,20 +54,21 @@ export default function Schedule(props: ScheduleProps) {
 							}
 
 							return (
+								// Individual Event block component
 								<div
 									key={event.id}
-									className={`absolute w-full h-full rounded-lg shadow-md mb-4 overflow-hidden ${color}`}
+									className={`absolute w-full h-full rounded-lg shadow-md mb-4 overflow-x-hidden overflow-y-auto ${color}`}
 									style={{
 										top,
 										height,
 									}}
 									onClick={() => props.onEventClick(event)}
 								>
-									<p className={`font-bold text-sm xs:text-base sm:text-lg border-b-2 pl-1 ${color}`}>{event.title}</p>
+									<p className={`font-bold text-sm xs:text-base sm:text-lg border-b-2 pl-1${color}`}>{event.title}</p>
 									<p className={`text-xs xs:text-sm sm:text-base border-b-2 pl-1 ${color}`}>
 										{event.location} {event.speaker != "" ? `• ${event.speaker}` : ""}
 									</p>
-									<p className={`font-normal text-xs xs:text-sm sm:text-base pl-1 ${color}`}>{event.description}</p>
+									<p className={`font-normal text-xs xs:text-sm sm:text-base pl-1${color}`}>{event.description}</p>
 								</div>
 							);
 						})}
