@@ -33,7 +33,7 @@ export function NavLink({
 }) {
 	return (
 		<NextLink
-			className="w-full whitespace-nowrap p-0.5 h-8 text-center text-lg bg-[length:0%_2px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-primary-blue to-hackrpi-primary-blue hover:bg-[length:100%_2px] focus:bg-[length:100%_4px]"
+			className="w-full whitespace-nowrap p-0.5 h-8 text-center text-lg bg-[length:0%_2px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-[#e9bc59] to-[#d5345d] hover:bg-[length:100%_2px] focus:bg-[length:100%_4px]"
 			href={href}
 			onClick={onClick}
 		>
