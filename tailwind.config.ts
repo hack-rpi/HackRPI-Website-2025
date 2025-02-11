@@ -10,6 +10,9 @@ const config: Config = {
 	theme: {
 		fontFamily: {
 			sans: ["Helvetica", "Arial", "sans-serif"],
+			retro: ["Silkscreen", "serif"],
+			modern: ["Audiowide", "serif"],
+			neutral: ["Turret Road", "serif"]
 		},
 		extend: {
 			colors: {
@@ -58,7 +61,7 @@ const config: Config = {
 		themes: [
 			{
 				hackrpi: {
-					primary: "#74b7ef",
+					primary: "#292333", // changed to dark blue
 					secondary: "#88b63a",
 					accent: "#edd559",
 					neutral: "#efefef",
