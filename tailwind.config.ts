@@ -16,7 +16,7 @@ const config: Config = {
 			pix: ["Pixelify Sans", "sans-serif"],
 		},
 		extend: {
-			colors: {
+			colors: { 
 				"hackrpi-primary-blue": "#74b7ef", //DaisyUI Primary - Now dark purple
 				"hackrpi-primary-dark-green": "#264e33",
 				"hackrpi-primary-light-green": "#88b63a",
