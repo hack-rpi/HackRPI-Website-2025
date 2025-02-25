@@ -5,6 +5,7 @@ import NextLink from "next/link";
 const links: Link[] = [
 	{ href: "/event", children: "Event Information" },
 	{ href: "/event/schedule", children: "Schedule" },
+	{ href: "/announcements", children: "Announcements" },
 	{ href: "/event/prizes", children: "Prizes" },
 	{ href: "/resources", children: "Resources" },
 	{ href: "/last-year", children: "HackRPI XII" },
@@ -13,6 +14,7 @@ const links: Link[] = [
 const firsthalflink: Link[] = [
 	{ href: "/event", children: "Event Information" },
 	{ href: "/event/schedule", children: "Schedule" },
+	{ href: "/announcements", children: "Announcements" },
 	{ href: "/event/prizes", children: "Prizes" },
 ];
 const secondhalflink: Link[] = [

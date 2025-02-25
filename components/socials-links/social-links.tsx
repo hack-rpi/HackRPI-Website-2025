@@ -5,8 +5,9 @@ const socialLinks: CardProps[] = [
 		svgPath: "/social/instagram.svg",
 		link: "https://www.instagram.com/hack.rpi/",
 		name: "Instagram",
-		bgGradientFrom: "from-[#FD1D1D]",
-		bgGradientTo: "to-[#405DE6]",
+		bgGradientFrom: "from-[#feda75]", // Light yellow/orange
+		bgGradientVia: "via-[#d62976]", // Pink/magenta
+		bgGradientTo: "to-[#4f5bd5]", // Deep blue/purple
 	},
 	{
 		svgPath: "/social/discord.svg",
