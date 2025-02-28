@@ -100,7 +100,7 @@ function EventPage() {
 							</p>
 							<HackRPILink
 								href="https://discord.gg/7b2zc8fe26"
-								className="hover:bg-gradient-to-br hover:from-[#5865F2] hover:to-[#7289da] hover:bg-transparent hover:border-[#5865F2] w-20 h-20 flex items-center justify-center"
+								className="hover:bg-gradient-to-br hover:from-[#733dbe] hover:to-[#9e40ee] hover:bg-transparent hover:border-[#292333] w-20 h-20 flex items-center justify-center"
 							>
 								<Image src="/social/discord.svg" alt="Discord Logo" width={50} height={50} />
 							</HackRPILink>

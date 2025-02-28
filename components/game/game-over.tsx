@@ -15,7 +15,7 @@ const GameOver = ({
 	return (
 		<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-0" onClick={onExitClose}>
 			<div
-				className="bg-[#213445] p-6 rounded-lg shadow-lg flex flex-col items-center justify-center z-20"
+				className="bg-[#292333] p-6 rounded-lg shadow-lg flex flex-col items-center justify-center z-20"
 				onClick={(event) => event.stopPropagation()}
 			>
 				<h2 className="text-lg font-bold">Game Over!</h2>
