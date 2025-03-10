@@ -127,6 +127,17 @@ export async function fetchEvents(): Promise<{
 	return {
 		status: 200,
 		message: "Success",
-		events: data.map((event) => event as Event),
+		events: data.map((event) => ({
+			id: event.id,
+			title: event.title,
+			description: event.description || "",
+			startTime: event.startTime,
+			endTime: event.endTime,
+			location: event.location,
+			speaker: event.speaker || "",
+			eventType: event.eventType || "default",
+			visible: event.visible,
+			column: event.column || 0,
+		})),
 	};
 }

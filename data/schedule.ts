@@ -8,6 +8,7 @@ export type Event = {
 	speaker: string;
 	eventType: string;
 	visible: boolean;
+	column: number;
 };
 
 export const SATURDAY_START = 1731160800000;

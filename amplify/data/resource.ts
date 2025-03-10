@@ -12,6 +12,7 @@ const schema = a.schema({
 			speaker: a.string().default(""),
 			eventType: a.string(),
 			visible: a.boolean().default(false).required(),
+			column: a.integer().default(0),
 		})
 		.authorization((allow) => {
 			return [
