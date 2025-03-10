@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 import plugin from "tailwindcss/plugin";
+// @ts-ignore
+import daisyui from "daisyui";
 
 const config: Config = {
 	content: [
@@ -7,6 +9,37 @@ const config: Config = {
 		"./components/**/*.{js,ts,jsx,tsx,mdx}",
 		"./app/**/*.{js,ts,jsx,tsx,mdx}",
 	],
+	plugins: [
+		// @ts-ignore - DaisyUI plugin is not typed correctly for Tailwind CSS v4
+		daisyui,
+		plugin(function ({ addUtilities }) {
+			const newUtilities = {
+				".description-box": {
+					overflow: "hidden",
+					display: "-webkit-box",
+					"-webkit-box-orient": "vertical",
+					"-webkit-line-clamp": "2",
+					"text-overflow": "ellipsis",
+				},
+			};
+			addUtilities(newUtilities);
+		}),
+	],
+	// @ts-ignore - DaisyUI configuration is not part of Tailwind's type system
+	daisyui: {
+		themes: [
+			{
+				hackrpi: {
+					"primary": "#733dbe",
+					"secondary": "#9e40ee",
+					"accent": "#e39036",
+					"neutral": "#d5345d",
+					"base-100": "#292333",
+					"retro-purple-medium": "#7e34c6"
+				}
+			}
+		],
+	},
 	theme: {
 		fontFamily: {
 			sans: ["Helvetica", "Arial", "sans-serif"],
@@ -73,35 +106,6 @@ const config: Config = {
 			},
 		},
 	},
-	daisyui: {
-		themes: [
-			{
-				hackrpi: {
-					primary: "#733dbe", //Shows up in footer for example
-					secondary: "#9e40ee", //Also background color
-					accent: "#e39036", //Registor now button, for instance
-					neutral: "#d5345d",
-					"base-100": "#292333", //Background color
-					"retro-purple-medium": "#7e34c6",
-				},
-			},
-		],
-	},
-	plugins: [
-		require("daisyui"),
-		plugin(function ({ addUtilities }) {
-			const newUtilities = {
-				".description-box": {
-					overflow: "hidden",
-					display: "-webkit-box",
-					"-webkit-box-orient": "vertical",
-					"-webkit-line-clamp": "2",
-					"text-overflow": "ellipsis",
-				},
-			};
-			addUtilities(newUtilities);
-		}),
-	],
 };
 
 export default config;

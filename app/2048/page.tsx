@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import NavBar from "@/components/nav-bar/nav-bar";
 import Board from "@/components/game/board";
 import GameOver from "@/components/game/game-over";
@@ -26,12 +25,12 @@ export default function Page() {
 	let endX = 0;
 	let endY = 0;
 
-	const initializeGame = () => {
-		let newGrid = [...grid];
+	const initializeGame = useCallback(() => {
+		let newGrid = Array(4).fill(0).map(() => Array(4).fill(0));
 		newGrid = placeRandomTile(newGrid);
 		newGrid = placeRandomTile(newGrid);
 		setGrid(newGrid);
-	};
+	  }, []);
 
 	const placeRandomTile = (grid: number[][]): number[][] => {
 		const emptyTiles: Array<[number, number]> = [];
@@ -135,57 +134,60 @@ export default function Page() {
 		handleSwipe(startX, startY, endX, endY, setGrid);
 	};
 
-	const handleKeyPress = (
-		e: KeyboardEvent,
-		grid: number[][],
-		setGrid: (gridUpdater: (prevGrid: number[][]) => number[][]) => void,
-	) => {
-		setGrid((prevGrid: number[][]) => {
-			let newGrid = [...prevGrid];
-			let moved = false;
+	const handleKeyPress = useCallback(
+		(
+			e: KeyboardEvent,
+			grid: number[][],
+			setGrid: (gridUpdater: (prevGrid: number[][]) => number[][]) => void,
+		) => {
+			setGrid((prevGrid: number[][]) => {
+				let newGrid = [...prevGrid];
+				let moved = false;
 
-			if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
-				e.preventDefault();
-			}
+				if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+					e.preventDefault();
+				}
 
-			switch (e.key) {
-				case "ArrowUp":
-					// eslint-disable-next-line
-					const upGrid = moveUp(newGrid);
-					moved = JSON.stringify(upGrid) !== JSON.stringify(newGrid);
-					newGrid = upGrid;
-					break;
-				case "ArrowDown":
-					// eslint-disable-next-line
-					const downGrid = moveDown(newGrid);
-					moved = JSON.stringify(downGrid) !== JSON.stringify(newGrid);
-					newGrid = downGrid;
-					break;
-				case "ArrowLeft":
-					// eslint-disable-next-line
-					const leftGrid = moveLeft(newGrid);
-					moved = JSON.stringify(leftGrid) !== JSON.stringify(newGrid);
-					newGrid = leftGrid;
-					break;
-				case "ArrowRight":
-					// eslint-disable-next-line
-					const rightGrid = moveRight(newGrid);
-					moved = JSON.stringify(rightGrid) !== JSON.stringify(newGrid);
-					newGrid = rightGrid;
-					break;
-				default:
-					return prevGrid;
-			}
+				switch (e.key) {
+					case "ArrowUp":
+						// eslint-disable-next-line
+						const upGrid = moveUp(newGrid);
+						moved = JSON.stringify(upGrid) !== JSON.stringify(newGrid);
+						newGrid = upGrid;
+						break;
+					case "ArrowDown":
+						// eslint-disable-next-line
+						const downGrid = moveDown(newGrid);
+						moved = JSON.stringify(downGrid) !== JSON.stringify(newGrid);
+						newGrid = downGrid;
+						break;
+					case "ArrowLeft":
+						// eslint-disable-next-line
+						const leftGrid = moveLeft(newGrid);
+						moved = JSON.stringify(leftGrid) !== JSON.stringify(newGrid);
+						newGrid = leftGrid;
+						break;
+					case "ArrowRight":
+						// eslint-disable-next-line
+						const rightGrid = moveRight(newGrid);
+						moved = JSON.stringify(rightGrid) !== JSON.stringify(newGrid);
+						newGrid = rightGrid;
+						break;
+					default:
+						return prevGrid;
+				}
 
-			if (moved) {
-				newGrid = addRandomTile(newGrid);
-			}
+				if (moved) {
+					newGrid = addRandomTile(newGrid);
+				}
 
-			setIsGameOver(isGameOver(newGrid));
+				setIsGameOver(isGameOver(newGrid));
 
-			return newGrid;
-		});
-	};
+				return newGrid;
+			});
+		},
+		[]
+	);
 
 	const moveLeft = (grid: number[][]): number[][] => {
 		let newScore = 0;
@@ -355,17 +357,14 @@ export default function Page() {
 		const handleKeyDown = (e: KeyboardEvent) => handleKeyPress(e, grid, setGrid);
 
 		window.addEventListener("keydown", handleKeyDown);
-
-		window.addEventListener("load", () => {
-			document.body.style.paddingTop = "1px";
-		});
+		document.body.style.paddingTop = "1px";
 
 		checkGameReady();
 		initializeGame();
 		return () => {
 			window.removeEventListener("keydown", handleKeyDown);
 		};
-	}, []);
+	}, [grid, handleKeyPress, initializeGame]);
 
 	if (gameReady === false) {
 		return (

@@ -3,9 +3,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Turret+Road:wght@200;300;400;500;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Shade:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400&display=swap");
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* Make the theme available throughout the application */
+:root {
+	--primary: #733dbe;
+	--secondary: #9e40ee;
+	--accent: #e39036;
+	--neutral: #d5345d;
+	--base-100: #292333;
+	--retro-purple-medium: #7e34c6;
+}
 
 /* attempt to modify caret size */
 .custom-arrow .collapse-title::before {
