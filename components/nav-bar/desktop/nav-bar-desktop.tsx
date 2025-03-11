@@ -63,15 +63,11 @@ export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
 					<RegistrationButton className="w-fit whitespace-nowrap" />
 				</div>
 				<div className="w-fit flex items-center justify-around ml-2">
-					<HackRPIButton
-						className="flex-1 w-100 pl-2 pr-6 py-2"
-						onClick={() => {
-							const isRetro = document.documentElement.style.getPropertyValue('--retro') === 'true';
-							document.documentElement.style.setProperty('--retro', isRetro ? 'false' : 'true');
-							window.location.reload();
-						}}
-					>
-						Retro/Modern
+					<HackRPIButton data-theme="Retro">
+						Retro
+					</HackRPIButton>
+					<HackRPIButton data-theme="Modern">
+						Modern
 					</HackRPIButton>
 				</div>
 			</div>

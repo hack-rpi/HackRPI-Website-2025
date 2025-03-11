@@ -28,6 +28,14 @@
 	--amplify-components-radio-label-color: #efefef;
 }
 
-:root {
-	--retro: true;
+@layer base {
+	:root{
+		--hackrpi-font: 'Turret Road', sans-serif;
+	}
+	html[data-theme=retro] {
+		--hackrpi-font: 'Silkscreen', sans-serif;
+	}
+	html[data-theme=modern] {
+		--hackrpi-font: 'Audiowide', sans-serif;
+	}
 }
