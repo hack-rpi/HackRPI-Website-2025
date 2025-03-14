@@ -1,0 +1,18 @@
+{
+	"cookies": [],
+	"origins": [
+		{
+			"origin": "http://localhost:3000",
+			"localStorage": [
+				{
+					"name": "hack_rpi_auth_token",
+					"value": "mock-auth-token"
+				},
+				{
+					"name": "hack_rpi_user",
+					"value": "{\"id\":\"test-user-id\",\"name\":\"Test User\",\"email\":\"test@hackrpi.com\",\"role\":\"participant\"}"
+				}
+			]
+		}
+	]
+}

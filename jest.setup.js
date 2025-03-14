@@ -40,12 +40,37 @@ console.error = function (...args) {
 			args[0].includes("React does not recognize the") ||
 			// Filter out expected API errors in tests
 			(args[0].includes("Error fetching leaderboard:") && process.env.NODE_ENV === "test") ||
-			(args[0].includes("Error checking game status:") && process.env.NODE_ENV === "test"))
+			(args[0].includes("Error checking game status:") && process.env.NODE_ENV === "test") ||
+			// Add metadata-related error filtering
+			args[0].includes("Error: Metadata export is not available in Jest") ||
+			args[0].includes("Cannot find module 'next/metadata'"))
 	) {
 		return;
 	}
 	originalError.apply(console, args);
 };
+
+// Mock for Next.js metadata API
+jest.mock("next", () => {
+	const originalNext = jest.requireActual("next");
+	return {
+		...originalNext,
+		// Add mock for Metadata
+		Metadata: {},
+	};
+});
+
+// Do not try to mock non-existent modules
+// Instead, use this approach which is safer
+global.Metadata = {};
+jest.mock("next/head", () => {
+	return {
+		__esModule: true,
+		default: ({ children }) => {
+			return <>{children}</>;
+		},
+	};
+});
 
 // Mock for window.matchMedia
 Object.defineProperty(window, "matchMedia", {
