@@ -11,18 +11,16 @@ export default function AboutUs() {
 
 				<div className="w-11/12">
 					<p className="pb-3">
-						HackRPI 2024 is Rensselaer Polytechnic Institute&apos;s 11th annual intercollegiate hackathon hosted by
-						students for students. Starting at noon on Saturday, November 9th, teams of 1-4 people have 24 hours to
+						HackRPI 2025 is Rensselaer Polytechnic Institute&apos;s 12th annual intercollegiate hackathon hosted by
+						students for students. Starting at noon on Saturday, November 15th, teams of 1-4 people have 24 hours to
 						build and submit projects relating to our theme,{" "}
-						<span className="text-hackrpi-orange font-bold">Urban Upgrades</span>. After submitting their projects,
-						participants demonstrate their projects in front of a panel of professors, industry professionals, and
-						fellow students.
+						<span className="text-hackrpi-light-purple font-bold">Retro vs. Modern</span>. After submitting their
+						projects, participants demonstrate their projects in front of a panel of professors, industry professionals,
+						and fellow students.
 					</p>
 					<p className="pb-3">
-						<span className="text-hackrpi-orange font-bold">Urban Upgrades</span> is all about enhancing the
-						infrastructure, services, and quality of life in our cities. From smart transportation systems and
-						sustainable energy solutions to improved public safety and inclusive community spaces, this theme challenges
-						you to develop ideas and technologies that make cities more livable, efficient, and enjoyable for everyone.
+						<span className="text-hackrpi-light-purple font-bold">Retro vs. Modern</span> is DESCRIPTION OF RETRO VS
+						MODERN
 					</p>
 					<p className="pb-3">
 						Our goal is to inspire and challenge innovators, creators, developers, and entrepreneurs in New York&apos;s
