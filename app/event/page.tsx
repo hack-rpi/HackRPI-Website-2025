@@ -17,11 +17,11 @@ function EventPage() {
 			<div className="justify-center flex w-full flex-col  bg-hackrpi-dark-blue pt-24 desktop:pt-16">
 				<div className="px-4 flex flex-wrap items-start justify-center mb-8">
 					<div className="w-full desktop:w-1/2 p-4 min-w-[350px] sm:min-w-[450px]">
-						<h1 className="font-semibold text-4xl text-hackrpi-orange mb-4 font-neutral">Location</h1>
+						<h1 className="font-bold text-4xl text-hackrpi-orange mb-4 font-neutral">Location</h1>
 						<div className="text-2xl mb-10">
-							<h3 className="text-hackrpi-orange text-2xl font-bold">📍 Darrin Communications Center</h3>
-							<h3 className="text-hackrpi-yellow">Rensselaer Polytechnic Institute</h3>
-							<p className="text-hackrpi-yellow">
+							<h3 className="font-semibold text-hackrpi-orange text-2xl font-neutral">📍 Darrin Communications Center</h3>
+							<h3 className="text-hackrpi-yellow font-neutral">Rensselaer Polytechnic Institute</h3>
+							<p className="text-hackrpi-yellow font-semibold font-neutral">
 								Address:{" "}
 								<a
 									href="https://maps.google.com/?q=Darrin+Communications+Center+51+College+Ave+Troy+NY+12180"
@@ -38,7 +38,6 @@ function EventPage() {
 							<iframe
 								width="100%"
 								height="100%"
-								frameBorder="0"
 								style={{ border: 0 }}
 								src="https://maps.google.com/?q=Darrin+Communications+Center+51+College+Ave+Troy+NY+12180&output=embed"
 								allowFullScreen
@@ -47,10 +46,10 @@ function EventPage() {
 
 						<div className="text-2xl mt-10">
 							<h3 className="font-bold text-2xl text-hackrpi-orange font-neutral">Free Parking</h3>
-							<p className="text-hackrpi-yellow">
+							<p className="text-hackrpi-yellow font-neutral">
 								Parking is available at North Hall Parking Lot, 2-minute walk to Darrin Communications Center
 							</p>
-							<p className="text-hackrpi-yellow">
+							<p className="text-hackrpi-yellow font-semibold font-neutral">
 								Parking Address:{" "}
 								<a
 									href="https://maps.google.com/?q=North+Lot+Troy+NY+12180"
@@ -62,7 +61,7 @@ function EventPage() {
 								</a>
 							</p>
 						</div>
-						<div className="mt-4 text-xl text-hackrpi-yellow">
+						<div className="mt-4 text-xl text-hackrpi-yellow font-neutral">
 							<p>
 								Be sure to check-in with our organizers at the organizing team table in the front of the DCC.
 								Participants will be given a wrist band at check-in which will grant access to food, and activities.
