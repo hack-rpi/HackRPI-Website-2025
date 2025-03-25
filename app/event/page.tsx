@@ -76,11 +76,11 @@ function EventPage() {
 					</div>
 				</div>
 				<div className="flex flex-row items-center justify-center bg-gradient-to-r from-hackrpi-pink via-hackrpi-light-purple to-hackrpi-pink w-full py-8">
-					<h1 className="text-4xl text-white font-bold ml-4">Need Help?</h1>
+					<h1 className="text-4xl text-white font-bold ml-4 font-neutral">Need Help?</h1>
 					<div className="w-full flex items-start justify-start flex-col md:flex-row">
 						<div className="container p-4">
-							<h2 className=" font-semibold text-2xl mb-4 text-white">MENTORING INFORMATION</h2>
-							<p className=" text-lg text-white">
+							<h2 className="font-neutral font-semibold text-2xl mb-4 text-white">MENTORING INFORMATION</h2>
+							<p className="text-lg text-white font-neutral">
 								Mentors will be available throughout HackRPI to provide invaluable guidance and assistance to
 								participants. Whether you need help with coding, debugging, refining your project idea, or navigating
 								the challenges of a hackathon, our experienced mentors are here to support you every step of the way.
@@ -91,8 +91,8 @@ function EventPage() {
 						</div>
 
 						<div className="container flex flex-col items-start p-4">
-							<h2 className="font-semibold text-2xl mb-4 text-white">EVENT DISCORD</h2>
-							<p className="text-lg mb-8 text-white">
+							<h2 className="font-semibold text-2xl mb-4 text-white font-neutral">EVENT DISCORD</h2>
+							<p className="text-lg mb-8 text-white font-neutral">
 								Join the HackRPI 2024 Discord server to stay connected and make the most of your hackathon experience!
 								Have questions for the staff? Want to chat with other participants? Looking for a team? Join the
 								conversation on Discord and get the support you need to succeed at HackRPI.
@@ -108,62 +108,62 @@ function EventPage() {
 				</div>
 
 				<div className="flex flex-col items-start justify-start w-full" id="project-submission">
-					<h1 className="p-4 text-4xl font-bold text-hackrpi-orange">Project Submission and Judging</h1>
+					<h1 className="p-4 text-4xl font-bold text-hackrpi-orange font-neutral">Project Submission and Judging</h1>
 					<div className="flex flex-col md:flex-row">
 						<div className="container p-4">
-							<h1 className="font-semibold text-3xl mb-4 text-hackrpi-orange">JUDGING CRITERIA</h1>
-							<p className="mb-2 text-hackrpi-yellow">
+							<h1 className="font-semibold text-3xl mb-4 text-hackrpi-orange font-neutral">JUDGING CRITERIA</h1>
+							<p className="mb-2 text-hackrpi-yellow font-neutral">
 								After coding ends, at noon on Sunday, you will have the opportunity to present your project to a panel
 								of judges. These judges are industry professionals, professors, alumni, and fellow students who will
 								evaluate your project based on the following criteria:
 							</p>
-							<ul className="text-lg list-disc list-inside text-hackrpi-yellow">
-								<li className=" border-b border-gray-400 mb-2">
-									<strong className="text-hackrpi-orange">Practicality & Utility</strong> What problem do you want to
+							<ul className="text-lg list-disc list-inside text-hackrpi-yellow font-neutral">
+								<li className=" border-b border-gray-400 mb-2 font-neutral">
+									<strong className="text-hackrpi-orange font-neutral">Practicality & Utility</strong> What problem do you want to
 									solve? How applicable is your hack to problems we&apos;re facing today? Any future plans?
 								</li>
-								<li className=" border-b border-gray-400 mb-2">
-									<strong className="text-hackrpi-orange">Creativity:</strong> How original is your hack? Is this a
+								<li className=" border-b border-gray-400 mb-2 font-neutral">
+									<strong className="text-hackrpi-orange font-neutral">Creativity:</strong> How original is your hack? Is this a
 									novel idea or something that many people have come across?
 								</li>
-								<li className=" border-b border-gray-400 mb-2">
-									<strong className="text-hackrpi-orange">Technical Difficulty:</strong> How technically challenging is
+								<li className=" border-b border-gray-400 mb-2 font-neutral">
+									<strong className="text-hackrpi-orange font-neutral">Technical Difficulty:</strong> How technically challenging is
 									it? Which technologies did you use?
 								</li>
-								<li className=" border-b border-gray-400 mb-2">
-									<strong className="text-hackrpi-orange">Effort:</strong> Did the team genuinely commit time and effort
+								<li className=" border-b border-gray-400 mb-2 font-neutral">
+									<strong className="text-hackrpi-orange font-neutral">Effort:</strong> Did the team genuinely commit time and effort
 									to this product?
 								</li>
-								<li className=" border-b border-gray-400 mb-2">
-									<strong className="text-hackrpi-orange">User Experience:</strong> What impression do you get from the
+								<li className=" border-b border-gray-400 mb-2 font-neutral">
+									<strong className="text-hackrpi-orange font-neutral">User Experience:</strong> What impression do you get from the
 									hack? Does it provide for a smooth user experience?
 								</li>
-								<li className=" border-b border-gray-400 mb-2">
-									<strong className="text-hackrpi-orange">Collaboration & Learning:</strong> Did the team work well
+								<li className=" border-b border-gray-400 mb-2 font-neutral">
+									<strong className="text-hackrpi-orange font-neutral">Collaboration & Learning:</strong> Did the team work well
 									together and split up work? Did they learn from the experience?
 								</li>
 							</ul>
 						</div>
 
 						<div className="flex flex-col p-4 text-hackrpi-yellow">
-							<h1 className="font-semibold text-3xl mb-4 text-hackrpi-orange">PROJECT SUBMISSION</h1>
-							<p className="text-lg mb-2">
+							<h1 className="font-semibold text-3xl mb-4 text-hackrpi-orange font-neutral">PROJECT SUBMISSION</h1>
+							<p className="text-lg mb-5 font-neutral">
 								HackRPI uses Devpost to manage project submissions. You will need to create a Devpost account and submit
 								your project to the HackRPI 2024 hackathon page. Make sure to include a title, description, demo video,
 								and any other relevant information about your project.
 							</p>
-							<p className="text-lg mb-2">
+							<p className="text-lg mb-5 font-neutral">
 								You can submit your project at any time before 11:00 AM on Sunday. You must have a Devpost submission to
 								be eligible for judging. You can edit your project submission until 12:00 PM on Sunday.{" "}
 							</p>
-							<p className="text-lg mb-2">
+							<p className="text-lg mb-5 font-neutral">
 								After noon, you will not be able to make any changes to your project or your submission. Judging begins
 								immediately after the submission deadline. You must be present at the event to give a live demo and
 								explain your project to the judges.
 							</p>
 							<HackRPILink
 								href="https://hackrpi2024.devpost.com/"
-								className="text-3xl mt-4 text-center text-hackrpi-orange"
+								className="text-3xl mt-4 text-center text-hackrpi-orange font-neutral"
 							>
 								DEVPOST
 							</HackRPILink>
