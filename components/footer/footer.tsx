@@ -5,7 +5,12 @@ import RegistrationLink from "../themed-components/registration-link";
 
 export default function Footer() {
 	return (
-		<div className="rounded-lg w-full bg-gradient-to-br from-hackrpi-light-purple to-hackrpi-pink p-[6px]">
+		<div>
+			<style>
+				@import url('https://fonts.cdnfonts.com/css/future-socialism');
+			</style>
+			
+			<div className="rounded-lg w-full bg-gradient-to-br from-hackrpi-light-purple to-hackrpi-pink p-[6px]">
 			<div
 				className="flex flex-col items-start md:items-center justify-center w-full min-h-fit z-10 pl-4 md:pl-0 blur-0 opacity-100"
 				style={{ background: "#1C1820" }}
@@ -21,7 +26,7 @@ export default function Footer() {
 									<span className="font-bold tracking-normal text-orange-400 font-neutral">HackRPI</span>{" "}
 									<span className="text-amber-400 font-retro"> Retro </span>{" "}
 									<span className="text-amber-400 font-neutral font-bold"> V. </span>{" "}
-									<span className="text-amber-400 font-modern"> Modern </span>
+									<span className="text-amber-400 font-geomodern"> Modern </span>
 								</h2>
 								<div className = "text-2xl justify-l">
 									<p>Darrin Communications Center @ Rensselaer Polytechnic Institute</p>
@@ -44,6 +49,7 @@ export default function Footer() {
 					</p>
 					<p>&copy; 2025 HackRPI</p>
 				</div>
+			</div>
 			</div>
 		</div>
 	);
