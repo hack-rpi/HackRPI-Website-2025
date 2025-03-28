@@ -126,24 +126,24 @@ function EventPage() {
 									solve? How applicable is your hack to problems we&apos;re facing today? Any future plans?
 								</li>
 								<li className=" border-b border-gray-400 mb-2 text-hackrpi-light-purple">
-									<strong className="text-hackrpi-light-purple">Creativity:</strong> How original is your hack? Is this a
-									novel idea or something that many people have come across?
+									<strong className="text-hackrpi-light-purple">Creativity:</strong> How original is your hack? Is this
+									a novel idea or something that many people have come across?
 								</li>
 								<li className=" border-b border-gray-400 mb-2 text-hackrpi-pink">
 									<strong className="text-hackrpi-pink">Technical Difficulty:</strong> How technically challenging is
 									it? Which technologies did you use?
 								</li>
 								<li className=" border-b border-gray-400 mb-2 text-hackrpi-light-purple">
-									<strong className="text-hackrpi-light-purple">Effort:</strong> Did the team genuinely commit time and effort
-									to this product?
+									<strong className="text-hackrpi-light-purple">Effort:</strong> Did the team genuinely commit time and
+									effort to this product?
 								</li>
 								<li className=" border-b border-gray-400 mb-2 text-hackrpi-pink">
 									<strong className="text-hackrpi-pink">User Experience:</strong> What impression do you get from the
 									hack? Does it provide for a smooth user experience?
 								</li>
 								<li className=" border-b border-gray-400 mb-2 text-hackrpi-light-purple">
-									<strong className="text-hackrpi-light-purple">Collaboration & Learning:</strong> Did the team work well
-									together and split up work? Did they learn from the experience?
+									<strong className="text-hackrpi-light-purple">Collaboration & Learning:</strong> Did the team work
+									well together and split up work? Did they learn from the experience?
 								</li>
 							</ul>
 						</div>

@@ -7,6 +7,7 @@ import NavBar from "@/components/nav-bar/nav-bar";
 
 export default function Announcements() {
 	const [announcements, setAnnouncements] = useState([]);
+	const [showRecent, setShowRecent] = useState(true);
 
 	useEffect(() => {
 		async function fetchAnnouncements() {
@@ -31,31 +32,60 @@ export default function Announcements() {
 					<h1 className="text-4xl font-bold text-hackrpi-orange mb-4">Announcements</h1>
 					<p className="text-hackrpi-yellow text-lg">Stay updated with the latest HackRPI announcements here.</p>
 
-					{/* Render Announcements */}
-					{announcements.map((a: any) => (
-						<div
-							key={a._id}
-							className="mt-6 p-4 border border-hackrpi-orange bg-opacity-20 bg-hackrpi-yellow rounded-lg"
+					<div className="mt-6 mb-4 flex gap-4">
+						<button
+							onClick={() => setShowRecent(true)}
+							className={`px-4 py-2 rounded ${showRecent ? "bg-hackrpi-orange text-white" : "bg-hackrpi-yellow text-hackrpi-orange"}`}
 						>
-							<h2 className="text-2xl font-semibold text-hackrpi-orange">{a.title}</h2>
-							<p className="text-hackrpi-yellow">{a.message}</p>
-							<p className="text-sm text-hackrpi-yellow mt-2">
-								Posted by: {a.name} | {new Date(a.time).toLocaleString()}
-							</p>
-							{a.links && (
-								<p className="text-sm mt-1">
-									<a
-										href={`https://${a.links}`}
-										className="text-hackrpi-orange underline"
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										{a.links}
-									</a>
+							Recent Announcements
+						</button>
+						<button
+							onClick={() => setShowRecent(false)}
+							className={`px-4 py-2 rounded ${!showRecent ? "bg-hackrpi-orange text-white" : "bg-hackrpi-yellow text-hackrpi-orange"}`}
+						>
+							All Announcements
+						</button>
+					</div>
+
+					{/* Render Announcements */}
+					{announcements
+						.filter((a: any) => {
+							if (!showRecent) return true;
+							const threeDaysAgo = new Date();
+							threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+							return new Date(a.time) >= threeDaysAgo;
+						})
+						.map((a: any) => (
+							<div
+								key={a._id}
+								className="mt-6 p-4 border border-hackrpi-orange bg-opacity-20 bg-hackrpi-yellow rounded-lg"
+							>
+								<h2 className="text-2xl font-semibold text-hackrpi-orange">{a.title}</h2>
+								<p className="text-hackrpi-yellow">{a.message}</p>
+								<p className="text-sm text-hackrpi-yellow mt-2">
+									Posted:{" "}
+									{new Date(a.time).toLocaleString(undefined, {
+										year: "numeric",
+										month: "numeric",
+										day: "numeric",
+										hour: "numeric",
+										minute: "numeric",
+									})}
 								</p>
-							)}
-						</div>
-					))}
+								{a.links && (
+									<p className="text-sm mt-1">
+										<a
+											href={`https://${a.links}`}
+											className="text-hackrpi-orange underline"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											{a.links}
+										</a>
+									</p>
+								)}
+							</div>
+						))}
 				</div>
 			</div>
 		</>
