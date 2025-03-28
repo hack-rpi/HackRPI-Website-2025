@@ -57,6 +57,7 @@ function Tile({ value }: { value: number }) {
 
 	return (
 		<div
+			data-testid="tile"
 			className={`tile flex justify-center items-center rounded-lg shadow-lg w-full h-full ${bgColor} ${textColor} ${
 				value ? "" : "empty"
 			} text-4xl font-bold`}

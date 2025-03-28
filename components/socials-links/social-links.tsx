@@ -5,12 +5,14 @@ const socialLinks: CardProps[] = [
 		svgPath: "/social/instagram.svg",
 		link: "https://www.instagram.com/hack.rpi/",
 		name: "Instagram",
-		bgGradientFrom: "from-[#FD1D1D]",
-		bgGradientTo: "to-[#405DE6]",
+		bgGradientFrom: "from-[#feda75]", // Light yellow/orange
+		bgGradientVia: "via-[#d62976]", // Pink/magenta
+		bgGradientTo: "to-[#4f5bd5]", // Deep blue/purple
 	},
 	{
+		//TODO: Change discord link to 2025 HackRPI Discord
 		svgPath: "/social/discord.svg",
-		link: "https://discord.gg/Pzmdt7FYnu",
+		link: "https://discord.gg/7b2zc8fe26",
 		name: "Discord",
 		bgGradientFrom: "from-[#5865F2]",
 		bgGradientTo: "to-[#7289da]",
@@ -40,7 +42,7 @@ const socialLinks: CardProps[] = [
 
 export default function SocialLinks() {
 	return (
-		<div className="flex w-full items-center justify-between">
+		<div className="flex flex-row items-center justify-between">
 			{socialLinks.map((socialLink) => (
 				<Card key={socialLink.name} {...socialLink} />
 			))}

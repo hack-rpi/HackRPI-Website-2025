@@ -5,9 +5,9 @@ export function arrangeEvents(events: Event[]): Event[][] {
 		return [];
 	}
 
-	let eventsToPlace = [...events];
+	const eventsToPlace = [...events];
 
-	let placedEvents: Event[][] = [[]];
+	const placedEvents: Event[][] = [[]];
 
 	while (eventsToPlace.length > 0) {
 		let eventToPlace = eventsToPlace.shift();
@@ -17,7 +17,7 @@ export function arrangeEvents(events: Event[]): Event[][] {
 
 		for (let i = 0; i < placedEvents.length; i++) {
 			const column = placedEvents[i];
-			let conflict = findConflict(eventToPlace!, column);
+			const conflict = findConflict(eventToPlace!, column);
 			if (!conflict) {
 				// If there are no conflicts, place the event in the column
 				column.push(eventToPlace);
@@ -25,7 +25,7 @@ export function arrangeEvents(events: Event[]): Event[][] {
 				break;
 			}
 
-			let longerEvent: Event =
+			const longerEvent: Event =
 				eventToPlace.endTime - eventToPlace.startTime > conflict.endTime - conflict.startTime ? eventToPlace : conflict;
 
 			if (longerEvent === conflict) {
@@ -52,9 +52,26 @@ export function arrangeEvents(events: Event[]): Event[][] {
 
 function findConflict(event: Event, events: Event[]): Event | undefined {
 	for (let i = 0; i < events.length; i++) {
-		// Find if the event conflicts with any other event in the column
-		if (event.startTime >= events[i].startTime && event.startTime < events[i].endTime) {
-			return events[i];
+		// Check for all types of conflicts between events
+		const existingEvent = events[i];
+
+		// Case 1: New event starts during existing event
+		const newEventStartsDuringExisting =
+			event.startTime >= existingEvent.startTime && event.startTime < existingEvent.endTime;
+
+		// Case 2: Existing event starts during new event
+		const existingStartsDuringNew =
+			existingEvent.startTime >= event.startTime && existingEvent.startTime < event.endTime;
+
+		// Case 3: New event contains existing event entirely
+		const newContainsExisting = event.startTime <= existingEvent.startTime && event.endTime >= existingEvent.endTime;
+
+		// Case 4: Existing event contains new event entirely
+		const existingContainsNew = existingEvent.startTime <= event.startTime && existingEvent.endTime >= event.endTime;
+
+		// If any overlap case is true, there's a conflict
+		if (newEventStartsDuringExisting || existingStartsDuringNew || newContainsExisting || existingContainsNew) {
+			return existingEvent;
 		}
 	}
 	return undefined;

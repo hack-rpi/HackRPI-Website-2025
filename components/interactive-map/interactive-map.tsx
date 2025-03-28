@@ -1,18 +1,23 @@
 import { Link } from "@/data/nav-bar-links";
-import Image from "next/image";
+// import Image from "next/image";
 import NextLink from "next/link";
 
+// Previously commented out because we didn't have the links yet
+// Now uncommented and updated from main branch
 const links: Link[] = [
 	{ href: "/event", children: "Event Information" },
 	{ href: "/event/schedule", children: "Schedule" },
+	{ href: "/announcements", children: "Announcements" },
 	{ href: "/event/prizes", children: "Prizes" },
 	{ href: "/resources", children: "Resources" },
 	{ href: "/last-year", children: "HackRPI XII" },
 	{ href: "/sponsor-us", children: "Sponsor Us" },
 ];
+
 const firsthalflink: Link[] = [
 	{ href: "/event", children: "Event Information" },
 	{ href: "/event/schedule", children: "Schedule" },
+	{ href: "/announcements", children: "Announcements" },
 	{ href: "/event/prizes", children: "Prizes" },
 ];
 const secondhalflink: Link[] = [

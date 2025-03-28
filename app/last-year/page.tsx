@@ -447,7 +447,6 @@ export default function PastYearProjects() {
 					</div>
 				</div>
 			</div>
-			<Footer />
 		</div>
 	);
 }

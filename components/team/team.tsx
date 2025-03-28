@@ -2,6 +2,7 @@
 
 import React, { useCallback, useEffect, useState } from "react";
 import HackRPILink from "../themed-components/hackrpi-link";
+import Footer from "@/components/footer/footer";
 import { Director, team } from "../../data/members";
 import { teamColors } from "../../data/members";
 import { executive } from "../../data/members";
@@ -92,18 +93,24 @@ export default function TeamComponent() {
 					<HackRPILink
 						className="w-72 h-12 flex items-center justify-center text-xl text-center my-1"
 						href="https://discord.gg/Pzmdt7FYnu"
+						target="_blank"
 					>
 						Join our Organizing Team!
 					</HackRPILink>
 					<HackRPILink
 						className="w-72 h-12 flex items-center justify-center text-xl text-center my-1 sm:mx-2 "
 						href="https://forms.gle/2riKKB6H2ajsd1FM7"
+						//CHANGE THIS TO DIFFERENT FORM FOR 2025 HACKRPI!!!!!!!!!!!!!!!!!!!
+
+						target="_blank"
 					>
 						Help Mentor!
 					</HackRPILink>
 					<HackRPILink
 						className="w-72 h-12 flex items-center justify-center text-xl text-center my-1"
 						href="https://forms.gle/3M6TZo7PRwgWSqqB8"
+						//CHANGE THIS TO DIFFERENT FORM FOR 2025 HACKRPI!!!!!!!!!!!!!!!!!!!
+						target="_blank"
 					>
 						Volunteer!
 					</HackRPILink>

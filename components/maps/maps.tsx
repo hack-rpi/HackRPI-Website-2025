@@ -28,7 +28,7 @@ const MapsDCCLow = () => {
 						<HackRPIButton
 							onClick={handleShowDCC}
 							active={showDCC}
-							className="text-xl w-full h-full flex items-center justify-center text-white"
+							className="text-2xl w-full h-full flex items-center justify-center text-white"
 						>
 							Darrin Communications Center
 						</HackRPIButton>
@@ -36,7 +36,7 @@ const MapsDCCLow = () => {
 						<HackRPIButton
 							onClick={handleShowLOW}
 							active={showLOW}
-							className="text-xl w-full h-full flex items-center justify-center text-white"
+							className="text-2xl w-full h-full flex items-center justify-center text-white"
 						>
 							Low Center for Industrial Innovation
 						</HackRPIButton>

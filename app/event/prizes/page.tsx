@@ -20,7 +20,6 @@ export default function Page() {
 				<hr className="w-11/12 desktop:w-3/4 lg:w-2/3 2xl:w-3/5 mx-auto my-4 border-gray-300" />
 				<MinorPrizes minorPrizes={minorPrizes} />
 			</div>
-			<Footer />
 		</div>
 	);
 }

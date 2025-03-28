@@ -18,6 +18,34 @@ A simple, front-end only website with NextJS, React, TailwindCSS, and TypeScript
 
         npm run dev
 
+## Testing 🧪
+
+We use Jest and React Testing Library for testing. Tests are organized into three categories:
+
+1. **Unit Tests**: For testing utility functions and isolated logic
+2. **Component Tests**: For testing React components in isolation
+3. **Integration Tests**: For testing how components work together
+
+To run all tests:
+
+```bash
+npm test
+```
+
+To run tests in watch mode (useful during development):
+
+```bash
+npm run test:watch
+```
+
+To generate a coverage report:
+
+```bash
+npm run test:ci
+```
+
+For more information about testing, see the [testing documentation](__tests__/README.md).
+
 ## Contributing 🚀
 
 We are always looking for contributions! If you're wondering where to start, checkout our issues pages for work that still needs to be done.

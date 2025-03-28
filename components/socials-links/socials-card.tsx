@@ -5,6 +5,7 @@ export type CardProps = {
 	link: string;
 	name: string;
 	bgGradientFrom: string;
+	bgGradientVia?: string;
 	bgGradientTo: string;
 	classname?: string;
 };

@@ -14,7 +14,7 @@ export default function HackRPIButton(props: HackRPIButtonProps) {
 			aria-pressed={props.active}
 			className={`${props.className} ${
 				props.active ? "bg-hackrpi-pink text-hackrpi-orange border-hackrpi-pink" : "border-hackrpi-pink text-white"
-			} flex group  border-2  hover:bg-hackrpi-pink hover:text-hackrpi-orange transition-colors duration-200 font-sans font-medium ring-hackrpi-pink relative pr-4`}
+			}  flex group  border-2  hover:bg-hackrpi-pink hover:text-hackrpi-orange transition-colors duration-200 font-pix font-medium ring-hackrpi-pink relative pr-4`}
 		>
 			<div className="p-2 w-full">{props.children}</div>
 			<svg

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+// eslint-disable-next-line react-hooks/exhaustive-deps
 import { useEffect } from "react";
 import NavBar from "@/components/nav-bar/nav-bar";
 import Board from "@/components/game/board";
@@ -346,6 +347,7 @@ export default function Page() {
 	};
 	const [gameReady, setGameReady] = useState(false);
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		const checkGameReady = async () => {
 			const response = await is_game_ready();

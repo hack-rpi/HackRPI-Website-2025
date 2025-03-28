@@ -19,7 +19,7 @@ export default function ProjectCarousel({ projects }: { projects: ProjectCarouse
 	};
 
 	return (
-		<div className="w-full">
+		<div className="w-full" style={{ zIndex: 1 }}>
 			<Carousel
 				swipeable={true}
 				draggable={true}

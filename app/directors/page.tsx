@@ -85,7 +85,6 @@ export default function Page() {
 					</div>
 				</Authenticator>
 			</div>
-			<Footer />
 		</div>
 	);
 }

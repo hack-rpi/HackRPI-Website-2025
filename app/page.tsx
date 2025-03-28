@@ -1,10 +1,8 @@
 "use client";
 
-import Footer from "@/components/footer/footer";
 import FAQPage from "@/components/faq/faq";
-import NavBar from "@/components/nav-bar/nav-bar";
 import TitleComponent from "@/components/title-components/title";
-import "../app/globals.css";
+import Footer from "@/components/footer/footer";
 import AboutSection from "../components/about-us";
 import { useEffect, useState } from "react";
 import TeamComponent from "@/components/team/team";
@@ -47,15 +45,13 @@ export default function Home() {
 	return (
 		<>
 			<div className="flex flex-col items-start desktop:items-center justify-start w-full">
-				<NavBar showOnScroll={true} />
-				<div className="w-full  desktop:mx-8">
+				<div className="w-full desktop:mx-8">
 					<TitleComponent />
 					<AboutSection />
 					<FAQPage />
 					<Sponsors />
 					<TeamComponent />
 				</div>
-				<Footer />
 
 				<div
 					className={`${

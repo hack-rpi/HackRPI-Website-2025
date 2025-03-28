@@ -60,6 +60,7 @@ export default function Schedule(props: ScheduleProps) {
 										height,
 									}}
 									onClick={() => props.onEventClick(event)}
+									data-testid="event-card"
 								>
 									<p className={`font-bold text-sm xs:text-base sm:text-lg border-b-2 pl-1 ${color}`}>{event.title}</p>
 									<p className={`text-xs xs:text-sm sm:text-base border-b-2 pl-1 ${color}`}>
