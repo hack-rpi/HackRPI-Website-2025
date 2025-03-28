@@ -17,7 +17,9 @@ export default function PastYearProjects() {
 		<div className="w-full flex items-center justify-center flex-col" id="winners">
 			<NavBar showOnScroll={false} />
 			<div className="w-11/12 lg:w-3/4 xl:w-2/3 pt-8 flex flex-col items-center justify-center">
-				<h2 className="text-3xl font-bold text-center mb-8 pt-20">Previous Projects From HackRPI XI</h2>
+				<h2 className="text-hackrpi-orange text-3xl font-bold tracking-normal text-orange-400 font-neutral text-center mb-8 pt-20 ">
+					Previous Projects From HackRPI XI
+				</h2>
 				<HackRPILink href="/last-year#photos" className="text-2xl px-6 py-2 m-2">
 					Jump to Photos
 				</HackRPILink>
