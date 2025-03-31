@@ -1,70 +1,70 @@
 @layer base {
-  /* Base font families configuration */
-  :root {
-    --font-sans: Helvetica, Arial, sans-serif;
-    --font-retro: Silkscreen, serif;
-    --font-modern: Audiowide, serif;
-    --font-neutral: "Turret Road", serif;
-    --font-neutral2: Aldrich, serif;
-    --font-neutral3: "Jersey 15", serif;
-    --font-pix: "Pixelify Sans", sans-serif;
-  }
+	/* Base font families configuration */
+	:root {
+		--font-sans: Helvetica, Arial, sans-serif;
+		--font-retro: Silkscreen, serif;
+		--font-modern: Audiowide, serif;
+		--font-neutral: "Turret Road", serif;
+		--font-neutral2: Aldrich, serif;
+		--font-neutral3: "Jersey 15", serif;
+		--font-pix: "Pixelify Sans", sans-serif;
+	}
 }
 
 @layer theme {
-  /* HackRPI Colors */
-  --color-hackrpi-light-purple: 158 64 238; /* #9e40ee */
-  --color-hackrpi-dark-purple: 115 61 190; /* #733dbe */
-  --color-hackrpi-orange: 227 144 54; /* #e39036 */
-  --color-hackrpi-yellow: 233 188 89; /* #e9bc59 */
-  --color-hackrpi-pink: 213 52 93; /* #d5345d */
-  --color-hackrpi-dark-blue: 41 35 51; /* #292333 */
+	/* HackRPI Colors */
+	--color-hackrpi-light-purple: 158 64 238; /* #9e40ee */
+	--color-hackrpi-dark-purple: 115 61 190; /* #733dbe */
+	--color-hackrpi-orange: 227 144 54; /* #e39036 */
+	--color-hackrpi-yellow: 233 188 89; /* #e9bc59 */
+	--color-hackrpi-pink: 213 52 93; /* #d5345d */
+	--color-hackrpi-dark-blue: 41 35 51; /* #292333 */
 
-  /* Legacy Colors */
-  --color-hackrpi-primary-blue: 116 183 239; /* #74b7ef */
-  --color-hackrpi-primary-dark-green: 38 78 51; /* #264e33 */
-  --color-hackrpi-primary-light-green: 136 182 58; /* #88b63a */
-  --color-hackrpi-secondary-grey: 239 239 239; /* #efefef */
-  --color-hackrpi-secondary-light-blue: 74 98 119; /* #4a6277 */
-  --color-hackrpi-secondary-dark-blue: 39 48 59; /* #27303b */
-  --color-hackrpi-secondary-dark-green: 39 48 59; /* #27303b */
-  --color-hackrpi-secondary-light-green: 109 135 64; /* #6d8740 */
-  --color-hackrpi-secondary-yellow: 237 213 89; /* #edd559 */
-  --color-subway-red: 239 58 66; /* #ef3a42 */
-  --color-subway-blue: 0 88 169; /* #0058a9 */
-  --color-subway-green: 0 166 92; /* #00a65c */
-  --color-subway-yellow: 248 161 58; /* #f8a13a */
-  --color-subway-purple: 180 60 150; /* #b43c96 */
-  --color-test-white: 255 255 255; /* #FFFFFF */
-  --color-retro-orange: 251 187 63; /* #fbbb3f */
-  --color-retro-purple-medium: 126 52 198; /* #7e34c6 */
-  --color-retro-purple-dark: 43 34 52; /* #2b2234 */
-  --color-gold: 255 215 0; /* #ffd700 */
-  --color-silver: 192 192 192; /* #C0C0C0 */
-  --color-bronze: 205 127 50; /* #cd7f32 */
+	/* Legacy Colors */
+	--color-hackrpi-primary-blue: 116 183 239; /* #74b7ef */
+	--color-hackrpi-primary-dark-green: 38 78 51; /* #264e33 */
+	--color-hackrpi-primary-light-green: 136 182 58; /* #88b63a */
+	--color-hackrpi-secondary-grey: 239 239 239; /* #efefef */
+	--color-hackrpi-secondary-light-blue: 74 98 119; /* #4a6277 */
+	--color-hackrpi-secondary-dark-blue: 39 48 59; /* #27303b */
+	--color-hackrpi-secondary-dark-green: 39 48 59; /* #27303b */
+	--color-hackrpi-secondary-light-green: 109 135 64; /* #6d8740 */
+	--color-hackrpi-secondary-yellow: 237 213 89; /* #edd559 */
+	--color-subway-red: 239 58 66; /* #ef3a42 */
+	--color-subway-blue: 0 88 169; /* #0058a9 */
+	--color-subway-green: 0 166 92; /* #00a65c */
+	--color-subway-yellow: 248 161 58; /* #f8a13a */
+	--color-subway-purple: 180 60 150; /* #b43c96 */
+	--color-test-white: 255 255 255; /* #FFFFFF */
+	--color-retro-orange: 251 187 63; /* #fbbb3f */
+	--color-retro-purple-medium: 126 52 198; /* #7e34c6 */
+	--color-retro-purple-dark: 43 34 52; /* #2b2234 */
+	--color-gold: 255 215 0; /* #ffd700 */
+	--color-silver: 192 192 192; /* #C0C0C0 */
+	--color-bronze: 205 127 50; /* #cd7f32 */
 
-  /* Screen sizes */
-  --screen-desktop: 860px;
-  --screen-xs: 475px;
-  --screen-2xs: 375px;
+	/* Screen sizes */
+	--screen-desktop: 860px;
+	--screen-xs: 475px;
+	--screen-2xs: 375px;
 }
 
 @layer utilities {
-  .description-box {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    text-overflow: ellipsis;
-  }
+	.description-box {
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		text-overflow: ellipsis;
+	}
 }
 
 /* DaisyUI theming */
 @theme {
-  --theme-color-scheme: dark;
-  --theme-primary: #733dbe;
-  --theme-secondary: #9e40ee;
-  --theme-accent: #e39036;
-  --theme-neutral: #d5345d;
-  --theme-base-100: #292333;
-} 
+	--theme-color-scheme: dark;
+	--theme-primary: #733dbe;
+	--theme-secondary: #9e40ee;
+	--theme-accent: #e39036;
+	--theme-neutral: #d5345d;
+	--theme-base-100: #292333;
+}
