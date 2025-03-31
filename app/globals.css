@@ -7,9 +7,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Aldrich&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Jersey+15&display=swap");
 
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
+@import "./theme.css";
+@plugin "daisyui";
 
 /* attempt to modify caret size */
 .custom-arrow .collapse-title::before {
