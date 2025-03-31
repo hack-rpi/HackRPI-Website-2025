@@ -55,13 +55,18 @@
 	.description-box {
 		overflow: hidden;
 		display: -webkit-box;
+		display: box;
 		-webkit-box-orient: vertical;
+		box-orient: vertical;
 		-webkit-line-clamp: 2;
+		line-clamp: 2;
 		text-overflow: ellipsis;
+		max-height: 3em; /* Fallback for non-WebKit browsers */
+		line-height: 1.5em; /* Adjust based on your design */
 	}
 }
 
-/* DaisyUI theming */
+/* DaisyUI theming - Tailwind CSS v4 directive */
 @theme {
 	--theme-color-scheme: dark;
 	--theme-primary: #733dbe;
