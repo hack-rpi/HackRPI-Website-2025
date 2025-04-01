@@ -39,3 +39,35 @@
 		--hackrpi-font: 'Audiowide', sans-serif;
 	}
 }
+
+/* theme definitions */
+:root[data-theme="retro"] {
+  --primary-bg: #121212;
+  --primary-text: #e9bc59;
+  --accent-color: #d5345d;
+  /* add other retro theme variables */
+}
+
+:root[data-theme="modern"] {
+  --primary-bg: #ffffff;
+  --primary-text: #333333;
+  --accent-color: #3b82f6;
+  /* add other modern theme variables */
+}
+
+/* default to retro if not specified */
+:root:not([data-theme]) {
+  --primary-bg: #121212;
+  --primary-text: #e9bc59;
+  --accent-color: #d5345d;
+}
+
+/* apply these variables to elements */
+body {
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+}
+
+.theme-accent {
+  color: var(--accent-color);
+}
