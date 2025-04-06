@@ -90,7 +90,10 @@ export default function Page() {
 	return (
 		<div className="flex flex-col w-full h-fit min-h-screen items-center justify-center">
 			<NavBar showOnScroll={false} />
-			<div className="w-11/12 desktop:w-2/3 flex-grow flex-shrink basis-auto mt-28 desktop:mt-16 ">
+			<div
+				className="w-11/12 desktop:w-2/3 flex-grow flex-shrink basis-auto mt-28 desktop:mt-16 "
+				data-testid="schedule-container"
+			>
 				<div className="flex w-full items-center justify-center">
 					<HackRPILink
 						href="https://calendar.google.com/calendar/u/0?cid=ZGFkOGYzNGIzMjY1ZGQ2OTQzODFiODE2ODI4M2I4OGVlOTQ3M2EyZDgzMWVkNmYzODY3YzAzODE4NjhmNGIzMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
@@ -185,7 +188,6 @@ export default function Page() {
 					</div>
 				)}
 			</div>
-			<Footer />
 		</div>
 	);
 }

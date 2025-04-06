@@ -51,7 +51,6 @@ function SponsorUsPage() {
 					</div>
 				</div>
 			</div>
-			<Footer />
 		</div>
 	);
 }

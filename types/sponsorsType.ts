@@ -1,11 +1,11 @@
-export type sponsorTiers = "Obsidian" | "Gold" | "Silver" | "Bronze" | "Collaborators";
+export type sponsorTiers = "OBSIDIAN" | "GOLD" | "SILVER" | "BRONZE" | "COLLABORATORS";
 
 export interface SponsorsJSON {
-	Obsidian: Sponsor[];
-	Gold: Sponsor[];
-	Silver: Sponsor[];
-	Bronze: Sponsor[];
-	Collaborators: Sponsor[];
+	OBSIDIAN: Sponsor[];
+	GOLD: Sponsor[];
+	SILVER: Sponsor[];
+	BRONZE: Sponsor[];
+	COLLABORATORS: Sponsor[];
 }
 
 export interface Sponsor {

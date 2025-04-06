@@ -11,7 +11,7 @@ export default function page() {
 			<NavBar showOnScroll={false} />
 			<div className="flex flex-wrap justify-center gap-12 m-10 pt-10 pb-10 w-11/12">
 				<div className="flex flex-col justify-center items-center w-80 xs:w-[400px] md:w-[600px]">
-					<h2 id="web-dev" className="text-3xl font-bold text-center mb-8 pt-10 text-hackrpi-orange">
+					<h2 id="web-dev" className="text-3xl font-modern text-center mb-8 pt-10 text-hackrpi-orange">
 						Web Development
 					</h2>
 					<iframe
@@ -22,7 +22,7 @@ export default function page() {
 				</div>
 
 				<div className="flex flex-col justify-center items-center w-80 xs:w-[400px] md:w-[600px]">
-					<h2 id="git" className="text-3xl font-bold text-center mb-8 pt-10 text-hackrpi-orange">
+					<h2 id="git" className="text-3xl font-modern text-center mb-8 pt-10 text-hackrpi-orange">
 						Intro to Git and GitHub
 					</h2>
 					<iframe
@@ -33,7 +33,7 @@ export default function page() {
 				</div>
 
 				<div className="flex flex-col justify-center items-center w-80 xs:w-[400px] md:w-[600px]">
-					<h2 id="leaflet" className="text-3xl font-bold text-center mb-8 pt-10 text-hackrpi-orange">
+					<h2 id="leaflet" className="text-3xl font-modern text-center mb-8 pt-10 text-hackrpi-orange">
 						Mapping Data using Leaflet.js
 					</h2>
 					<iframe
@@ -44,7 +44,7 @@ export default function page() {
 				</div>
 
 				<div className="flex flex-col justify-center items-center w-80 xs:w-[400px] md:w-[600px]">
-					<h2 id="desktop-dev" className="text-3xl font-bold text-center mb-8 pt-10 text-hackrpi-orange">
+					<h2 id="desktop-dev" className="text-3xl font-modern text-center mb-8 pt-10 text-hackrpi-orange">
 						Desktop Development
 					</h2>
 					<iframe
@@ -55,7 +55,7 @@ export default function page() {
 				</div>
 
 				<div className="flex flex-col justify-center items-center w-80 xs:w-[400px] md:w-[600px]">
-					<h2 id="submissions" className="text-3xl font-bold text-center mb-8 pt-10 text-hackrpi-orange">
+					<h2 id="submissions" className="text-3xl font-modern text-center mb-8 pt-10 text-hackrpi-orange">
 						Submitting Your Project
 					</h2>
 					<iframe
@@ -66,7 +66,7 @@ export default function page() {
 				</div>
 
 				<div className="flex flex-col justify-center items-center w-80 xs:w-[400px] md:w-[600px]">
-					<h2 id="claude" className="text-3xl font-bold text-center mb-8 pt-10 text-hackrpi-orange">
+					<h2 id="claude" className="text-3xl font-modern text-center mb-8 pt-10 text-hackrpi-orange">
 						Anthropic Claude&apos;s Computer Use API
 					</h2>
 					<p className="text-hackrpi-yellow">
@@ -82,7 +82,7 @@ export default function page() {
 				</div>
 
 				<div className="flex flex-col justify-center items-center w-80 xs:w-[400px] md:w-[600px]">
-					<h2 id="wolfram" className="text-3xl font-bold text-center mb-8 pt-10 text-hackrpi-orange">
+					<h2 id="wolfram" className="text-3xl font-modern text-center mb-8 pt-10 text-hackrpi-orange">
 						Wolfram|One API
 					</h2>
 					<p className="text-hackrpi-yellow">
@@ -102,7 +102,6 @@ export default function page() {
 					</p>
 				</div>
 			</div>
-			<Footer />
 		</div>
 	);
 }

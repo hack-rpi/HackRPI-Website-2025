@@ -11,17 +11,17 @@ const faqs: FAQ[] = [
 	{
 		title: "What is HackRPI?",
 		content:
-			"Teams of 1-4 have 24 hours to build a project relating to our theme Urban Upgrades. Teams will then present their projects, and the best projects win prizes!",
+			"Teams of 1-4 have 24 hours to build a project relating to our theme Retro V. Modern. Teams will then present their projects, and the best projects win prizes!",
 	},
 	{
 		title: "When is HackRPI?",
 		content:
-			"HackRPI takes place on November 9th and 10th, 2024. Arrival and check-in takes place from 9-10 AM. Our opening ceremony starts at 10 AM, and hacking begins at 11am. Your projects must be on Devpost by 10 AM Sunday, and all coding must stop at 11 AM Sunday. Teams will present, and the event will end around 4PM on Sunday. We are excited to see you there!",
+			"HackRPI takes place on November 15th and 16th, 2025. Arrival and check-in takes place from 9-10 AM. Our opening ceremony starts at 10 AM, and hacking begins at 11am. Your projects must be on Devpost by 10 AM Sunday, and all coding must stop at 11 AM Sunday. Teams will present, and the event will end around 4PM on Sunday. We are excited to see you there!",
 	},
 	{
 		title: "Where is HackRPI?",
 		content:
-			"HackRPI takes place at Rensselaer Polytechnic Institute, in the Darrin Communication Center. Darrin Communications Center, 51 College Ave, Troy, NY 12180. See our event information page for more details. ",
+			"HackRPI takes place at Rensselaer Polytechnic Institute, in the Darrin Communication Center. Darrin Communications Center, 51 College Ave, Troy, NY 12180. See our event information page for more details.",
 	},
 	{
 		title: "Is HackRPI free to attend?",
@@ -71,13 +71,14 @@ const faqs: FAQ[] = [
 	},
 	{
 		title: "What is the theme?",
+		//TODO: Change the description
 		content:
-			"The theme for HackRPI 2024 is Urban Upgrades. This theme is all about enhancing the infrastructure, services, and quality of life in our cities. From smart transportation systems and sustainable energy solutions to improved public safety and inclusive community spaces, this theme challenges you to develop ideas and technologies that make cities more livable, efficient, and enjoyable for everyone.",
+			"The theme for 2025's HackRPI is Retro vs Modern. In a world where nostalgia meets innovation, our 12th annual hackathon, Retro vs Modern, invites creators to explore the contrasts and possibilities between the past and the future. Join us in shaping the future through a creative lens that honors the old while embracing the new.",
 	},
 	{
 		title: "Is it okay if I am late to the event?",
 		content:
-			"Yes! You can arrive at any time during the event, but we recommend arriving before 11 AM on Saturday. Remember, the longer you are late, the less time you have to work on your project!",
+			"Yes! You can arrive at any time during the event, but we recommend arriving before 11 AM on Saturday. Remember, the later you are, the less time you have to work on your project!",
 	},
 	{
 		title: "When are submissions due?",
@@ -106,35 +107,58 @@ const FAQPage = () => {
 
 	return (
 		<div
-			className="h-auto mb-8 flex flex-col items-center text-white bg-base-100 w-5/6 desktop:w-full pl-8 desktop:pl-0"
+			className="h-auto mb-8 flex flex-col items-center text-hackrpi-pink bg-base-100 w-5/6 desktop:w-full pl-8 desktop:pl-0"
 			id="faq"
+			data-testid="faq-section"
 		>
 			<div className="flex w-full desktop:w-2/3">
-				<h1 className="font-modern text-white text-left text-4xl text-shadow-md pb-4">FAQs</h1>
+				<h1 className="font-mokoto font-normal text-hackrpi-orange text-left text-4xl text-shadow-md pb-4">FAQs</h1>
 			</div>
 			<div className="w-full desktop:w-2/3">
 				{faqs.map((faq, index) => (
 					<div
 						key={index}
-						className={`collapse collapse-arrow custom-arrow bg-retro-purple-dark p-1 text-2xl border-t-2 ${
+						className={`collapse collapse-arrow custom-arrow bg-retro-purple-dark p-1 text-2xl border-t-4 ${
 							index === faqs.length - 1 ? "border-b-2" : ""
-						} border-retro-orange rounded-none`}
+						} border-hackrpi-light-purple border-rounded-r-xl border-double`}
+						data-testid={`faq-item-${index}`}
 					>
 						<input
 							type="checkbox"
 							className="w-auto h-auto"
 							checked={expandedIndex === index}
 							onChange={() => handleToggle(index)}
+							data-testid={`faq-checkbox-${index}`}
+							aria-label={`Toggle ${faq.title}`}
+							aria-expanded={expandedIndex === index}
+							aria-controls={`faq-content-${index}`}
 						/>
-						<div className="font-modern collapse-title font-bold text-2xl text-retro-orange">{faq.title}</div>
-						<div className="font-neutral collapse-content">{faq.content}</div>
+						<div
+							className="font-modern collapse-title font-medium text-2xl text-retro-orange"
+							data-testid={`faq-title-${index}`}
+							id={`faq-title-${index}`}
+						>
+							{faq.title}
+						</div>
+						<div
+							className="font-neutral2 collapse-content"
+							data-testid={`faq-content-${index}`}
+							id={`faq-content-${index}`}
+							aria-labelledby={`faq-title-${index}`}
+						>
+							{faq.content}
+						</div>
 					</div>
 				))}
 			</div>
 			<div className="w-full desktop:w-2/3">
-				<h2 id="sponsors" className="font-poppins text-2xl text-center pt-10">
+				<h2
+					id="sponsors"
+					className="font-pix font-regular text-2xl text-center pt-10"
+					data-testid="faq-contact-section"
+				>
 					Feel free to contact us with any other questions at{" "}
-					<a href="mailto:hackrpi@rpi.edu" className="text-hackrpi-primary-blue">
+					<a href="mailto:hackrpi@rpi.edu" className="text-hackrpi-primary-blue" data-testid="contact-email">
 						hackrpi@rpi.edu!
 					</a>
 				</h2>

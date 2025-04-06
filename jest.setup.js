@@ -1,5 +1,10 @@
-// Learn more: https://github.com/testing-library/jest-dom
+// Import testing utilities
 import "@testing-library/jest-dom";
+import { MockIntersectionObserver } from "./__tests__/__mocks__/mockRegistry";
+import { setupCustomMatchers } from "./__tests__/setup/customMatchers";
+
+// Initialize custom matchers - 2025 best practice
+setupCustomMatchers();
 
 // Polyfill for TextEncoder which is required by some dependencies
 if (typeof TextEncoder === "undefined") {
@@ -40,12 +45,37 @@ console.error = function (...args) {
 			args[0].includes("React does not recognize the") ||
 			// Filter out expected API errors in tests
 			(args[0].includes("Error fetching leaderboard:") && process.env.NODE_ENV === "test") ||
-			(args[0].includes("Error checking game status:") && process.env.NODE_ENV === "test"))
+			(args[0].includes("Error checking game status:") && process.env.NODE_ENV === "test") ||
+			// Add metadata-related error filtering
+			args[0].includes("Error: Metadata export is not available in Jest") ||
+			args[0].includes("Cannot find module 'next/metadata'"))
 	) {
 		return;
 	}
 	originalError.apply(console, args);
 };
+
+// Mock for Next.js metadata API
+jest.mock("next", () => {
+	const originalNext = jest.requireActual("next");
+	return {
+		...originalNext,
+		// Add mock for Metadata
+		Metadata: {},
+	};
+});
+
+// Do not try to mock non-existent modules
+// Instead, use this approach which is safer
+global.Metadata = {};
+jest.mock("next/head", () => {
+	return {
+		__esModule: true,
+		default: ({ children }) => {
+			return <>{children}</>;
+		},
+	};
+});
 
 // Mock for window.matchMedia
 Object.defineProperty(window, "matchMedia", {
@@ -68,62 +98,8 @@ window.scrollTo = jest.fn();
 // Mock for Element.prototype.scrollIntoView
 Element.prototype.scrollIntoView = jest.fn();
 
-// Enhanced IntersectionObserver mock that better simulates real behavior
-global.IntersectionObserver = class IntersectionObserver {
-	constructor(callback) {
-		this.callback = callback;
-		this.entries = new Map();
-	}
-
-	observe(element) {
-		this.entries.set(element, {
-			isIntersecting: false,
-			target: element,
-			intersectionRatio: 0,
-		});
-
-		// Schedule a call to simulate intersection
-		setTimeout(() => {
-			const entry = {
-				isIntersecting: true,
-				target: element,
-				intersectionRatio: 1,
-				boundingClientRect: element.getBoundingClientRect(),
-				intersectionRect: element.getBoundingClientRect(),
-				rootBounds: null,
-				time: Date.now(),
-			};
-			this.entries.set(element, entry);
-			this.callback([entry], this);
-		}, 50);
-	}
-
-	unobserve(element) {
-		this.entries.delete(element);
-	}
-
-	disconnect() {
-		this.entries.clear();
-	}
-
-	// Method to manually trigger intersection
-	triggerIntersection(element, isIntersecting = true) {
-		if (!this.entries.has(element)) return;
-
-		const entry = {
-			isIntersecting,
-			target: element,
-			intersectionRatio: isIntersecting ? 1 : 0,
-			boundingClientRect: element.getBoundingClientRect(),
-			intersectionRect: isIntersecting ? element.getBoundingClientRect() : new DOMRect(),
-			rootBounds: null,
-			time: Date.now(),
-		};
-
-		this.entries.set(element, entry);
-		this.callback([entry], this);
-	}
-};
+// Replace the existing IntersectionObserver mock with the centralized version
+global.IntersectionObserver = MockIntersectionObserver;
 
 // More complete router mock
 jest.mock("next/navigation", () => ({
@@ -187,3 +163,39 @@ jest.mock("aws-amplify/api", () => ({
 		},
 	}),
 }));
+
+// 2025 Best Practice: Enable automatic fake timers for all tests by default
+// This makes tests more predictable and faster
+jest.useFakeTimers();
+
+// 2025 Best Practice: Configure user-event globally for consistent behavior
+window.HTMLElement.prototype.scrollIntoView = jest.fn();
+
+// 2025 Best Practice: Improve error detection for common React issues
+const originalConsoleError = console.error;
+console.error = function (message) {
+	// Fail tests on common React errors that might otherwise be missed
+	if (
+		/Warning:.*Cannot update a component/.test(message) ||
+		/Warning:.*Cannot update during an existing state transition/.test(message) ||
+		/Warning:.*Maximum update depth exceeded/.test(message) ||
+		/Warning:.*Can't perform a React state update on an unmounted component/.test(message)
+	) {
+		throw new Error(`React warning treated as error: ${message}`);
+	}
+	originalConsoleError.apply(console, arguments);
+};
+
+// 2025 Best Practice: Better DOM event simulation for user-event
+// This creates more realistic user interaction tests
+const eventProperties = ["bubbles", "cancelable", "composed"];
+const originalCreateEvent = window.document.createEvent;
+window.document.createEvent = function (type) {
+	const event = originalCreateEvent.call(document, type);
+	eventProperties.forEach((property) => {
+		if (!(property in event)) {
+			Object.defineProperty(event, property, { value: true });
+		}
+	});
+	return event;
+};

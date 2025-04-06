@@ -7,7 +7,7 @@ export default function RegistrationLink({ className }: { className?: string }) 
 			className={`${className} pl-2 pr-5 py-2`}
 			target="_blank"
 		>
-			See Winners
+			Register Here!
 		</HackRPILink>
 	);
 }

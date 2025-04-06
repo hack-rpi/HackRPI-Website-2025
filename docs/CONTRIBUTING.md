@@ -78,7 +78,9 @@ There are a few code style things to mention:
 
 ## Testing Guidelines
 
-We use Jest and React Testing Library for testing our application. When contributing, please ensure that your code is well-tested by following these guidelines:
+We use a hybrid testing approach with Jest for unit/component tests and Playwright for E2E tests. For a comprehensive guide on our testing strategy, please refer to our [Testing Documentation](./TESTING.md).
+
+When contributing, please ensure that your code is well-tested by following these guidelines:
 
 1. **Write Tests for New Features**
 
@@ -86,12 +88,17 @@ We use Jest and React Testing Library for testing our application. When contribu
    - For utility functions, write unit tests in the `__tests__/unit/` directory.
    - For components, write component tests in the `__tests__/components/` directory.
    - For complex interactions, write integration tests in the `__tests__/integration/` directory.
+   - For critical user journeys, write E2E tests in the `e2e/` directory.
 
 2. **Run Tests Before Submitting**
 
    - Before creating a pull request, run the test suite to make sure all tests pass:
      ```bash
      npm test
+     ```
+   - For end-to-end tests, run:
+     ```bash
+     npm run test:e2e
      ```
    - If your tests fail, fix the issues before submitting your PR.
 
@@ -102,12 +109,16 @@ We use Jest and React Testing Library for testing our application. When contribu
      ```bash
      npm run test:ci
      ```
+   - Note: There's currently an issue with the coverage reporter in CI environments. If you encounter errors, use the regular test command instead.
 
 4. **Testing Best Practices**
    - Test component behavior, not implementation details.
    - Use meaningful test descriptions that describe the expected behavior.
    - Mock external dependencies like API calls.
-   - For more detailed information, refer to the [testing documentation](__tests__/README.md).
+   - Check both happy path and error cases in your tests.
+   - Focus on user-centric testing that mimics real user interactions.
+
+For more detailed information, see the [Jest tests README](__tests__/README-UPDATED.md) and [E2E tests README](e2e/README.md).
 
 ## Bug Reports
 

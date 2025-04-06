@@ -7,8 +7,12 @@ import Link from "next/link";
 
 export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
 	return (
-		<div className="bg-gradient-to-r from-hackrpi-light-purple via-hackrpi-pink to-hackrpi-light-purple w-full h-16">
-			<div className="flex justify-center lg:justify-center items-center h-full">
+		/*<div className="bg-gradient-to-r from-hackrpi-light-purple via-hackrpi-pink to-hackrpi-light-purple w-full h-16">*/
+		<div className="bg-hackrpi-dark-blue w-full h-16">
+			<div
+				className="flex justify-center lg:justify-center items-center h-full border-b-2 border-hackrpi-yellow z-50"
+				role="navigation"
+			>
 				<div className="flex items-center justify-center mr-4">
 					<Link href="/" className="w-fit whitespace-nowrap">
 						<NextImg alt="HackRPI Logo" aria-label="Home Page" src={logo} className="w-10 image-full" />

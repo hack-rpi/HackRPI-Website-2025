@@ -20,7 +20,7 @@ export default function MobileNavBar({ links }: { links: NavGroup[] }) {
 	}, []);
 
 	return (
-		<>
+		<nav role="navigation" className="mobile-navigation">
 			<div className="w-screen h-24 flex items-center justify-center fixed top-0 bg-gradient-to-r from-hackrpi-light-purple via-hackrpi-pink to-hackrpi-light-purple z-20">
 				<div className="flex items-center justify-start w-1/3">
 					<button onClick={() => setNavMenuOpen((prev) => !prev)} className="text-white text-4xl ml-8 ">
@@ -76,6 +76,6 @@ export default function MobileNavBar({ links }: { links: NavGroup[] }) {
 					</Link>
 				</div>
 			</div>
-		</>
+		</nav>
 	);
 }

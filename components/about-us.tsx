@@ -7,24 +7,28 @@ export default function AboutUs() {
 			className="w-11/12 lg:w-full mx-auto mt-12 mb-8 flex flex-col lg:flex-row items-start justify-start h-fit ml-0 pl-8 lg:pl-0 "
 		>
 			<div className="w-full lg:w-3/6 ml-auto lg:pl-4 pr-4">
-				<h1 className="text-white text-4xl mb-2 font-bold font-sans-Helvetica">About HackRPI</h1>
+				<h1 className="text-hackrpi-orange text-4xl mb-2 font-bold font-sans-Helvetica">About HackRPI</h1>
 
 				<div className="w-11/12">
-					<p className="pb-3">
-						HackRPI 2024 is Rensselaer Polytechnic Institute&apos;s 11th annual intercollegiate hackathon hosted by
-						students for students. Starting at noon on Saturday, November 9th, teams of 1-4 people have 24 hours to
+					<p className="pb-3 text-hackrpi-light-purple">
+						HackRPI 2025 is Rensselaer Polytechnic Institute&apos;s 12th annual intercollegiate hackathon hosted by
+						students for students. Starting at noon on Saturday, November 15th, teams of 1-4 people have 24 hours to
 						build and submit projects relating to our theme,{" "}
-						<span className="text-hackrpi-orange font-bold">Urban Upgrades</span>. After submitting their projects,
-						participants demonstrate their projects in front of a panel of professors, industry professionals, and
-						fellow students.
+						<span data-testid="theme-title" className="text-hackrpi-light-purple font-bold">
+							Retro vs. Modern
+						</span>
+						. After submitting their projects, participants demonstrate their projects in front of a panel of
+						professors, industry professionals, and fellow students.
 					</p>
-					<p className="pb-3">
-						<span className="text-hackrpi-orange font-bold">Urban Upgrades</span> is all about enhancing the
-						infrastructure, services, and quality of life in our cities. From smart transportation systems and
-						sustainable energy solutions to improved public safety and inclusive community spaces, this theme challenges
-						you to develop ideas and technologies that make cities more livable, efficient, and enjoyable for everyone.
+					<p className="pb-3 text-hackrpi-pink">
+						<span data-testid="theme-description" className="text-hackrpi-light-purple font-bold">
+							Retro vs. Modern:
+						</span>{" "}
+						In a world where nostalgia meets innovation, our 12th annual hackathon, Retro vs Modern, invites creators to
+						explore the contrasts and possibilities between the past and the future. Join us in shaping the future
+						through a creative lens that honors the old while embracing the new.
 					</p>
-					<p className="pb-3">
+					<p className="pb-3 text-hackrpi-light-purple">
 						Our goal is to inspire and challenge innovators, creators, developers, and entrepreneurs in New York&apos;s
 						Tech Valley and beyond. All students from all schools are welcome to participate, regardless of their major
 						or experience level. Whether you&apos;re a seasoned hacker or a first-time participant, HackRPI is the
@@ -34,7 +38,10 @@ export default function AboutUs() {
 			</div>
 
 			<div className="w-full lg:w-2/6 flex flex-col items-center lg:items-start mt-4 lg:mt-0 h-full lg:ml-4">
-				<div className="w-full lg:w-11/12 bg-hackrpi-dark-purple text-black text-xl h-fit overflow-hidden whitespace-nowrap font-bold lg:mt-16 pl-1 ">
+				<div
+					data-testid="register-now-banner"
+					className="w-full lg:w-11/12 bg-hackrpi-dark-purple text-black text-xl h-fit overflow-hidden whitespace-nowrap font-bold lg:mt-16 pl-1 "
+				>
 					REGISTER NOW! REGISTER NOW! REGISTER NOW! REGISTER NOW! REGISTER NOW! REGISTER NOW! REGISTER NOW!
 				</div>
 				<div className="w-full lg:w-11/12 bg-gray-900 text-white h-fit flex flex-col items-start justify-start">
@@ -53,9 +60,15 @@ export default function AboutUs() {
 					</h2>
 					<div className=" w-11/12 flex flex-col md:flex-row lg:flex-col items-start justify-center md:justify-start md:items-center lg:items-start lg:justify-center">
 						<div className="pl-2 text-md xs:text-xl mb-4 md:mb-8 lg:mb-4 mt-2 w-1/2 md:min-w-80 ">
-							<p className="w-fit text-nowrap">November 15-16, 2025</p>
-							<p className="w-fit text-nowrap">Rensselaer Polytechnic Institute</p>
-							<p className="w-fit text-nowrap">Darrin Communications Center</p>
+							<p data-testid="event-date" className="w-fit text-nowrap">
+								November 15-16, 2025
+							</p>
+							<p data-testid="event-location" className="w-fit text-nowrap">
+								Rensselaer Polytechnic Institute
+							</p>
+							<p data-testid="event-venue" className="w-fit text-nowrap">
+								Darrin Communications Center
+							</p>
 						</div>
 						<div className="w-fit pl-2 md:pl-0 lg:pl-2 mb-4 md:mb-0 lg:mb-4">
 							<RegistrationLink className="text-xl pr-2" />
