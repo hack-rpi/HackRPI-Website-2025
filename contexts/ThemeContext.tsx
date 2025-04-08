@@ -9,40 +9,35 @@ interface ThemeContextType {
   toggleTheme: () => void;
 }
 
-// Create context with default values
 const ThemeContext = createContext<ThemeContextType>({
   currentTheme: "Retro",
   toggleTheme: () => {},
 });
 
-// Check if code is running on client side
-const isClient = typeof window !== "undefined";
-
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  // Initialize with default theme
   const [currentTheme, setCurrentTheme] = useState<ThemeOption>("Retro");
-  const [isInitialized, setIsInitialized] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  // Run only once on client-side after mount
   useEffect(() => {
-    if (isClient) {
+    setMounted(true);
+    try {
       const storedTheme = localStorage.getItem("hackrpi-theme") as ThemeOption;
       if (storedTheme && (storedTheme === "Retro" || storedTheme === "Modern")) {
         setCurrentTheme(storedTheme);
+        document.documentElement.setAttribute("data-theme", storedTheme.toLowerCase());
+      } else {
+        localStorage.setItem("hackrpi-theme", "Retro");
       }
-      setIsInitialized(true);
-    }
+    } catch (e) {}
   }, []);
 
-  // Apply theme change to DOM and localStorage
   useEffect(() => {
-    if (isClient && isInitialized) {
+    if (mounted) {
       localStorage.setItem("hackrpi-theme", currentTheme);
       document.documentElement.setAttribute("data-theme", currentTheme.toLowerCase());
     }
-  }, [currentTheme, isInitialized]);
+  }, [currentTheme, mounted]);
 
-  // Toggle between themes
   const toggleTheme = () => {
     setCurrentTheme(prev => prev === "Retro" ? "Modern" : "Retro");
   };
@@ -54,7 +49,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Custom hook to use the theme context
 export function useTheme() {
   return useContext(ThemeContext);
 }

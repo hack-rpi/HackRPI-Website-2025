@@ -49,6 +49,11 @@ const config: Config = {
 				gold: "#ffd700",
 				silver: "#C0C0C0",
 				bronze: "#cd7f32",
+
+				"theme-bg": "var(--theme-bg)",
+				"theme-text": "var(--theme-text)",
+				"theme-accent": "var(--theme-accent)",
+				"theme-secondary": "var(--theme-secondary)",
 			},
 			screens: {
 				desktop: "860px",
@@ -70,6 +75,10 @@ const config: Config = {
 				"radial-green-600": "radial-gradient(circle, #059669, #047857)",
 				"radial-green-700": "radial-gradient(circle, #047857, #065f46)",
 				"radial-green-800": "radial-gradient(circle, #065f46, #064e3b)",
+"radial-green-800": "radial-gradient(circle, #065f46, #064e3b)",
+			},
+			fontFamily: {
+				theme: "var(--hackrpi-font)",
 			},
 		},
 	},
@@ -83,6 +92,21 @@ const config: Config = {
 					neutral: "#d5345d",
 					"base-100": "#292333", //Background color
 					"retro-purple-medium": "#7e34c6",
+"retro-purple-medium": "#7e34c6",
+				},
+				retro: {
+					primary: "#e9bc59",
+					secondary: "#d5345d",
+					accent: "#e39036",
+					neutral: "#efefef",
+					"base-100": "#121212",
+				},
+				modern: {
+					primary: "#3b82f6",
+					secondary: "#06b6d4",
+					accent: "#10b981",
+					neutral: "#333333",
+					"base-100": "#ffffff",
 				},
 			},
 		],

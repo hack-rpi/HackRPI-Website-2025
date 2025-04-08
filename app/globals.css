@@ -31,43 +31,40 @@
 @layer base {
 	:root{
 		--hackrpi-font: 'Turret Road', sans-serif;
+        --theme-bg: #121212;
+        --theme-text: #e9bc59;
+        --theme-accent: #d5345d;
+        --theme-secondary: #e39036;
 	}
 	html[data-theme=retro] {
-		--hackrpi-font: 'Silkscreen', sans-serif;
+        --theme-bg: #121212;
+        --theme-text: #e9bc59;
+        --theme-accent: #d5345d;
+        --theme-secondary: #e39036;
 	}
 	html[data-theme=modern] {
-		--hackrpi-font: 'Audiowide', sans-serif;
+        --theme-bg: #ffffff;
+        --theme-text: #333333;
+        --theme-accent: #3b82f6;
+        --theme-secondary: #10b981;
 	}
 }
 
-/* theme definitions */
-:root[data-theme="retro"] {
-  --primary-bg: #121212;
-  --primary-text: #e9bc59;
-  --accent-color: #d5345d;
-  /* add other retro theme variables */
-}
+/* themed components that use the theme variables */
+/* add these to apply theme styles to any specific components in the website*/
+@layer components {
+  .theme-accent {
+    @apply text-theme-accent;
+  }
 
-:root[data-theme="modern"] {
-  --primary-bg: #ffffff;
-  --primary-text: #333333;
-  --accent-color: #3b82f6;
-  /* add other modern theme variables */
-}
-
-/* default to retro if not specified */
-:root:not([data-theme]) {
-  --primary-bg: #121212;
-  --primary-text: #e9bc59;
-  --accent-color: #d5345d;
-}
-
-/* apply these variables to elements */
-body {
-  background-color: var(--primary-bg);
-  color: var(--primary-text);
-}
-
-.theme-accent {
-  color: var(--accent-color);
+  .theme-button {
+    @apply bg-theme-accent text-theme-bg hover:bg-theme-secondary transition-colors;
+  }
+  .theme-bg {
+    @apply bg-theme-bg;
+  }
+  
+  .theme-text {
+    @apply text-theme-text;
+  }
 }
