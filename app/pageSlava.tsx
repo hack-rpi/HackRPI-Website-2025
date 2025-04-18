@@ -8,20 +8,17 @@ import NavBar from "@/components/nav-bar/nav-bar";
 export default function backendAnnouncements() {
 	const [announcements, setAnnouncements] = useState([]);
 	const [title, setTitle] = useState("");
-	const [time, setTime] = useState("");
 	const [message, setMessage] = useState("");
 	const [links, setLinks] = useState("");
 	const [name, setName] = useState("");
 
 	useEffect(() => {
 		async function fetchAnnouncements() {
-			const announcementCopy = announcements;
 			try {
 				const res = await fetch("/api/announcements");
 				const data = await res.json();
 				setAnnouncements(data);
 			} catch (err) {
-				setAnnouncements(announcementCopy);
 				console.error("Failed to fetch announcements:", err);
 			}
 		}
@@ -30,41 +27,31 @@ export default function backendAnnouncements() {
 	}, []);
 
 	async function addAnnouncement() {
-		if (title === "") {
-			alert("Please enter a title");
-			return;
-		}
+		if (title == "" || message == "" || links == "" || name == "") {
+			alert("One or more inputs are blank.");
+		} else {
+			const reqBody = {
+				title,
+				message,
+				links,
+				name,
+			};
 
-		const reqBody = {
-			title,
-			message,
-			links,
-			name,
-		};
+			try {
+				const res = await fetch("/api/announcements", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(reqBody),
+				});
 
-		try {
-			const res = await fetch("/api/announcements", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(reqBody),
-			});
-
-			if (!res.ok) {
-				const { error } = await res.json();
-				alert("Failed to post announcement: " + error);
-				return;
+				if (!res.ok) {
+					alert("Failed to post announcement");
+				}
+			} catch (err) {
+				alert("Could not connect to API");
 			}
-
-			const data = await res.json();
-			console.log("✅ Announcement added:", data);
-			alert("✅ Announcement added successfully!");
-
-			// Optional: reset input fields or refresh announcements list
-		} catch (err) {
-			console.error("❌ Error adding announcement:", err);
-			alert("❌ Something went wrong. See console for details.");
 		}
 	}
 
@@ -81,8 +68,6 @@ export default function backendAnnouncements() {
 					<div className="flex flex-col">
 						<h1 className="font-bold text-hackrpi-orange mb-1">Title Input</h1>
 						<input id="titleInput" value={title} onChange={(e) => setTitle(e.target.value)}></input>
-						<h1 className="font-bold text-hackrpi-orange mb-1">Time Input</h1>
-						<input id="timeInput" value={time} onChange={(e) => setTime(e.target.value)}></input>
 						<h1 className="font-bold text-hackrpi-orange mb-1">Message Input</h1>
 						<textarea id="messageInput" value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
 						<h1 className="font-bold text-hackrpi-orange mb-1">Links Input</h1>
