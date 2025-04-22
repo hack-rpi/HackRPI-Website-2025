@@ -5,16 +5,25 @@ import "@/app/globals.css";
 import Footer from "@/components/footer/footer";
 import NavBar from "@/components/nav-bar/nav-bar";
 
-export default function Announcements() {
+
+
+export default function backendAnnouncements() {
 	const [announcements, setAnnouncements] = useState([]);
+  const [title, setTitle] = useState("");
+	const [time, setTime] = useState("");
+	const [message, setMessage] = useState("");
+	const [links, setLinks] = useState("");
+	const [name, setName] = useState("");
 
 	useEffect(() => {
 		async function fetchAnnouncements() {
+      const announcementCopy = announcements;
 			try {
 				const res = await fetch("/api/announcements");
 				const data = await res.json();
 				setAnnouncements(data);
 			} catch (err) {
+        setAnnouncements(announcementCopy);
 				console.error("Failed to fetch announcements:", err);
 			}
 		}
@@ -22,15 +31,69 @@ export default function Announcements() {
 		fetchAnnouncements();
 	}, []);
 
+  async function addAnnouncement() {
+    if (title === "") {
+      alert("Please enter a title");
+      return;
+    }
+  
+    const reqBody = {
+      title,
+      message,
+      links,
+      name,
+    };
+  
+    try {
+      const res = await fetch("/api/announcements", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(reqBody),
+      });
+  
+      if (!res.ok) {
+        const { error } = await res.json();
+        alert("Failed to post announcement: " + error);
+        return;
+      }
+  
+      const data = await res.json();
+      console.log("✅ Announcement added:", data);
+      alert("✅ Announcement added successfully!");
+  
+      // Optional: reset input fields or refresh announcements list
+    } catch (err) {
+      console.error("❌ Error adding announcement:", err);
+      alert("❌ Something went wrong. See console for details.");
+    }
+  }
+  
+
 	return (
 		<>
 			<NavBar showOnScroll={false} />
 
 			<div className="justify-center flex w-full flex-col bg-hackrpi-dark-blue pt-24 desktop:pt-16 min-h-screen">
 				<div className="container mx-auto p-8">
-					<h1 className="text-4xl font-bold text-hackrpi-orange mb-4">Announcements</h1>
+					<h1 className="text-4xl font-bold text-hackrpi-orange mb-4">Backend Announcements</h1>
 					<p className="text-hackrpi-yellow text-lg">Stay updated with the latest HackRPI announcements here.</p>
+					<button onClick={() => addAnnouncement()}>Test</button>
+					
+					<div className= "flex flex-col">
+					<h1 className="font-bold text-hackrpi-orange mb-1">Title Input</h1>
+					<input id = "titleInput" value={title} onChange={(e) => setTitle(e.target.value)}></input>
+					<h1 className="font-bold text-hackrpi-orange mb-1">Time Input</h1>
+					<input id = "timeInput" value={time} onChange={(e) => setTime(e.target.value)}></input>
+					<h1 className="font-bold text-hackrpi-orange mb-1">Message Input</h1>
+					<textarea id = "messageInput" value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
+					<h1 className="font-bold text-hackrpi-orange mb-1">Links Input</h1>
+					<input id = "linksInput" value={links} onChange={(e) => setLinks(e.target.value)}></input>
+					<h1 className="font-bold text-hackrpi-orange mb-1">Name Input</h1>
+					<input id = "nameInput" value={name} onChange={(e) => setName(e.target.value)}></input>
 
+		</div>
 					{/* Render Announcements */}
 					{announcements.map((a: any) => (
 						<div

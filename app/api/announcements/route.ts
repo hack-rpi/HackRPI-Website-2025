@@ -55,22 +55,32 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-	try {
-		await connectDB();
-		const body = await req.json();
-		const {title, message, links, name} = body;
-		const duplicate = await Announcement.find({title: title})
-		if(!duplicate) {
-			const announcementToInsert =  new Announcement( {
-				title: title,
-				message: message,
-				links: links,
-				name: name
-			});
-			const saved = await announcementToInsert.save();
-			alert("New announcement Added");
-		}
-	} catch(error) {
-		alert("Error adding new announcement");
-	}
+    try {
+        const body = await req.json();
+
+        const { title, message, links, name } = body;
+
+        if (!title  || !message || !name) {
+            return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
+        }
+
+        await connectDB();
+
+        const newAnnouncement = new Announcement({
+            title,
+            message,
+            links,
+            name,
+            time: new Date(), // optional, since your schema defaults this
+        });
+
+        const saved = await newAnnouncement.save();
+
+        console.log("✅ New announcement saved:", saved);
+        return NextResponse.json(saved, { status: 201 });
+
+    } catch (error) {
+        console.error("❌ Error saving announcement:", error);
+        return NextResponse.json({ error: "Failed to save announcement." }, { status: 500 });
+    }
 }

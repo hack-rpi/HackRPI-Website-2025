@@ -43,11 +43,17 @@ export default function backendAnnouncements() {
 
 			try {
 				const res = await fetch("/api/announcements", {
+					
 					method: "POST", headers: {
 						"Content-Type": "application/json",
 					},
 					body: JSON.stringify(reqBody)
 				});
+				
+				if(!res.ok) {
+					alert("Failed to post announcement");
+				}
+				
 			} catch(err) {
 				alert("Could not connect to API");
 			}
