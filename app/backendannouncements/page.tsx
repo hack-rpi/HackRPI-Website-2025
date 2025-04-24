@@ -102,7 +102,8 @@ export default function backendAnnouncements() {
 				
 					</style>
 					<h1 className="text-4xl font-bold text-hackrpi-orange mb-4">Backend Announcements</h1>
-					<p className="text-hackrpi-yellow text-lg">Stay updated with the latest HackRPI announcements here.</p>
+					<p className="text-hackrpi-yellow text-lg">Here you can add announcements by clicking the button below (make sure
+						all inputs are filled).</p>
 					<button style= {{}} className="font-bold text-subway-red mb-1 border-hackrpi-orange" onClick={() => addAnnouncement()} >Add Announcement</button>
 
 					<div className="flex flex-col">
