@@ -8,7 +8,6 @@ import NavBar from "@/components/nav-bar/nav-bar";
 export default function backendAnnouncements() {
 	const [announcements, setAnnouncements] = useState([]);
 	const [title, setTitle] = useState("");
-	const [time, setTime] = useState("");
 	const [message, setMessage] = useState("");
 	const [links, setLinks] = useState("");
 	const [name, setName] = useState("");
@@ -104,19 +103,17 @@ export default function backendAnnouncements() {
 					</style>
 					<h1 className="text-4xl font-bold text-hackrpi-orange mb-4">Backend Announcements</h1>
 					<p className="text-hackrpi-yellow text-lg">Stay updated with the latest HackRPI announcements here.</p>
-					<button className="font-bold text-subway-red mb-1" onClick={() => addAnnouncement()} >Add Announcement</button>
+					<button style= {{}} className="font-bold text-subway-red mb-1 border-hackrpi-orange" onClick={() => addAnnouncement()} >Add Announcement</button>
 
 					<div className="flex flex-col">
 						<h1 className="font-bold text-hackrpi-orange mb-1">Title Input</h1>
-						<input style={{width: 300}} id="titleInput" value={title} onChange={(e) => setTitle(e.target.value)}></input>
-						<h1 className="font-bold text-hackrpi-orange mb-1">Time Input</h1>
-						<input style={{width: 300}} id="timeInput" value={time} onChange={(e) => setTime(e.target.value)}></input>
+						<input style={{width: 300}} id="titleInput"  placeholder = "Enter announcement title" value={title} onChange={(e) => setTitle(e.target.value)}></input>
 						<h1 className="font-bold text-hackrpi-orange mb-1">Message Input</h1>
-						<textarea style={{width: 300}} id="messageInput" value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
+						<textarea style={{width: 300}} placeholder = "Enter your message" id="messageInput" value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
 						<h1 className="font-bold text-hackrpi-orange mb-1">Links Input</h1>
-						<input style={{width: 300}} id="linksInput" value={links} onChange={(e) => setLinks(e.target.value)}></input>
+						<input style={{width: 300}} placeholder = "Enter your links" id="linksInput" value={links} onChange={(e) => setLinks(e.target.value)}></input>
 						<h1 className="font-bold text-hackrpi-orange mb-1">Name Input</h1>
-						<input  style={{width: 300}} id="nameInput" value={name} onChange={(e) => setName(e.target.value)}></input>
+						<input  style={{width: 300}} placeholder = "Enter your name" id="nameInput" value={name} onChange={(e) => setName(e.target.value)}></input>
 					</div>
 					{/* Render Announcements */}
 					{announcements.map((a: any) => (
