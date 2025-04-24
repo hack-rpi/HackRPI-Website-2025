@@ -3,18 +3,17 @@ import sponsorsJson from "@/public/sponsors/sponsors.json";
 import { SponsorsJSON, sponsorTiers } from "@/types/sponsorsType";
 import NextImage from "next/image";
 
-const tierColors: Record<sponsorTiers, string> = {
-	OBSIDIAN: "bg-gray-900 text-white",
-	GOLD: "bg-yellow-500 text-black",
-	SILVER: "bg-gray-300 text-black",
-	BRONZE: "bg-orange-600 text-white",
-	COLLABORATORS: " text-white",
+const tierColors: Record<sponsorTiers, { bgText: string; glow: string }> = {
+	OBSIDIAN: { bgText: "bg-gray-900 text-white", glow: "hover:shadow-[0_0_25px_rgba(2,242,242,0.7)]" },
+	GOLD: { bgText: "bg-yellow-500 text-black", glow: "hover:shadow-[0_0_25px_rgba(255,215,0,0.8)]" },
+	SILVER: { bgText: "bg-gray-300 text-black", glow: "hover:shadow-[0_0_25px_rgba(192,192,192,0.8)]" },
+	BRONZE: { bgText: "bg-orange-600 text-white", glow: "hover:shadow-[0_0_25px_rgba(205,127,50,0.8)]" },
+	COLLABORATORS: { bgText: "text-white", glow: "hover:shadow-[0_0_25px_rgba(242,2,210,0.7)]" },
 };
 
 const Sponsors = () => {
 	const tierList: sponsorTiers[] = ["OBSIDIAN", "GOLD", "SILVER", "BRONZE", "COLLABORATORS"];
 	const [sponsors] = useState<SponsorsJSON>(sponsorsJson);
-
 	return (
 		<div
 			className="relative flex flex-col w-full justify-center items-start desktop:items-center pl-8 desktop:pl-0 bg-gradient-to-b from-hackrpi-dark-blue via-hackrpi-orange to-hackrpi-dark-blue py-8 bg-blend-overlay bg-cover bg-center"
@@ -37,18 +36,18 @@ const Sponsors = () => {
 					return (
 						<div className="w-11/12" key={tier}>
 							<div
-								className={`px-1 py-1 border-4 border-dashed border-white inline-block mt-4 font-retro font-bold text-xl ${tierColors[tier]}`}
+								className={`px-1 py-1 border-4 border-dashed border-white inline-block mt-4 font-retro font-bold text-xl ${tierColors[tier].bgText}`}
 							>
 								{tier}
 							</div>
-							<div className="border-b-4 border-hackrpi-white rounded-full border-double mt-2 h-6"></div>
+							<div className="border-b-4 border-hackrpi-white rounded-full border-double mt-2 h-6 "></div>
 
 							<div className="flex flex-row flex-wrap justify-around items-center">
 								{sponsors[tier].map((sponsor) => {
 									return (
 										<div
 											key={sponsor.name}
-											className="w-fit h-fit p-4 m-4 hover:scale-110 bg-hackrpi-light-purple bg-opacity-0 hover:bg-opacity-15 rounded-md transition-all duration-700 flex items-center justify-center mx-4"
+											className={`w-fit h-fit p-4 m-4 hover:scale-110 bg-hackrpi-light-purple bg-opacity-0 hover:bg-opacity-45 rounded-md transition-all duration-300 flex items-center justify-center mx-4 ${tierColors[tier].glow}`}
 										>
 											<a href={sponsor.url} target="_blank" rel="noreferrer">
 												<NextImage

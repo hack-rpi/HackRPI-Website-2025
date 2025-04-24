@@ -16,6 +16,21 @@
 	font-size: 4rem; /* Adjust as needed */
 }
 
+.pixel-glow-hover {
+	transition:
+		background-color 0.5s ease,
+		box-shadow 0.5s ease;
+}
+
+.pixel-glow-hover:hover {
+	background-color: #410091;
+	box-shadow:
+		0 0 2px #fff,
+		0 0 6px #ff00ff,
+		0 0 10px #ff00ff,
+		0 0 14px #ffc400,
+		0 0 20px #ffc400;
+}
 :root,
 [data-amplify-theme] {
 	--amplify-colors-background-primary: #080a0b;
