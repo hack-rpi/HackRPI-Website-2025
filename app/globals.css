@@ -7,15 +7,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Aldrich&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Jersey+15&display=swap");
 
+@layer theme, base, components, utilities;
 @import "tailwindcss";
 @import "./theme.css";
-@plugin "daisyui";
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "daisyui";
 
 /* attempt to modify caret size */
 .custom-arrow .collapse-title::before {
 	font-size: 4rem; /* Adjust as needed */
 }
 
+/* Amplify theming */
 :root,
 [data-amplify-theme] {
 	--amplify-colors-background-primary: #080a0b;
@@ -30,3 +34,4 @@
 	--amplify-components-input-color: #efefef;
 	--amplify-components-radio-label-color: #efefef;
 }
+
