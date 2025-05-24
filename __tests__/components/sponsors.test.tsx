@@ -14,29 +14,29 @@ jest.mock("next/image", () => ({
 jest.mock(
 	"@/public/sponsors/sponsors.json",
 	() => ({
-		Obsidian: [
+		OBSIDIAN: [
 			{
 				name: "Test Obsidian Sponsor",
 				url: "https://example.com/obsidian",
 				logoPath: "/test-obsidian.png",
 			},
 		],
-		Gold: [
+		GOLD: [
 			{
 				name: "Test Gold Sponsor",
 				url: "https://example.com/gold",
 				logoPath: "/test-gold.png",
 			},
 		],
-		Silver: [
+		SILVER: [
 			{
 				name: "Test Silver Sponsor",
 				url: "https://example.com/silver",
 				logoPath: "/test-silver.png",
 			},
 		],
-		Bronze: [],
-		Collaborators: [
+		BRONZE: [],
+		COLLABORATORS: [
 			{
 				name: "Test Collaborator",
 				url: "https://example.com/collaborator",
@@ -64,13 +64,13 @@ describe("Sponsors Component", () => {
 		render(<Sponsors />);
 
 		// Check tier headings are rendered
-		expect(screen.getByText("Obsidian")).toBeInTheDocument();
-		expect(screen.getByText("Gold")).toBeInTheDocument();
-		expect(screen.getByText("Silver")).toBeInTheDocument();
-		expect(screen.getByText("Collaborators")).toBeInTheDocument();
+		expect(screen.getByText("OBSIDIAN")).toBeInTheDocument();
+		expect(screen.getByText("GOLD")).toBeInTheDocument();
+		expect(screen.getByText("SILVER")).toBeInTheDocument();
+		expect(screen.getByText("COLLABORATORS")).toBeInTheDocument();
 
 		// Bronze should not appear as it has no sponsors
-		expect(screen.queryByText("Bronze")).not.toBeInTheDocument();
+		expect(screen.queryByText("BRONZE")).not.toBeInTheDocument();
 	});
 
 	it("renders sponsor logos with correct attributes", () => {

@@ -1,16 +1,9 @@
-#!/bin/sh
-#. "$(dirname "$0")/_/husky.sh"
+# Run TypeScript check (excluding problematic test files)
+echo "🧪 Checking TypeScript..."
+npx tsc --noEmit
 
-echo "🧪 Running TypeScript type check..."
-# Run TypeScript but don't block commit on errors
-#npx tsc --noEmit || echo "⚠️ TypeScript check found issues. Consider fixing them, but proceeding with commit."
+# Run Prettier + ESLint on staged files
+echo "🧹 Formatting and linting staged files..."
+npx lint-staged
 
-# Run Prettier to format code
-echo "🧹 Running Prettier..."
-#npx prettier --write --tab-width=2 --use-tabs .
-
-# Run ESLint but don't block commit on errors
-echo "🛠️ Running ESLint..."
-#npx next lint --fix || echo "⚠️ ESLint found issues. Consider fixing them, but proceeding with commit."
-
-echo "✅ Pre-commit checks completed! (Warnings were allowed to proceed)"
+echo "✅ Pre-commit checks passed!"

@@ -63,3 +63,7 @@ amplifyconfiguration*
 # Additional build caches
 .swc/
 .turbo/
+
+# repomix
+/repomix-output.xml
+/repomix.config.json

@@ -104,14 +104,12 @@ describe("Footer Component", () => {
 		// Check if footer has the right classes
 		const footerElement = container.firstChild as HTMLElement;
 
-		// Check style properties
-		expect(footerElement).toHaveStyle({
-			background: expect.stringContaining("linear-gradient"),
-		});
-
-		// Check if the layout classes are applied
-		expect(footerElement).toHaveClass("flex");
-		expect(footerElement).toHaveClass("flex-col");
+		// Check for the wrapper gradient classes
+		expect(footerElement).toHaveClass("rounded-lg");
 		expect(footerElement).toHaveClass("w-full");
+		expect(footerElement).toHaveClass("bg-gradient-to-br");
+		expect(footerElement).toHaveClass("from-hackrpi-light-purple");
+		expect(footerElement).toHaveClass("to-hackrpi-pink");
+		expect(footerElement).toHaveClass("p-[6px]");
 	});
 });
