@@ -78,7 +78,6 @@ export async function POST(req: Request) {
 
 		console.log("✅ New announcement saved:", saved);
 		return NextResponse.json(saved, { status: 201 });
-
 	} catch (error) {
 		console.error("❌ Error saving announcement:", error);
 		return NextResponse.json({ error: "Failed to save announcement." }, { status: 500 });

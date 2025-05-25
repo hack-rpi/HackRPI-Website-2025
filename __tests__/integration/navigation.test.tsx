@@ -11,7 +11,7 @@ import {
 	mockScrollIntoView,
 	checkNavigationAccessibility,
 } from "../test-utils";
-import { MockIntersectionObserver, MockNavBar, MockFooter } from "../__mocks__/mockRegistry";
+import { MockIntersectionObserver, MockFooter } from "../__mocks__/mockRegistry";
 import "@testing-library/jest-dom";
 import { fireEvent } from "@testing-library/react";
 
@@ -34,12 +34,46 @@ const mockHandleHomeClick = jest.fn();
 jest.mock("@/components/nav-bar/nav-bar", () => {
 	return function MockedNavBar(props: any) {
 		return (
-			<MockNavBar
-				{...props}
-				onHomeClick={mockHandleHomeClick}
-				onAboutClick={mockHandleAboutClick}
-				onFAQClick={mockHandleFAQClick}
-			/>
+			<nav
+				data-testid="nav-bar"
+				data-show-on-scroll={props.showOnScroll}
+				role="navigation"
+				aria-label="Main Navigation"
+			>
+				<a
+					href="/"
+					role="link"
+					aria-label="Home"
+					onClick={(e) => {
+						e.preventDefault();
+						mockHandleHomeClick();
+					}}
+				>
+					Home
+				</a>
+				<a
+					href="#about"
+					role="link"
+					aria-label="About"
+					onClick={(e) => {
+						e.preventDefault();
+						mockHandleAboutClick();
+					}}
+				>
+					About
+				</a>
+				<a
+					href="#faq"
+					role="link"
+					aria-label="FAQ"
+					onClick={(e) => {
+						e.preventDefault();
+						mockHandleFAQClick();
+					}}
+				>
+					FAQ
+				</a>
+			</nav>
 		);
 	};
 });
@@ -47,12 +81,6 @@ jest.mock("@/components/nav-bar/nav-bar", () => {
 jest.mock("@/components/title-components/title", () => ({
 	__esModule: true,
 	default: MockTitle,
-}));
-
-jest.mock("@/components/nav-bar/nav-bar", () => ({
-	default: ({ showOnScroll }: { showOnScroll: boolean }) => (
-		<nav data-testid="nav-bar" data-show-on-scroll={showOnScroll} />
-	),
 }));
 
 jest.mock("@/components/about-us", () => {
@@ -95,7 +123,10 @@ jest.mock("@/components/sponsors", () => {
 });
 
 // Use centralized mock registry for Footer
-jest.mock("@/components/footer/footer", () => MockFooter);
+jest.mock("@/components/footer/footer", () => ({
+	__esModule: true,
+	default: MockFooter,
+}));
 
 jest.mock("@/components/faq/faq", () => {
 	return function MockFAQ() {

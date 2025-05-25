@@ -4,7 +4,6 @@ import SocialLinks from "../socials-links/social-links";
 import RegistrationLink from "../themed-components/registration-link";
 const currentYear = new Date().getFullYear();
 
-
 export default function Footer() {
 	return (
 		<div className="rounded-lg w-full bg-gradient-to-br from-hackrpi-light-purple to-hackrpi-pink p-[6px]">
@@ -43,7 +42,7 @@ export default function Footer() {
 					<p>
 						Made with <span className="text-red-600">❤️</span> by HackRPI.
 					</p>
-				  <p>&copy; {currentYear} HackRPI</p>
+					<p>&copy; {currentYear} HackRPI</p>
 				</div>
 			</div>
 		</div>

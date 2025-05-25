@@ -86,21 +86,46 @@ export const MockNavBar = ({
 /**
  * Mock for the Footer component
  */
-export const MockFooter = () => {
+export function MockFooter() {
 	return (
-		<footer data-testid="footer" role="contentinfo" aria-label="Site Footer">
-			<div data-testid="footer-nav" role="navigation" aria-label="Footer Navigation">
-				<a href="/privacy" role="link" aria-label="Privacy Policy">
-					Privacy Policy
-				</a>
-				<a href="/terms" role="link" aria-label="Terms of Service">
-					Terms of Service
-				</a>
+		<div className="footer" data-testid="mock-footer">
+			<div className="flex flex-col items-center justify-center w-full min-h-fit">
+				<div className="flex flex-col md:flex-row items-start justify-left w-full">
+					<div className="logo">
+						<img src="/mock-logo.png" alt="HackRPI Logo" data-testid="footer-logo" />
+					</div>
+					<div className="info">
+						<h2 data-testid="footer-title">
+							<span className="font-bold">HackRPI</span> Retro V. Modern
+						</h2>
+						<div className="address">
+							<p>Darrin Communications Center @ Rensselaer Polytechnic Institute</p>
+							<p>110 8th St, Troy, NY 12180</p>
+						</div>
+					</div>
+					<div className="links">
+						<div className="registration-link">Register Now</div>
+						<div className="social-links">
+							<a href="#" aria-label="Discord">
+								Discord
+							</a>
+							<a href="#" aria-label="Twitter">
+								Twitter
+							</a>
+							<a href="#" aria-label="Instagram">
+								Instagram
+							</a>
+						</div>
+					</div>
+				</div>
+				<div className="copyright">
+					<p>Made with ❤️ by HackRPI.</p>
+					<p>&copy; 2025 HackRPI</p>
+				</div>
 			</div>
-			<p>© 2025 HackRPI. All rights reserved.</p>
-		</footer>
+		</div>
 	);
-};
+}
 
 /**
  * Mock for the Title component

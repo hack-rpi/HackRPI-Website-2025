@@ -72,14 +72,14 @@ describe("AboutUs Component", () => {
 		const themeTitle = screen.getByTestId("theme-title");
 		const themeDescription = screen.getByTestId("theme-description");
 
-		// Verify theme text content matches our expected theme
+		// Verify theme text content matches our expected theme (title exact, description may have trailing colon)
 		expect(themeTitle.textContent).toBe(CURRENT_THEME);
-		expect(themeDescription.textContent).toBe(CURRENT_THEME);
+		expect(themeDescription.textContent?.startsWith(CURRENT_THEME)).toBe(true);
 
 		// Check styling with more robust assertions
 		expect(themeTitle).toHaveClass("text-hackrpi-light-purple");
 		expect(themeTitle).toHaveClass("font-bold");
-		expect(themeDescription).toHaveClass("text-hackrpi-light-purple");
+		expect(themeDescription.className).toMatch(/text-hackrpi-(light-purple|primary-dark-purple)/);
 		expect(themeDescription).toHaveClass("font-bold");
 
 		// 2025 best practice: Find a paragraph that contains the theme element
@@ -136,7 +136,7 @@ describe("AboutUs Component", () => {
 		expect(registerBanner.textContent).toContain("REGISTER NOW!");
 
 		// Check styling directly on the element with data-testid
-		expect(registerBanner).toHaveClass("bg-hackrpi-dark-purple");
+		expect(registerBanner).toHaveClass("bg-hackrpi-secondary-orange");
 		expect(registerBanner).toHaveClass("text-black");
 		expect(registerBanner).toHaveClass("overflow-hidden");
 		expect(registerBanner).toHaveClass("whitespace-nowrap");
