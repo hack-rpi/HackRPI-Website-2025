@@ -63,6 +63,9 @@ export default function Home() {
 				</div>
 				{/* Other components and elements */}
 			</div>
+			<Footer />
+			<Footer />
+			<Footer />
 		</>
 	);
 }

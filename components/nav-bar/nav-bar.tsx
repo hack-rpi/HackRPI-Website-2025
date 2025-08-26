@@ -29,16 +29,15 @@ export default function NavBar({ showOnScroll }: { showOnScroll: boolean }) {
 	const [windowWidth, setWindowWidth] = useState(0);
 	const [isDarkMode, setIsDarkMode] = useState(
 		typeof window !== "undefined" &&
-		(localStorage.getItem("theme") === "dark" ||
-			(!localStorage.getItem("theme") &&
-				window.matchMedia("(prefers-color-scheme: dark)").matches))
+			(localStorage.getItem("theme") === "dark" ||
+				(!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches)),
 	);
-	
+
 	const navHeight = 96;
 
 	// Add event listener to the window to update the scrollY state
 	useEffect(() => {
-				const storedTheme = localStorage.getItem("theme");
+		const storedTheme = localStorage.getItem("theme");
 		if (storedTheme === "dark") {
 			document.documentElement.classList.add("dark");
 		} else if (!storedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -62,22 +61,22 @@ export default function NavBar({ showOnScroll }: { showOnScroll: boolean }) {
 		};
 	}, []);
 
-  useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-  
-  const toggleDarkMode = () => {
-    if (document.documentElement.classList.contains("dark")) {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    }
-  };
+	useEffect(() => {
+		const storedTheme = localStorage.getItem("theme");
+		if (storedTheme === "dark") {
+			document.documentElement.classList.add("dark");
+		}
+	}, []);
+
+	const toggleDarkMode = () => {
+		if (document.documentElement.classList.contains("dark")) {
+			document.documentElement.classList.remove("dark");
+			localStorage.setItem("theme", "light");
+		} else {
+			document.documentElement.classList.add("dark");
+			localStorage.setItem("theme", "dark");
+		}
+	};
 
 	if (windowWidth < 860)
 		return (
@@ -89,15 +88,15 @@ export default function NavBar({ showOnScroll }: { showOnScroll: boolean }) {
 	return (
 		<>
 			<div className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-10`}>
-			<div className="absolute top-4 right-4 z-20">
-				<button
-					onClick={toggleDarkMode}
-					className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 text-black dark:text-white shadow"
-					aria-label="Toggle Dark Mode"
-				>
-					🌓
-				</button>
-			</div>
+				<div className="absolute top-4 right-4 z-20">
+					<button
+						onClick={toggleDarkMode}
+						className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 text-black dark:text-white shadow"
+						aria-label="Toggle Dark Mode"
+					>
+						🌓
+					</button>
+				</div>
 
 				<DesktopNavBar links={links} />
 				<MlhBanner />
