@@ -39,9 +39,6 @@ export default function Footer() {
 					</div>
 				</div>
 				<div className="flex flex-row items-start md:items-center justify-center space-x-2 w-fit pb-4 mb">
-					<p>
-						Made with <span className="text-red-600">❤️</span> by HackRPI.
-					</p>
 					<p>&copy; {currentYear} HackRPI</p>
 				</div>
 			</div>
