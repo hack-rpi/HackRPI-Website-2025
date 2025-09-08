@@ -15,11 +15,21 @@ export default function Home() {
 			<div className="flex flex-col items-start desktop:items-center justify-start w-full">
 				{/*<SearchBar />  Search bar component */}
 				<div className="w-full desktop:mx-8">
-					<TitleComponent />
-					<AboutSection />
-					<FAQPage />
-					<Sponsors />
-					<TeamComponent />
+					<div data-testid="hero-section">
+						<TitleComponent />
+					</div>
+					<div data-testid="about-section" id="about">
+						<AboutSection />
+					</div>
+					<div data-testid="faq-section" id="faq">
+						<FAQPage />
+					</div>
+					<div data-testid="sponsors-section" id="sponsors">
+						<Sponsors />
+					</div>
+					<div data-testid="team-section" id="team">
+						<TeamComponent />
+					</div>
 				</div>
 				<Footer />
 				{/* Other components and elements */}
