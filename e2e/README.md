@@ -73,6 +73,20 @@ Please run these tests locally before submitting PRs to ensure your changes don'
 14. [Next Steps and Future Enhancements](#next-steps-and-future-enhancements)
 15. [References and Further Reading](#references-and-further-reading)
 
+## Strategy & Best Practices (2025)
+
+This section summarizes our 2025 E2E strategy, consolidated from the testing review:
+
+- Critical-path coverage prioritized (registration, project submission, team management)
+- Accessibility automated via axe-core, with brand color rules tracked separately
+- Performance tests scoped to stable metrics; heavier checks run nightly
+- Visual tests targeted to stable components; baselines maintained with review
+- Cross-browser coverage for Chromium, Firefox, WebKit
+
+Recommended projects and scripts are already configured in `playwright.config.ts` and `package.json`.
+
+See also: critical workflows in `e2e/critical/*.spec.ts`, a11y in `e2e/accessibility/wcag.spec.ts`, performance in `e2e/performance/metrics.spec.ts`, and visual in `e2e/visual/components.spec.ts`.
+
 ## Introduction
 
 This guide documents the end-to-end (E2E) testing implementation for the HackRPI website using Playwright. Our testing strategy follows a multi-layered approach with E2E tests serving as the final verification layer that confirms our application works correctly from a user's perspective.
