@@ -108,7 +108,6 @@ const FAQPage = () => {
 	return (
 		<div
 			className="h-auto mb-8 flex flex-col items-center text-hackrpi-pink bg-base-100 w-5/6 desktop:w-full pl-8 desktop:pl-0"
-			id="faq"
 			data-testid="faq-section"
 		>
 			<div className="flex w-full desktop:w-2/3">
@@ -153,7 +152,7 @@ const FAQPage = () => {
 			</div>
 			<div className="w-full desktop:w-2/3">
 				<h2
-					id="sponsors"
+					id="faq-contact"
 					className="font-pix font-regular text-2xl text-center pt-10"
 					data-testid="faq-contact-section"
 				>
