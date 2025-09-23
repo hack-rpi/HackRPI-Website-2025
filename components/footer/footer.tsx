@@ -1,5 +1,5 @@
 import NextImage from "next/image";
-import logo from "@/public/HackRPI_Logo_Yellow_Arrow.png";
+import logo from "@/public/Retro_HackRPI_Logo.png";
 import SocialLinks from "../socials-links/social-links";
 import RegistrationLink from "../themed-components/registration-link";
 const currentYear = new Date().getFullYear();
