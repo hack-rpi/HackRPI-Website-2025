@@ -27,15 +27,12 @@ export const metadata: Metadata = {
 };
 
 import ClientLayout from "@/components/layout/client-layout";
-import { TRPCReactProvider } from "./trpc/react";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
 			<body>
-        <TRPCReactProvider>
 				<ClientLayout>{children}</ClientLayout>
-        </TRPCReactProvider>
 			</body>
 		</html>
 	);
