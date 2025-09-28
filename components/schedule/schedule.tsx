@@ -18,7 +18,7 @@ export default function Schedule(props: ScheduleProps) {
 	const [eventsInColumns] = useState<Event[][]>(() => arrangeEvents(props.events));
 
 	return (
-		<div className="relative flex w-full h-fit items-center justify-center">
+		<div className="relative flex w-full h-fit items-center justify-center" data-testid="schedule-container">
 			<div className="flex flex-col w-full h-fit items-start justify-start">
 				{props.times.map((time) => (
 					<TimelineElement time={time} currentTime={props.currentTime} key={time.str} />
