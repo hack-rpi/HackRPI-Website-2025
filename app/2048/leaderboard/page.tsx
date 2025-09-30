@@ -504,7 +504,7 @@ export default function Page() {
 	}, []);*/
 
 	return (
-		<div className="flex flex-col items-center justify-start w-full h-screen">
+		<div className="flex flex-col items-center justify-start w-full h-full">
 			<NavBar showOnScroll={false}></NavBar>
 
 			<div className="flex-grow flex-shrink basis-auto">
