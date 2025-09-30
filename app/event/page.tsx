@@ -11,8 +11,6 @@ import Image from "next/image";
 function EventPage() {
 	return (
 		<>
-			<NavBar showOnScroll={false} />
-
 			<div className="justify-center flex w-full flex-col  bg-hackrpi-dark-blue pt-24 desktop:pt-16">
 				<div className="px-4 flex flex-wrap items-start justify-center mb-8">
 					<div className="w-full desktop:w-1/2 p-4 min-w-[350px] sm:min-w-[450px]">

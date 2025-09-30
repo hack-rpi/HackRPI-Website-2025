@@ -24,8 +24,6 @@ export default function Announcements() {
 
 	return (
 		<>
-			<NavBar showOnScroll={false} />
-
 			<div className="justify-center flex w-full flex-col bg-hackrpi-dark-blue pt-24 desktop:pt-16 min-h-screen">
 				<div className="container mx-auto p-8">
 					<h1 className="text-4xl font-bold text-hackrpi-orange mb-4">Announcements</h1>

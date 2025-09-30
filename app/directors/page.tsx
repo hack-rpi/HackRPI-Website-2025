@@ -30,7 +30,6 @@ export default function Page() {
 
 	return (
 		<div className="flex flex-col w-screen h-fit min-h-screen">
-			<NavBar showOnScroll={false} />
 			<div className="pt-24 font-sans flex-grow flex-shrink basis-auto flex items-start justify-center">
 				<Authenticator hideSignUp={true}>
 					<div className="w-11/12 desktop:w-1/2 flex flex-col items-center justify-start">

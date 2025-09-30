@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 	}),
 };
 
-import ClientLayout from "@/components/layout/client-layout";
+import ClientLayout from "@/app/client-layout";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
