@@ -49,7 +49,17 @@
 .invisibleSpace {
 	color: transparent;
 }
+<<<<<<< Updated upstream
 
+=======
+.lightText {
+	color: #e5e7eb;
+	border-color: #e5e7eb;
+}
+.sizeImage{
+	max-height:400px;
+}
+>>>>>>> Stashed changes
 @media screen and (min-width: 0px) {
 	.adjustedFontSize {
 		font-size: 6.2vw;
