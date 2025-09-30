@@ -1,7 +1,7 @@
 "use client";
 
 import NavBar from "@/components/nav-bar/nav-bar";
-import "../app/globals.css";
+import "@/app/globals.css";
 import HackRPILink from "@/components/themed-components/hackrpi-link";
 
 export default function Custom404() {

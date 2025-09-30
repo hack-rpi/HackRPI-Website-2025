@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import "./globals.css";
+import "../globals.css";
 
 // Create a conditional metadata object based on environment
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 	}),
 };
 
-import ClientLayout from "@/app/client-layout";
+import ClientLayout from "@/app/(with-layout)/client-layout";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
