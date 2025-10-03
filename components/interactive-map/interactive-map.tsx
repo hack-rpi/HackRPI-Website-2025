@@ -14,13 +14,13 @@ const links: Link[] = [
 
 export default function InteractiveNavigationMap() {
 	return (
-		<div className="relative w-full aspect-square flex items-center justify-center h-fit p-8 ">
-			<div className="absolute z-10 flex flex-col text-[15px] lg:text-[20px] xl:text-[24px] 2xl:text-[30px] top-8 lg:top-10 2xl:top-12 left-[17.6%] lg:left-[16.1%] xl:left-[15.7%] 2xl:left-[14.5%]">
+		<div className="relative w-full aspect-square flex items-center justify-center h-fit ">
+			<div className="absolute z-10 flex flex-col text-[15px] lg:text-[20px] xl:text-[24px] 2xl:text-[25px] top-8 lg:top-10 2xl:top-12 left-[17.6%] lg:left-[16.1%] xl:left-[15.7%] 2xl:left-[14.5%]">
 				{links.map((link) => (
 					<NextLink
 						key={link.href}
 						href={link.href}
-						className= "font-bold font-retro flex items-center group mb-3 lg:mb-6 xl:mb-8 2xl:mb-10"
+						className= "font-bold font-retro flex items-center group mb-1 lg:mb-2 xl:mb-4 2xl:mb-5"
 					>
 						{/* Add icons for specific links */}
 						{link.children === "Schedule" && (
