@@ -8,7 +8,6 @@ import HackRPILink from "@/components/themed-components/hackrpi-link";
 function SponsorUsPage() {
 	return (
 		<div className="w-full min-h-screen h-fit flex flex-col items-center">
-			<NavBar showOnScroll={false} />
 			<div className="w-11/12 flex-grow flex-shrink basis-auto flex flex-col items-start justify-center pt-24 desktop:pt-16  mb-4">
 				<div className="flex w-full flex-wrap mb-2 items-center justify-center">
 					<div className="flex flex-col items-center justify-start w-5/6 md:w-1/2 min-w-[350px] mb-2">

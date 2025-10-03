@@ -505,8 +505,6 @@ export default function Page() {
 
 	return (
 		<div className="flex flex-col items-center justify-start w-full h-screen">
-			<NavBar showOnScroll={false}></NavBar>
-
 			<div className="flex-grow flex-shrink basis-auto">
 				<h1 className="mt-28 text-center text-4xl font-modern text-hackrpi-orange">2048 Leaderboard</h1>
 				<table className="min-w-[80vw] mt-10 justify-inbetween table-auto w-full table table-zebra">

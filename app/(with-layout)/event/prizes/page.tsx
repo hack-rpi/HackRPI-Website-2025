@@ -10,7 +10,6 @@ import MinorPrizes from "@/components/prizes/minor_prizes";
 export default function Page() {
 	return (
 		<div className="flex flex-col w-full h-fit min-h-screen items-center justify-center">
-			<NavBar showOnScroll={false} />
 			<div className="flex flex-col w-full flex-grow flex-shrink basis-auto mt-24 items-center">
 				<h1 className="text-4xl sm:text-6xl font-bold font-sans my-4 text-center">$5500+ In Prizes</h1>
 				<Podium podiumPrizes={podiumPrizes} />

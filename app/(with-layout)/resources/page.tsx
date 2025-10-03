@@ -7,7 +7,6 @@ import HackRPILink from "@/components/themed-components/hackrpi-link";
 export default function page() {
 	return (
 		<div className="flex flex-col w-full h-fit min-h-screen items-center justify-center">
-			<NavBar showOnScroll={false} />
 			<div className="flex flex-wrap justify-center gap-12 m-10 pt-10 pb-10 w-11/12">
 				<div className="flex flex-col justify-center items-center w-80 xs:w-[400px] md:w-[600px]">
 					<h2 id="web-dev" className="text-3xl font-modern text-center mb-8 pt-10 text-hackrpi-orange">
