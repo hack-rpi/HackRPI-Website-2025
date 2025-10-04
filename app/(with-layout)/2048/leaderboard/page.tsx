@@ -504,7 +504,7 @@ export default function Page() {
 	}, []);*/
 
 	return (
-		<div className="flex flex-col items-center justify-start w-full h-screen">
+		<div className="flex flex-col items-center justify-start w-full h-full">
 			<div className="flex-grow flex-shrink basis-auto">
 				<h1 className="mt-28 text-center text-4xl font-modern text-hackrpi-orange">2048 Leaderboard</h1>
 				<table className="min-w-[80vw] mt-10 justify-inbetween table-auto w-full table table-zebra">
@@ -541,9 +541,6 @@ export default function Page() {
 					</tbody>
 				</table>
 			</div>
-			<div className="flex-grow mt-24"></div>
-
-			<div className="absolute-bottom-0 w-full"></div>
 		</div>
 	);
 }
