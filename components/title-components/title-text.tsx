@@ -1,49 +1,89 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import RegistrationButton from "@/components/themed-components/registration-link";
+import InteractiveNavigationMap from "../interactive-map/interactive-map";
+import Image from "next/image";
 
 export default function TitleText() {
-	const [year, setYear] = useState(1824);
+  const fullText = "HACK\u00A0\u00A0\u00A0RPI";
+  const [displayedText, setDisplayedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [index, setIndex] = useState(0);
 
-	// This kinda works, we may want to add a delay before this starts counting
-	// We may also want to make the count ease in and out
-	useEffect(() => {
-		const startCounting = setTimeout(() => {
-			const target = 2025;
+  useEffect(() => {
+    const typingSpeed = isDeleting ? 100 : 150;
 
-			const interval = setInterval(() => {
-				setYear((prev) => {
-					if (prev < target) return prev + 1;
-					else {
-						clearInterval(interval);
-						return prev;
-					}
-				});
-			}, 10);
+    const handleTyping = setTimeout(() => {
+      if (!isDeleting) {
+        if (index < fullText.length) {
+          setDisplayedText((prev) => prev + fullText[index]);
+          setIndex((prev) => prev + 1);
+        } else {
+          // finished typing, stop blinking
+          return;
+        }
+      } else {
+        if (index > 0) {
+          setDisplayedText((prev) => prev.slice(0, -1));
+          setIndex((prev) => prev - 1);
+        } else {
+          setIsDeleting(false);
+        }
+      }
+    }, typingSpeed);
 
-			return () => clearInterval(interval);
-		}, 700);
+    return () => clearTimeout(handleTyping);
+  }, [index, isDeleting]);
 
-		return () => clearTimeout(startCounting);
-	}, [year]);
+  return (
+    <div className="relative w-full h-full flex justify-start items-start font-sans">
+      {/* Left side: Box with image */}
+      <div className="relative z-10 w-[900px] h-[600px] bg-black p-0 rounded-2xl shadow-lg overflow-hidden">
+        <Image
+          src="/cityscape_background_retro_modern.png"
+          alt="Cityscape Retro Modern"
+          fill
+          className="object-cover"
+        />
 
-	return (
-		<div className="w-full font-sans  text-left flex items-start justify-center flex-col mb-8">
-			<h1 className="w-full text-5xl 2xs:text-7xl sm:text-8xl 2xl:text-9xl font-bold font-neutral">HACKRPI</h1>
-			<h2>
-				<span className="w-full text-4xl sm:text-[3.5rem] 2xl:text-7xl whitespace-nowrap h-14 2xl:h-20 font-retro">
-					Retro{" "}
-				</span>
-				<span className="w-full text-4xl sm:text-[3.5rem] 2xl:text-7xl whitespace-nowrap h-14 2xl:h-20 font-neutral font-bold">
-					V.{" "}
-				</span>
-				<span className="w-full text-4xl sm:text-[3.5rem] 2xl:text-7xl whitespace-nowrap h-14 2xl:h-20 font-modern">
-					Modern
-				</span>
-			</h2>
-			<p className={`w-full text-3xl sm:text-4xl 2xl:text-5xl mb-8`}>
-				November 15-16, <span onMouseEnter={() => setYear(1824)}>{year}</span>
-			</p>
-			<RegistrationButton className="text-3xl" />
-		</div>
-	);
+        {/* Overlayed typing text */}
+        <h1
+          className="absolute text-[95px] lg:text-[120px] font-modern font-extrabold drop-shadow-lg text-white"
+          style={{ top: "100px", left: "38px" }}
+        >
+          {displayedText}
+          <span className="animate-pulse">|</span>
+        </h1>
+
+		{/* Overlayed typing text */}
+        <h1
+          className="absolute text-[95px] lg:text-[120px] font-modern font-extrabold drop-shadow-lg text-white"
+          style={{ top: "100px", left: "42px" }}
+        >
+          {displayedText}
+          <span className="animate-pulse">|</span>
+        </h1>
+
+		{/* Overlayed typing text */}
+        <h1
+          className="absolute text-[95px] lg:text-[120px] font-modern font-extrabold drop-shadow-lg text-retro-purple-medium"
+          style={{ top: "100px", left: "40px" }}
+        >
+          {displayedText}
+          <span className="animate-pulse">|</span>
+        </h1>
+
+        {/* Registration button */}
+        <div className="absolute bottom-8 left-8">
+          <RegistrationButton className="text-3xl" />
+        </div>
+      </div>
+
+      {/* Right side: Map overlapping the box */}
+      <div className="absolute top-0 left-[800px] z-20 w-[500px]">
+        <InteractiveNavigationMap />
+      </div>
+    </div>
+  );
 }
