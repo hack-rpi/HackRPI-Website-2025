@@ -5,11 +5,10 @@ import NextLink from "next/link";
 const links: Link[] = [
 	{ href: "/event", children: "Event Information" },
 	{ href: "/event/schedule", children: "Schedule" },
-	{ href: "/announcements", children: "Announcements" },
 	{ href: "/event/prizes", children: "Prizes" },
-	{ href: "/resources", children: "Resources" },
 	{ href: "/last-year", children: "HackRPI X" },
 	{ href: "/sponsor-us", children: "Sponsor Us" },
+	{ href: "https://discord.com/invite/8vAQpFWCYH", children: "Discord" },
 ];
 
 export default function InteractiveNavigationMap() {
@@ -41,15 +40,6 @@ export default function InteractiveNavigationMap() {
 								className="mr-2"
 							/>
 						)}
-						{link.children === "Announcements" && (
-							<Image
-								src="/megaphone_pixel.png"
-								alt="Megaphone"
-								width={60}
-								height={60}
-								className="mr-2"
-							/>
-						)}
 						{link.children === "Prizes" && (
 							<Image
 								src="/pixel_trophy.png"
@@ -59,15 +49,34 @@ export default function InteractiveNavigationMap() {
 								className="mr-2"
 							/>
 						)}
-						{link.children === "Resources" && (
+						{link.children === "HackRPI X" && (
 							<Image
 								src="/resources_pixel.png"
-								alt="Resources"
+								alt="HackRPI X"
 								width={60}
 								height={60}
 								className="mr-2"
 							/>
 						)}
+						{link.children === "Sponsor Us" && (
+							<Image
+								src="/money_pixel.png"
+								alt="Sponsor Us"
+								width={60}
+								height={60}
+								className="mr-2"
+							/>
+						)}
+						{link.children === "Discord" && (
+							<Image
+								src="/discord_bot_pixel (2).png"
+								alt="Discord"
+								width={60}
+								height={60}
+								className="mr-2"
+							/>
+						)}
+						
 						<span>{link.children}</span>
 					</NextLink>
 				))}
