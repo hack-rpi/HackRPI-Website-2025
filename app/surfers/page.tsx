@@ -13,13 +13,13 @@ const ThreeJSPage = () => {
 	var lanes = {
 		characterRow: 0,
 		laneWidth: 3,
-		minLane: -2,
-		maxLane: 2
+		minLane: -1,
+		maxLane: 1
 	}
 	var physics = {
 		gravity: 0.01,
 		jumpForce: 0.3,
-		rollForce: 0.4,
+		rollForce: 0.6,
 		speed: 0.1,
 		yv: 0,
 		touchingGround: false
@@ -31,12 +31,18 @@ const ThreeJSPage = () => {
 	}
 	var map = {
 		speed: 0.1,
+		loading: 30,
 		dist: 0,
+		loadDist: -40,
+		loadedDist: 0,
 		objects: [] as THREE.Object3D[],
-		data: [],
+		previous: [0,0,0],
+		currentGeneratingPosition: 1,
+		tileSize: 5,
 		presets: [
 			{
-				geometry: new THREE.BoxGeometry(2, 1, 5),
+				id: 1,
+				geometry: new THREE.BoxGeometry(2, 2, 4.7),
 				material: new THREE.MeshBasicMaterial({ color: `rgb(${Math.round(Math.random()*255)},${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})` })
 			}
 		]
@@ -112,14 +118,17 @@ const ThreeJSPage = () => {
 			return temp;
 		}
 		function makeModel(id: number, x: any, y: any, z: any){
-			var tempGeometry = map.presets[id].geometry;
-			var tempMaterial = map.presets[id].material;
-			var temp = new THREE.Mesh(tempGeometry, tempMaterial);
-			temp.position.y = x;
-			temp.position.z = y;
-			temp.position.x = z;
-			scene.add(temp);
-			return temp;
+			for(let i = 0; i < map.presets.length; i++){
+				if(map.presets[i].id==id){
+					var temp = new THREE.Mesh(map.presets[i].geometry,  map.presets[i].material);
+					temp.position.y = x+map.presets[i].geometry.parameters.height/2;
+					temp.position.z = y;
+					temp.position.x = z;
+					scene.add(temp);
+					map.objects.push(temp);
+					return temp;
+				}
+			}
 		}
 
 		function charMove(){
@@ -149,9 +158,96 @@ const ThreeJSPage = () => {
 
 		function mapMove(){
 			for(let i = 0; i < map.objects.length; i++){
-				map.objects[0].position.z+=map.speed;
+				map.objects[i].position.z+=map.speed;
+
+				let mesh = map.objects[i] as THREE.Mesh;
+				if(map.objects[i].position.z > 10 + (mesh.geometry as any).parameters.depth){
+					(map.objects[i] as THREE.Mesh).geometry.dispose();
+					((map.objects[i] as THREE.Mesh).material as THREE.Material).dispose();
+					scene.remove(map.objects[i]);
+					map.objects.splice(i, 1);
+					i--;
+				}
 			}
 			map.dist+=map.speed;
+			map.loadedDist-=map.speed;
+		}
+
+		function loadMap(){
+			let mapSet = [map.previous];
+			let generatingPosition = map.currentGeneratingPosition;
+			//0 is ground
+			//1 is train
+			//2 is ramp up
+			//3 is little stop thing
+			//4 is big stop thing
+			//5 is tunner
+
+			for(let i = 0; i < 10; i++){
+				let previousTile = mapSet[mapSet.length-1][generatingPosition];
+				let nextTile = -1;
+				let potential;
+
+				switch(previousTile){
+					case 0:
+						potential = [0,2,3,4,5];
+						nextTile = potential[Math.floor(Math.random()*potential.length)];
+						break;
+					case 1:
+						potential = [0,1];
+						nextTile = potential[Math.floor(Math.random()*potential.length)];
+						break;
+					case 2:
+						potential = [1,0];
+						nextTile = potential[Math.floor(Math.random()*potential.length)];
+						break;
+					case 3:
+						potential = [0,5];
+						nextTile = potential[Math.floor(Math.random()*potential.length)];
+						break;
+					case 4:
+						potential = [0,5];
+						nextTile = potential[Math.floor(Math.random()*potential.length)];
+						break;
+					case 5:
+						potential = [0,5];
+						nextTile = potential[Math.floor(Math.random()*potential.length)];
+						break;
+				}
+
+				let temp = [];
+				for(let x = 0; x < map.previous.length; x++) temp.push(-1);
+				temp[generatingPosition] = nextTile;
+
+				if(Math.random()>0.5){
+					let previousGeneratingPosition = generatingPosition;
+					generatingPosition = Math.floor(Math.random()*temp.length);
+					for(let o = 0; o < temp.length; o ++){
+						if(o >= previousGeneratingPosition && o <= generatingPosition || o <= previousGeneratingPosition && o >= generatingPosition)
+							temp[o] = nextTile;
+					}
+				}
+
+				mapSet.push(temp);
+			}
+
+			for(let i = 0; i < mapSet.length; i++){
+				for(let o = 0; o < mapSet[i].length; o++){
+					if(mapSet[i][o]==-1){
+						mapSet[i][o] = Math.floor(Math.random()*6);
+					}
+				}
+			}
+			map.previous = mapSet[mapSet.length-1];
+			map.currentGeneratingPosition = generatingPosition;
+
+			for(let y = 0; y < mapSet.length; y++){
+				for(let i = 0; i < mapSet[y].length; i++){
+					makeModel(mapSet[y][i],0, map.loadDist+(y*-map.tileSize), (i+lanes.minLane)*lanes.laneWidth);
+				}
+				map.loadedDist+=map.tileSize;
+			}
+			return mapSet;
 		}
 
 		const animate = () => {
@@ -182,14 +278,21 @@ const ThreeJSPage = () => {
 				if(keys.includes("arrowright")) removeKey("arrowright");
 			}
 
-			if(keys.includes("z")) {
-				map.objects.push(makeBox(2,1,5,0,0,0));
+			if(keys.includes(" ")) {
+				//Get hoverboard
+				if(keys.includes(" ")) removeKey(" ");
+			}	
 
+			if(keys.includes("z")) {
+					makeModel(1,0, map.loadDist+(0*-map.tileSize), (0+lanes.minLane)*lanes.laneWidth);
 				if(keys.includes("z")) removeKey("z");
-			}
+			}	
 			
 
 			charMove();
+			if(map.loading > 0)
+				map.loading-=1;
+			if(map.loadedDist<=0 && map.loading<1) loadMap();
 			mapMove();
 			// cockroach idea (maybe if console is opened)
 
