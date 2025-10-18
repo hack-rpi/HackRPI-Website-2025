@@ -74,10 +74,16 @@ export default function TitleText() {
           <span className="animate-pulse">|</span>
         </h1>
 
-        {/* Registration button */}
-        <div className="absolute bottom-8 left-8">
-          <RegistrationButton className="text-3xl" />
-        </div>
+        <h1>
+          <span className="absolute text-[20px] lg:text-[20px] font-modern font-extrabold drop-shadow-lg text-white" style={{ top: "50px", left: "20px" }}>
+            November 15-16, 2025 &#8226; Troy, NY
+          </span>
+        </h1>
+        <h1>
+          <span className="absolute text-[20px] lg:text-[40px] font-modern font-extrabold drop-shadow-lg text-white" style={{ top: "250px", left: "268px" }}>
+            Retro V. Modern
+          </span>
+        </h1>
       </div>
 
       {/* Right side: Map overlapping the box */}

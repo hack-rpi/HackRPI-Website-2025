@@ -1,20 +1,27 @@
 "use client";
 
-import Timer from "./timer";
 import TitleText from "./title-text";
 import Image from "next/image";
+import RegistrationButton from "@/components/themed-components/registration-link";
 
 export default function DesktopTitleComponent() {
   return (
-    <div className="relative flex w-full h-screen">
-      {/* Full background container with GIF */}
-      <div
-        className="flex flex-col w-full h-full bg-cover bg-no-repeat bg-center p-8 items-start justify-start"
-        style={{ backgroundImage: "url('/star_gif.gif')" }}
-      >
-        <TitleText />
+    <div className="relative w-full h-screen overflow-hidden">
+      {/* Background image */}
+      <div className="bg" />
+
+      {/* Starfield */}
+      <div className="star-field">
+        <div className="layer"></div>
+        <div className="layer"></div>
+        <div className="layer"></div>
       </div>
 
+      {/* Foreground content */}
+      <div className="relative z-10 flex flex-col w-full h-full p-8 items-start justify-start">
+        <TitleText />
+      </div>
+      
       {/* Bottom-right SVG */}
       <div
         className="absolute"
@@ -32,9 +39,15 @@ export default function DesktopTitleComponent() {
           height={1000} // height of the SVG in pixels (adjust as needed)
         />
       </div>
+
+      {/* Registration button */}
+        <div className="absolute bottom-10 right-3">
+          <RegistrationButton className="text-[35px]" />
+        </div>
     </div>
   );
 }
+
 
 
 
