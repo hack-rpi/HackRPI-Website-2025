@@ -4,8 +4,8 @@ const ScheduleSchema = new Schema(
   {
     name: { type: String, required: true },
     location: { type: String, required: true },
-    host: { type: String, required: true },
-    description: { type: String, required: true, default: "" },
+    host: { type: String, default: "" },
+    description: { type: String, default: "" },
     event_created_by: { type: String, required: true },
 
     start_time: { type: Date, required: true },
