@@ -73,7 +73,7 @@ export default function SchedulePage() {
     // Keep list sorted by start_time ascending
     setItems((prev) => [...prev, created].sort((a, b) => +new Date(a.start_time) - +new Date(b.start_time)));
     // reset minimal fields
-    setForm((f) => ({ ...f, name: "", description: "", start_time: "", end_time: "" }));
+    setForm((f) => ({ ...f, name: "", description: "", start_time: "", end_time: "", location: "", host: "", event_created_by: "", column: 1, event_type: "event", discord_auto_announce: false }));
   };
 
   return (

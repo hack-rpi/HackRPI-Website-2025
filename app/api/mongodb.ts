@@ -11,10 +11,7 @@ console.log("Mongo URI:", MONGO_URI);
 export async function connectDB(){
   if(MONGO_URI) {
     const connectDB = mongoose
-      .connect(MONGO_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      })
+      .connect(MONGO_URI)
       .then(() => console.log("MongoDB Connected"))
       .catch((err) => console.error("MongoDB Connection error:", err));
   }
