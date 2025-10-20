@@ -151,6 +151,7 @@ export default function SchedulePage() {
             <strong>{it.name}</strong> — {it.location} · {it.host} · {it.event_type} · col {it.column} ·{" "}
             {new Date(it.start_time).toLocaleString()} → {new Date(it.end_time).toLocaleString()} ·{" "}
             {it.discord_auto_announce ? "🔔 announces" : "no announce"}
+            {" Event added by " + it.event_created_by}
             <div style={{ color: "#555" }}>{it.description}</div>
           </li>
         ))}

@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "../mongodb";
 import Schedule from "./schedule";
-//import schedule from "./schedule";
 
 const EVENT_TYPES = ["ceremony", "workshop", "food", "fireside chat", "mentoring", "event"] as const;
 
@@ -15,8 +14,6 @@ function parseBody(json: any) {
   const name = str(json.name);
   const location = str(json.location);
   const host = str(json.host ?? "");
-  console.log("host is " + host)
-  console.log(json)
   const description = str(json.description ?? "");
   const event_created_by = str(json.event_created_by);
 
@@ -30,7 +27,6 @@ function parseBody(json: any) {
 
   if (!name) errors.push("name");
   if (!location) errors.push("location");
-  //if (!host) errors.push("host");
   if (!event_created_by) errors.push("event_created_by");
   if (!(start_time instanceof Date) || isNaN(start_time.getTime())) errors.push("start_time");
   if (!(end_time instanceof Date) || isNaN(end_time.getTime())) errors.push("end_time");

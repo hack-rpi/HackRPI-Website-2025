@@ -23,7 +23,7 @@ const ScheduleSchema = new Schema(
   { timestamps: true }
 );
 
-// prevent schema staleness in Next.js dev
+//prevent schema staleness in Next.js dev
 if (process.env.NODE_ENV === "development") {
   delete (mongoose.connection.models as any).Schedule;
 }

@@ -9,11 +9,13 @@ const MONGO_URI = process.env.MONGO_URI;
 console.log("Mongo URI:", MONGO_URI);
 
 export async function connectDB(){
-  const connectDB = mongoose
-    .connect(MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
-    .then(() => console.log("MongoDB Connected"))
-    .catch((err) => console.error("MongoDB Connection error:", err));
+  if(MONGO_URI) {
+    const connectDB = mongoose
+      .connect(MONGO_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      })
+      .then(() => console.log("MongoDB Connected"))
+      .catch((err) => console.error("MongoDB Connection error:", err));
+  }
 }
