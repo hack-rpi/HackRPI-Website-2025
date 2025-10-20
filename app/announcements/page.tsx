@@ -47,8 +47,7 @@ export default function Announcements() {
 					</div>
 
 					{/* Render Announcements */}
-          {JSON.stringify(alert(announcements))}
-					{/*announcements
+					{announcements
 						.filter((a: any) => {
 							if (!showRecent) return true;
 							const threeDaysAgo = new Date();
@@ -88,7 +87,7 @@ export default function Announcements() {
 									)}
 								</div>
 							);
-						})*/}
+						})}
 				</div>
 			</div>
 		</>
