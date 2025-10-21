@@ -40,9 +40,29 @@ const ThreeJSPage = () => {
 		currentGeneratingPosition: 1,
 		tileSize: 5,
 		presets: [
-			{
+			{ // train
 				id: 1,
 				geometry: new THREE.BoxGeometry(2, 2, 4.7),
+				material: new THREE.MeshBasicMaterial({ color: `rgb(${Math.round(Math.random()*255)},${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})` })
+			},
+			{ // ramp up
+				id: 2,
+				geometry: new THREE.BoxGeometry(2, 1, 4.7),
+				material: new THREE.MeshBasicMaterial({ color: `rgb(${Math.round(Math.random()*255)},${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})` })
+			},
+			{ // little stop
+				id: 3,
+				geometry: new THREE.BoxGeometry(2, 1, 1),
+				material: new THREE.MeshBasicMaterial({ color: `rgb(${Math.round(Math.random()*255)},${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})` })
+			},
+			{ // big stop
+				id: 4,
+				geometry: new THREE.BoxGeometry(2, 3, 1),
+				material: new THREE.MeshBasicMaterial({ color: `rgb(${Math.round(Math.random()*255)},${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})` })
+			},
+			{ // tunnel
+				id: 5,
+				geometry: new THREE.BoxGeometry(0, 0, 4.7),
 				material: new THREE.MeshBasicMaterial({ color: `rgb(${Math.round(Math.random()*255)},${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})` })
 			}
 		]
