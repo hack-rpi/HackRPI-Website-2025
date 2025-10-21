@@ -29,7 +29,7 @@ export interface Prize {
 export const podiumPrizes: Prize[] = [
 	{
 		name: "1st",
-		amount: "$1500",
+		amount: "$1000",
 		description: "",
 	},
 	{
@@ -39,7 +39,91 @@ export const podiumPrizes: Prize[] = [
 	},
 ];
 
+
 export const majorPrizes: Prize[] = [
+	{
+		name: "Best Machine Learning Hack",
+		amount: "$400 Cash Prize",
+		description:
+			"Coding an AI from scratch? This prize goes to the best project utilizing a homegrown AI model.",
+		imagePath: palantir,
+	},
+	{
+		name: "Best Public Health Innovation",
+		amount: "$400 Cash Prize",
+		description:
+			"Does an apple a day really keep the doctor away? With your project, we're sure it will! This prize goes those who have demonstrated exceptional creativity, technical skill, and a dedication to making a meaningful impact on global health through thoughtful analysis and implementation of data-driven solutions.",
+		imagePath: palantir,
+	},
+	{
+		name: "Best Sustainability Hack",
+		amount: "$400 Cash Prize",
+		description:
+			"Go green or go home! This prize recognizes the project that most creatively tackles environmental challenges in the city, making urban living sustainable and eco-friendly.",
+		imagePath: sustainability_prize,
+	}
+];
+
+export const minorPrizes: Prize[] = [
+  {
+		name: "Best Use of AI",
+		amount: "Air Fryer ($180 Value)",
+		description:
+			"Ready to implement ChatGPT, Gemeni, Claude or another AI into your project? The winner of this prize best implements an external AI model into their project.",
+		imagePath: quantum_prize,
+	},
+	{
+		name: "Best Data Science Hack",
+		amount: "Amazon Echo Dot (Value: $200)",
+		description:
+			"Crunch those numbers! Given to the project that uses data science to unravel the mysteries of city living, driving decisions with insightful analytics.",
+		imagePath: data_science_prize,
+	},
+  {
+		name: "Best First Time Hack",
+		amount: "Lego Set ($140 Value)",
+		description:
+			"Newbies unite! Awarded to the top project by first-time hackers that addresses urban challenges, showing off their fresh creativity and hard work.",
+		imagePath: beginner_prize,
+	},
+  {
+		name: "Best Mobile Hack",
+		amount: "Portable Charger ($80 Value)",
+		description:
+			"Got an app for that? Recognizes the project that delivers the slickest, most useful mobile application for folks in a retro (or modern) world.",
+		imagePath: mobile_prize,
+	},
+  {
+		name: "Best Hardware Hack",
+		amount: "Amazon Fire stick ($160 Value)",
+		description:
+			"Are you more of a hardware person? If you are, then this track is for you - blow everyone away with technology that moves beyond just a screen.",
+		imagePath: quantum_prize,
+	},
+  {
+		name: "Best Quantum Computing Hack",
+		amount: "JBL Speakers ($80 Value)",
+		description:
+			"Entangle some qubits and blow our minds! This prize celebrates the project that uses quantum computing to solve urban problems, proving that the future really is now (and at RPI!).",
+		imagePath: quantum_prize,
+	},
+	{
+		name: "Ugliest Code Competition",
+		amount: "$50 Cash Prize",
+		description:
+			"Embrace the spaghetti! A fun award for the participant with the most convoluted code in our ugliest code competition, reminding us all why clean coding matters, especially in urban tech.",
+		imagePath: ugly_code_prize,
+	},
+  {
+		name: "Code Golf",
+		amount: "$50 Cash Prize",
+		description:
+			"WHAT IS CODE GOLF",
+		imagePath: ugly_code_prize,
+	}
+];
+
+/*export const majorPrizes: Prize[] = [
 	{
 		name: "Ship Fast, Ship Often - Build a Payworthy MVP in a Weekend",
 		amount: "$800 Cash Prize",
@@ -83,9 +167,9 @@ Whether it's an app, Chrome extension, or web app, your goal is to solve a real 
 			"Time to hit the books—or tablets! Awarded to the project that best improves urban education, making city learning more fun, accessible, and effective.",
 		imagePath: education_prize,
 	},
-];
+];*/
 
-export const minorPrizes: Prize[] = [
+/*export const minorPrizes: Prize[] = [
 	{
 		name: "Best Quantum Computing Hack",
 		amount: "JBL Speaker ($200 Value)",
@@ -174,4 +258,4 @@ Terraform’s community edition is free to use with no credit card required! Uti
 Build an AI powered project utilizing Databricks Open Source projects like the ones mentioned, or Databricks friendly Open Source projects like LanceDB and Llama Index, for a chance to win some amazing prizes for you and your teammates! Check out the following link to see all qualifying Databricks' Open Source technologies. `,
 		imagePath: databricks,
 	},
-];
+];*/
