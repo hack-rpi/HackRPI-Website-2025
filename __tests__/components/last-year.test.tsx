@@ -88,7 +88,7 @@ jest.mock("next/image", () => ({
 }));
 
 // Import the component after all mocks are defined
-import PastYearProjects from "@/app/last-year/page";
+import PastYearProjects from "@/app/(with-layout)/last-year/page";
 
 describe("Last Year Projects Page", () => {
 	beforeEach(() => {
@@ -98,9 +98,7 @@ describe("Last Year Projects Page", () => {
 	it("renders the main layout components", () => {
 		render(<PastYearProjects />);
 
-		// Check if the main structural components are rendered
-		expect(screen.getByTestId("nav-bar")).toBeInTheDocument();
-		// Footer is imported but not actually used in the component
+		// Footer and NavBar are imported but not actually used in the component
 	});
 
 	it("renders page title", () => {

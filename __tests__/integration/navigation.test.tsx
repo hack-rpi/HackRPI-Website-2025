@@ -3,7 +3,7 @@
  */
 import React from "react";
 import { screen, within, act } from "@testing-library/react";
-import Home from "@/app/page";
+import Home from "@/app/(without-layout)/page";
 import {
 	renderWithProviders,
 	resetAllMocks,

@@ -61,7 +61,7 @@ jest.mock("next/image", () => ({
 }));
 
 // Import the component after all mocks are defined
-import EventPage from "@/app/event/page";
+import EventPage from "@/app/(with-layout)/event/page";
 
 describe("Event Page", () => {
 	beforeEach(() => {
@@ -71,10 +71,7 @@ describe("Event Page", () => {
 	it("renders the main layout components", () => {
 		render(<EventPage />);
 
-		// Check if the navbar component is rendered
-		expect(screen.getByTestId("nav-bar")).toBeInTheDocument();
-
-		// Note: Footer is imported but not actually used in the component
+		// Note: Footer and NavBar is imported but not actually used in the component
 		// so we should not expect it in the test
 	});
 
