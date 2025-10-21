@@ -11,7 +11,7 @@ const links: Link[] = [
 	{ href: "https://discord.com/invite/8vAQpFWCYH", children: "Discord" },
 ];
 
-export default function InteractiveNavigationMap() {
+export default function PixelSideBar() {
 	return (
 		<div className="relative w-full aspect-square flex items-center justify-center h-fit">
 			<div className="absolute z-10 flex flex-col text-[15px] lg:text-[20px] xl:text-[24px] 2xl:text-[25px] top-8 lg:top-10 2xl:top-12 left-[17.6%] lg:left-[16.1%] xl:left-[15.7%] 2xl:left-[14.5%]">

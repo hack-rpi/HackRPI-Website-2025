@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import RegistrationButton from "@/components/themed-components/registration-link";
-import InteractiveNavigationMap from "../interactive-map/interactive-map";
+import InteractiveNavigationMap from "../pixel-sidebar/pixel-sidebar";
 import Image from "next/image";
 
 export default function TitleText() {
