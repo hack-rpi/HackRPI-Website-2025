@@ -1,12 +1,20 @@
 import RegistrationLink from "./themed-components/registration-link";
 
+
+
 export default function AboutUs() {
 	return (
 		<div
 			id="about"
-			className="w-11/12 lg:w-full mx-auto mt-12 mb-8 flex flex-col lg:flex-row items-start justify-start h-fit ml-0 pl-8 lg:pl-0 "
+			className="w-11/12 lg:w-full mx-auto mt-12 mb-18 flex flex-col lg:flex-row items-start justify-start h-fit ml-0 pl-8 lg:pl-0 "
+			style={{
+				backgroundImage: "url('/aboutUs.jpeg')",
+				backgroundSize: "100% 100%",
+				width: "99vw",
+				height: "110vh"
+			}}
 		>
-			<div className="w-full lg:w-3/6 ml-auto lg:pl-4 pr-4">
+			<div className="w-full lg:w-3/6 lg:pl-4 pr-4">
 				<h1 className="text-hackrpi-orange text-4xl mb-2 font-bold font-sans-Helvetica">About HackRPI</h1>
 
 				<div className="w-11/12">
