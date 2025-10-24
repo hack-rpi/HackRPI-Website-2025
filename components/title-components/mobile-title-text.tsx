@@ -1,9 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import RegistrationButton from "@/components/themed-components/registration-link";
-import InteractiveNavigationMap from "../interactive-map/interactive-map";
-import Image from "next/image";
 
 export default function TitleText() {
   const fullText = "HACK\u00A0\u00A0\u00A0RPI";
@@ -36,39 +33,32 @@ export default function TitleText() {
   }, [index, isDeleting]);
 
   return (
-    <div className="relative w-full h-full flex justify-start items-start font-sans">
-      {/* Left side: Box with image */}
-      <div className="relative z-10 w-[900px] h-[600px] bg-hackrpi-dark-blue p-0 rounded-2xl shadow-lg overflow-hidden flex items-center justify-center">
-        {/* Make image smaller */}
-        <div className="relative w-[80%] h-[80%]">
-          <Image
-            src="/cityscape_background_retro_modern.png"
-            alt="Cityscape Retro Modern"
-            fill
-            className="object-contain"
-          />
-        </div>
-
+<div className="pt-12">
+  {/* Left side: Box with image */}
+  <div
+    className="bg-contain bg-center bg-no-repeat relative z-10 w-[90vw] h-[80vh] p-0 rounded-2xl overflow-hidden flex items-start justify-start"
+    style={{ backgroundImage: "url('/cityscape_background_retro_modern.png')" }}
+      >
         {/* Overlayed typing text */}
         <h1
-          className="absolute text-[70px] lg:text-[100px] font-modern font-extrabold drop-shadow-lg text-white"
-          style={{ top: "180px", left: "100px" }}
+          className="absolute text-[10vw] font-modern font-extrabold drop-shadow-lg text-white"
+          style={{ top: "32%", left: "12%" }}
         >
           {displayedText}
           <span className="animate-pulse">|</span>
         </h1>
 
         <h1
-          className="absolute text-[70px] lg:text-[100px] font-modern font-extrabold drop-shadow-lg text-white"
-          style={{ top: "180px", left: "104px" }}
+          className="absolute text-[10vw] font-modern font-extrabold drop-shadow-lg text-white"
+          style={{ top: "32%", left: "12.2%" }}
         >
           {displayedText}
           <span className="animate-pulse">|</span>
         </h1>
 
         <h1
-          className="absolute text-[70px] lg:text-[100px] font-modern font-extrabold drop-shadow-lg text-retro-purple-medium"
-          style={{ top: "180px", left: "102px" }}
+          className="absolute text-[10vw] font-modern font-extrabold drop-shadow-lg text-retro-purple-medium"
+          style={{ top: "32%", left: "12.4%" }}
         >
           {displayedText}
           <span className="animate-pulse">|</span>
@@ -76,16 +66,16 @@ export default function TitleText() {
 
         <h1>
           <span
-            className="absolute text-[15px] lg:text-[20px] font-modern font-extrabold drop-shadow-lg text-white"
-            style={{ top: "145px", left: "80px" }}
+            className="absolute text-[4vw] font-modern font-extrabold drop-shadow-lg text-white"
+            style={{ top: "90%", left: "10%" }}
           >
             November 15-16, 2025 &#8226; Troy, NY
           </span>
         </h1>
         <h1>
           <span
-            className="absolute text-[20px] lg:text-[40px] font-modern font-extrabold drop-shadow-lg text-white"
-            style={{ top: "280px", left: "268px" }}
+            className="absolute text-[5vw] font-modern font-extrabold drop-shadow-lg text-white"
+            style={{ top: "43%", left: "26%" }}
           >
             Retro V. Modern
           </span>
