@@ -56,7 +56,7 @@ const config: Config = {
 			screens: {
 				desktop: "860px",
 				xs: "475px",
-				shift: { max: "500px" },
+				shift: { max: "950px" },
 				"2xs": "375px",
 			},
 			backgroundImage: {
