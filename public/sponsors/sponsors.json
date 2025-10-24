@@ -9,9 +9,10 @@
 	],
 	"SILVER": [
 		{ "name": "Global Foundries", "logoPath": "/GlobalFoundries.png", "url": "https://gf.com/" },
-		{ "name": "Lutron", "logoPath": "/Lutron.jpeg", "url": "https://www.lutron.com/en-US/Pages/default.aspx" },
+		{ "name": "Accenture", "logoPath": "/AccentureWhite.png", "url": "https://www.accenture.com" },
 		{ "name": "Palantir", "logoPath": "/Palantir.png", "url": "https://www.palantir.com/" },
-		{ "name": "Rensselaer School of Science", "logoPath": "/RPI_SOS.png", "url": "https://science.rpi.edu/" }
+		{ "name": "Rensselaer School of Science", "logoPath": "/RPI_SOS.png", "url": "https://science.rpi.edu/" },
+		{ "name": "Velan Studios", "logoPath": "/VelanStudios.png", "url": "https://velanstudios.com/" }
 	],
 	"BRONZE": [
 		{

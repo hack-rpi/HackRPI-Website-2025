@@ -1,11 +1,11 @@
-import xenia from "../public/team/photos/Xenia_Khusid.jpg";
-import cj from "../public/team/photos/CJ_Marino.jpg";
-import matthew from "../public/team/photos/Xenia_Khusid.jpg";
-import shankar from "../public/team/photos/Shankar_Palanickal.jpg";
-import aaryan from "../public/team/photos/Aaryan_Gautam.jpg";
-import tobias from "../public/team/photos/Xenia_Khusid.jpg";
-import jackson from "../public/team/photos/Xenia_Khusid.jpg";
-import suyash from "../public/team/photos/Suyash_Amatya.jpg";
+import xenia from "../public/team/photos/xenia.jpg";
+import cj from "../public/team/photos/cj.jpg";
+import matthew from "../public/team/photos/matthew.jpg";
+import shankar from "../public/team/photos/shankar.jpg";
+import aaryan from "../public/team/photos/aaryan.jpg";
+import tobias from "../public/team/photos/tobias.jpg";
+import jackson from "../public/team/photos/jackson.jpg";
+import suyash from "../public/team/photos/suyash.jpg";
 
 export const executive = {
 	"Xenia Khusid": xenia,
@@ -65,7 +65,7 @@ export const team: Team = {
 		{
 			name: "Xenia Khusid",
 			role: "President",
-			image: "../public/team/photos/joerogansauna.jpg",
+			image: "xenia.jpg",
 			"team-color": teamColors.president,
 			teamDescription:
 				"The President leads the overall planning and execution of the hackathon, coordinating with all teams to ensure a successful event.",

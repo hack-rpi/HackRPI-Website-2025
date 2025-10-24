@@ -1,7 +1,6 @@
 "use client";
 
 import TitleText from "./mobile-title-text";
-import InteractiveNavigationMap from "../interactive-map/interactive-map";
 import RegistrationButton from "@/components/themed-components/registration-link";
 
 export default function MobileTitleComponent() {
