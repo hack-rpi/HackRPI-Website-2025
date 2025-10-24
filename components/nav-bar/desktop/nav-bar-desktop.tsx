@@ -1,7 +1,8 @@
 import NextImg from "next/image";
 import { NavGroup } from "@/data/nav-bar-links";
 import logo from "@/public/Retro_HackRPI_Logo.png";
-import RegistrationButton from "@/components/themed-components/registration-link";
+import RegistrationButton from "@/components/themed-components/registration-header-link";
+
 import NavGroupComponent from "./nav-group";
 import Link from "next/link";
 
@@ -60,7 +61,7 @@ export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
 					>
 						2048 Leaderboard
 					</Link> */}
-					
+
 					<Link
 						href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
 						className="mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-yellow to-hackrpi-pink hover:bg-[length:100%_2px]"
@@ -69,8 +70,8 @@ export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
 						Code of Conduct
 					</Link>
 				</div>
-				<div className="w-fit flex items-center justify-around ml-2">
-					<RegistrationButton className="w-fit whitespace-nowrap" />
+				<div className="ml-2">
+					<RegistrationButton className="w-auto" />
 				</div>
 			</div>
 		</div>
