@@ -5,10 +5,11 @@ import * as THREE from 'three';
 
 import "@/app/globals.css";
 import { mx_bilerp_0 } from "three/src/nodes/materialx/lib/mx_noise.js";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 const ThreeJSPage = () => {
 
-	const canvasRef = useRef<HTMLDivElement | null>(null); // Specify the type for the ref
+	const canvasRef = useRef<HTMLDivElement | null>(null);
 	var keys: any[] = [];
 	var lanes = {
 		characterRow: 0,
@@ -68,64 +69,153 @@ const ThreeJSPage = () => {
 		]
 	}
 	let animationId = useRef<number | null>(null);
+	let instance = 0;
 
-	
+	var scene: any;
+	var camera: any;
+	var renderer: any;
+	var character: any | null;
+	var blockedKeys: any[] = [];
+
+	var cameraMan = {
+		ref: useRef<HTMLDivElement | null>(null),
+		renderer: null as any,
+		camera: null as any,
+		ratio: 0.2,
+		angle: Math.PI,
+		dist: 1.5
+	}
+
+
+
+
+
+
+
 
 	useEffect(() => {
-
+		instance+=1;
 		document.body.style.overflow = "hidden";
 
-		const scene = new THREE.Scene();
-		const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-		const renderer = new THREE.WebGLRenderer();
+		async function loadModels(){
+			scene = new THREE.Scene();
+			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+			cameraMan.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+			renderer = new THREE.WebGLRenderer();
+			cameraMan.renderer = new THREE.WebGLRenderer();
 
-		renderer.setSize(window.innerWidth, window.innerHeight);
-		if (canvasRef.current) canvasRef.current.appendChild(renderer.domElement); // Append the canvas to the ref
+			let loads = 1;
 
-		const groundGeometry = new THREE.PlaneGeometry(10, 100);
-		const groundMaterial = new THREE.MeshBasicMaterial({ color: 0x7cfc00 });
-		const ground = new THREE.Mesh(groundGeometry, groundMaterial);
-		ground.rotation.x = -Math.PI / 2;
-		ground.position.x = 0;
-		scene.add(ground);
+			const loader = new GLTFLoader();
+			
+			loader.load('/surfers/characters/shittysurferman2.glb', (gltf) => {
+				character = gltf.scene;
+				character.scale.set(0.2,0.2,0.2);
+				character.position.set(0.5,2,0);
+				character.rotation.set(0,Math.PI/2,0);
+				
+				let box = new THREE.Box3();
+				box.setFromObject(character);
+				let size = new THREE.Vector3();
+				box.getSize(size);
+				character.geometry = {
+					parameters: {
+						height: Math.floor(size.y*100)/100
+					}
+				};
+				
+				scene.add(character);
+				loads-=1;
+			});
 
-		const characterGeometry = new THREE.BoxGeometry(0.5, 1, 0.5);
-		const characterMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-		const character = new THREE.Mesh(characterGeometry, characterMaterial);
-		character.position.y = 0.5;
-		character.position.z = 2;
-		character.position.x = 0;
-		scene.add(character);
+			function check(){
+				if(loads<=0){
+					init();
+					console.log('Initializing...');
+				}else{
+					window.setTimeout(check,1);
+				}
+			}
+			window.setTimeout(check,1);
+		}
+		if(instance>1) loadModels();
 
-		camera.position.z = 5;
-		camera.position.y = 2;
-		camera.lookAt(character.position);
+		function init(){
+			cameraMan.renderer.setSize(window.innerWidth*cameraMan.ratio, window.innerHeight*cameraMan.ratio);
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			if (canvasRef.current) canvasRef.current.appendChild(renderer.domElement); // Append the canvas to the ref
+			if (cameraMan.ref.current) cameraMan.ref.current.appendChild(cameraMan.renderer.domElement); // Append the canvas to the ref
+			
+			let groundGeometry = new THREE.PlaneGeometry(10, 100);
+			let groundMaterial = new THREE.MeshBasicMaterial({ color: 0x7cfc00 });
+			let ground = new THREE.Mesh(groundGeometry, groundMaterial);
+			ground.rotation.x = -Math.PI / 2;
+			ground.position.x = 0;
+			scene.add(ground);
+
+			let color = 0xFFFFFF;
+			let light = new THREE.AmbientLight(color, 5);
+			scene.add(light);
+
+			let light2 = new THREE.PointLight(color, 150);
+			light2.position.set(5, 5, 5);
+			scene.add(light2);
+
+			camera.position.z = 5;
+			camera.position.y = 2;
+			camera.lookAt(character.position);
+
+			animate();
+
+			let badge = document.getElementById('mlh-trust-badge');
+			if(badge != null){
+				let css = "#mlh-trust-badge{ opacity: 0; transition: 0.5s ease-out } #mlh-trust-badge:hover{ opacity: 0.7; }";
+				let style = document.createElement('style');
+				style.setAttribute('type', "text/css");
+
+				if ('styleSheet' in style) {
+					(style.styleSheet as any).cssText = css;
+				} else {
+					style.innerHTML = css;
+				}
+				document.getElementsByTagName('head')[0].appendChild(style);
+			}
+		}
+
+
+
+
+
 
 		function removeKey(key: string) {
 			keys = keys.filter(k => k !== key);
 			blockedKeys.push(key);
 		}
-		
 
-		var blockedKeys: any[] = [];
 		const listenKeyDown = function(event: { key: any; }){ if (!keys.includes(event.key.toLowerCase()) && !blockedKeys.includes(event.key.toLowerCase())) keys.push(event.key.toLowerCase());}
 		const listenKeyUp = function(event: { key: any; }){ keys = keys.filter(key => key !== event.key.toLowerCase()); blockedKeys = blockedKeys.filter(key => key !== event.key.toLowerCase()); }
 
 		const resize = function() {
 			if (canvasRef.current && canvasRef.current.children.length > 0) {
-				const canvas = renderer.domElement;
+				let canvas = renderer.domElement;
 				canvas.style.width = window.innerWidth+'px';
 				canvas.style.height = window.innerHeight+'px';
 
 				camera.aspect = canvas.clientWidth / canvas.clientHeight;
 				camera.updateProjectionMatrix();
 			}
+			if (cameraMan.ref.current && cameraMan.ref.current.children.length > 0) {
+				let canvas = cameraMan.renderer.domElement;
+				canvas.style.width = window.innerWidth*cameraMan.ratio+'px';
+				canvas.style.height = window.innerHeight*cameraMan.ratio+'px';
+
+				cameraMan.camera.aspect = canvas.clientWidth / canvas.clientHeight;
+				cameraMan.camera.updateProjectionMatrix();
+			}
 		}
 		window.addEventListener('keydown', listenKeyDown);
 		window.addEventListener('keyup', listenKeyUp);
 		window.addEventListener('resize', resize)
-
-
 
 		function makeCustomBox(width: number | undefined, height: number | undefined, depth: number | undefined, x: any, y: any, z: any){
 			var tempGeometry = new THREE.BoxGeometry(width, height, depth);
@@ -174,6 +264,12 @@ const ThreeJSPage = () => {
 				physics.touchingGround = false;
 				physics.yv -= physics.gravity;
 			}
+
+			cameraMan.angle = (cameraMan.angle+=0.01) % (Math.PI*2);
+			cameraMan.camera.position.z = character.position.z+0.4+Math.cos(cameraMan.angle)*cameraMan.dist;
+			cameraMan.camera.position.y = character.position.y+character.geometry.parameters.height/2;
+			cameraMan.camera.position.x = character.position.x+Math.sin(cameraMan.angle)*cameraMan.dist;
+			cameraMan.camera.lookAt(character.position.x, character.position.y+character.geometry.parameters.height/2, character.position.z);
 		}
 
 		function mapMove(){
@@ -270,6 +366,14 @@ const ThreeJSPage = () => {
 			return mapSet;
 		}
 
+
+
+
+
+
+
+
+
 		const animate = () => {
 			animationId.current = requestAnimationFrame(animate);
 
@@ -304,25 +408,35 @@ const ThreeJSPage = () => {
 			}	
 
 			if(keys.includes("z")) {
-					makeModel(1,0, map.loadDist+(0*-map.tileSize), (0+lanes.minLane)*lanes.laneWidth);
+				// makeModel(1,0, map.loadDist+(0*-map.tileSize), (0+lanes.minLane)*lanes.laneWidth);
+				map.speed*=2;
 				if(keys.includes("z")) removeKey("z");
 			}	
 			
 
+			console.log();
 			charMove();
 			if(map.loading > 0)
 				map.loading-=1;
 			if(map.loadedDist<=0 && map.loading<1) loadMap();
 			mapMove();
-			// cockroach idea (maybe if console is opened)
+
+
+			// light2.position.set(character.position.x, character.position.y, character.position.z);
+
+			// cockroach idea (maybe if console is opened
+			// another canvas that shows the front view and rotates camera sometimes.
 
 			renderer.render(scene, camera);
+			cameraMan.renderer.render(scene, cameraMan.camera);
+
+			
 		};
-
-		animate();
-
+		
 		return () => {
-			if (canvasRef.current) canvasRef.current.removeChild(renderer.domElement);
+			try{
+				if (canvasRef.current) canvasRef.current.removeChild(renderer.domElement);
+			}catch{}
 			window.removeEventListener('keydown', listenKeyDown);
 			window.removeEventListener('keyup', listenKeyUp);
 			window.removeEventListener('resize', resize);
@@ -330,9 +444,10 @@ const ThreeJSPage = () => {
 		};
 	}, []);
 
-	return (
+	return (<>
 		<div ref={canvasRef} style={{ width: '100%', height: '100vh' }}></div>
-	);
+		<div ref={cameraMan.ref} style={{ position: 'absolute', top: '0', right: '0', borderBottomLeftRadius: '10px'}}></div>
+	</>);
 };
 
 export default ThreeJSPage;
