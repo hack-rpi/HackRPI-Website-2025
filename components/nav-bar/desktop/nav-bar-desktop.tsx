@@ -69,8 +69,8 @@ export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
 						Code of Conduct
 					</Link>
 				</div>
-				<div className="w-fit flex items-center justify-around ml-2">
-					<RegistrationButton className="w-fit whitespace-nowrap" />
+				<div className="flex flex-col sm:flex-row sm:justify-center items-center gap-4">
+					<RegistrationButton className="w-full sm:w-auto" />
 				</div>
 			</div>
 		</div>
