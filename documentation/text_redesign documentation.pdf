@@ -1,0 +1,26 @@
+File Modified: AboutUs.jsx
+
+Changes Made:
+
+Added a styled information box (<div className="absolute">) positioned over the background image to display “About HackRPI” content.
+
+Applied custom inline styles to control the placement and appearance of the text box:
+
+top: "140%" and left: "33%" → positions the box precisely over the image.
+
+width: "28%", height: "30%" → defines the box’s size.
+
+backgroundColor: "rgba(32, 0, 32, 1)" → sets a solid dark purple background for readability.
+
+color: "white" → ensures high contrast text.
+
+padding: "1rem" and borderRadius: "6px" → improves visual spacing and shape.
+
+overflowY: "auto" → allows scrolling if content exceeds box height.
+
+Adjusted layout wrapper (w-full lg:w-3/6 lg:pl-4 pr-4) to improve responsiveness and prevent distortion when resizing the screen.
+
+Set overall section height to 110vh for consistent full-screen coverage.
+
+Purpose:
+To visually highlight the “About HackRPI” content inside a fixed, styled overlay on the background image while maintaining readability and layout consistency across screen sizes.
