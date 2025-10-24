@@ -61,12 +61,12 @@ export default function MobileNavBar({ links }: { links: NavGroup[] }) {
 					>
 						Sponsor Us
 					</Link>
-					<Link
+					{/* <Link
 						href="/2048/leaderboard"
 						className="w-11/12 whitespace-nowrap text-2xl p-2 bg-[length:0%_4px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-primary-blue to-hackrpi-primary-blue hover:bg-[length:100%_4px]"
 					>
 						2048 Leaderboard
-					</Link>
+					</Link> */}
 					<Link
 						href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
 						className="w-11/12 whitespace-nowrap text-2xl p-2 bg-[length:0%_4px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-primary-blue to-hackrpi-primary-blue hover:bg-[length:100%_4px]"
