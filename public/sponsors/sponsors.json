@@ -1,48 +1,37 @@
 {
 	"OBSIDIAN": [{ "name": "Nuvalence", "logoPath": "/Nuvalence.png", "url": "https://nuvalence.io/" }],
 	"GOLD": [
-		{
-			"name": "ThinAir",
-			"logoPath": "/ThinAir.png",
-			"url": "https://usethinair.com/"
-		}
 	],
 	"SILVER": [
-		{ "name": "Global Foundries", "logoPath": "/GlobalFoundries.png", "url": "https://gf.com/" },
-		{ "name": "Accenture", "logoPath": "/AccentureWhite.png", "url": "https://www.accenture.com" },
-		{ "name": "Palantir", "logoPath": "/Palantir.png", "url": "https://www.palantir.com/" },
-		{ "name": "Rensselaer School of Science", "logoPath": "/RPI_SOS.png", "url": "https://science.rpi.edu/" },
-		{ "name": "Velan Studios", "logoPath": "/VelanStudios.png", "url": "https://velanstudios.com/" }
+    { "name": "Accenture",
+      "logoPath": "/AccentureWhite.png",
+      "url": "https://www.accenture.com"
+    },
+    {
+      "name": "RPI School of Science",
+      "logoPath": "/RPI_SOS.png",
+      "url": "https://science.rpi.edu/"
+    },
+    {
+      "name": "Velan Studios",
+      "logoPath": "/Velan_Studios_Logo.png",
+      "url": "https://www.velanstudios.com/"
+    }
 	],
 	"BRONZE": [
-		{
-			"name": "Rensselaer Center for Open Source Software",
-			"logoPath": "/rcos-red.png",
-			"url": "https://new.rcos.io"
-		},
-		{
+    {
 			"name": "Troy Web Consulting",
 			"logoPath": "/troywebconsulting.png",
 			"url": "https://troyweb.com/"
 		}
 	],
 	"COLLABORATORS": [
-		{
+    {
 			"name": "Awake Chocolate",
 			"logoPath": "/Awake_Chocolate.png",
 			"url": "https://awakechocolate.com/"
 		},
-		{
-			"name": "Axure",
-			"logoPath": "/Axure_logo_175.svg",
-			"url": "https://www.axure.com/"
-		},
-		{
-			"name": "Classiq",
-			"logoPath": "/Classiq.png",
-			"url": "https://www.classiq.io/"
-		},
-		{
+    {
 			"name": "DeFazio's Pizza",
 			"logoPath": "/DeFazios.png",
 			"url": "https://defaziospizza.com/"
@@ -53,64 +42,29 @@
 			"url": "https://www.dibellas.com/"
 		},
 		{
-			"name": "Flying Pig Society",
-			"logoPath": "/FlyingPigSociety.png",
-			"url": "https://www.flyingpigsociety.org/"
+			"name": "Github",
+			"logoPath": "/github-logo.svg",
+			"url": "https://github.com/"
 		},
+    {
+      "name": "Monster Energy",
+      "logoPath": "/MonsterEnergy.png",
+      "url": "https://www.monsterenergy.com/en-us/"
+    },
 		{
-			"name": "Hannaford",
-			"logoPath": "/Hannaford.png",
-			"url": "https://www.hannaford.com/"
+			"name": "Pure Buttons",
+			"logoPath": "/Pure-Buttons-Blue-Gradient-Logo-RGB.svg",
+			"url": "https://hackp.ac/mlh-standoutstickers-hackathons"
 		},
-		{
-			"name": "Incogni",
-			"logoPath": "/Incogni.png",
-			"url": "https://incogni.com/"
-		},
-		{
-			"name": "Longhorn Screen & Stitch",
-			"logoPath": "/Longhorn.png",
-			"url": "https://www.longhornscreenandstitch.com/"
-		},
-		{
-			"name": "NordPass",
-			"logoPath": "/NordPass.png",
-			"url": "https://nordpass.com/"
-		},
-		{
-			"name": "NordVPN",
-			"logoPath": "/NordVPN.webp",
-			"url": "https://nordsecurity.com/"
-		},
-		{
-			"name": "O'Reilly",
-			"logoPath": "/OReilly.png",
-			"url": "https://www.oreilly.com/"
-		},
-		{
-			"name": "Saily",
-			"logoPath": "/Saily.png",
-			"url": "https://saily.com/"
-		},
-		{
+    {
 			"name": "Severino Center for Technological Entrepreneurship",
 			"logoPath": "/Severino.jpg",
 			"url": "https://severinocenter.rpi.edu/"
 		},
-		{
-			"name": "Stand Out Stickers",
-			"logoPath": "/stand-out-stickers.png",
-			"url": "https://www.standoutstickers.com/"
-		},
-		{
+    {
 			"name": "Taichi Bubble Tea",
 			"logoPath": "/Taichi.png",
 			"url": "https://www.taichibubbletea.com/"
-		},
-		{
-			"name": "Wolfram",
-			"logoPath": "/Wolfram.png",
-			"url": "https://www.wolfram.com/"
 		}
 	]
 }
