@@ -78,7 +78,7 @@ export const minorPrizes: Prize[] = [
 	},
 	{
 		name: "Best Data Science Hack",
-		amount: "Amazon Echo Dot (Value: $200)",
+		amount: "Amazon Echo Dot ($200 Value)",
 		description:
 			"Crunch those numbers! Given to the project that uses data science to unravel the mysteries of city living, driving decisions with insightful analytics.",
 		imagePath: data_science_prize,
