@@ -1,4 +1,4 @@
-import ai_prize from "@/public/prizes/AiPrize.jpg";
+import ai_prize from "@/public/prizes/AITrack.jpeg";
 import sustainability_prize from "@/public/prizes/sustainability.png";
 import education_prize from "@/public/prizes/education.jpg";
 import quantum_prize from "@/public/prizes/quantum_computer.jpg";
@@ -16,6 +16,10 @@ import cloudflare from "@/public/prizes/cloudflare.webp";
 import tech from "@/public/prizes/tech.webp";
 import hashicorp from "@/public/prizes/hashicorp.webp";
 import databricks from "@/public/prizes/databricks.webp";
+import hardware_prize from "@/public/prizes/hardwareTrack.webp";
+import golf_prize from "@/public/prizes/golf.jpg"
+import machine_learning_prize from "@/public/prizes/machine_learning_track (1).png"
+import healthcare_prize from "@/public/prizes/stethoscope.png"
 
 import { StaticImageData } from "next/image";
 
@@ -46,14 +50,14 @@ export const majorPrizes: Prize[] = [
 		amount: "$400 Cash Prize",
 		description:
 			"Coding an AI from scratch? This prize goes to the best project utilizing a homegrown AI model.",
-		imagePath: palantir,
+		imagePath: machine_learning_prize,
 	},
 	{
-		name: "Best Public Health Innovation",
+		name: "Best Healthcare Hack",
 		amount: "$400 Cash Prize",
 		description:
 			"Does an apple a day really keep the doctor away? With your project, we're sure it will! This prize goes those who have demonstrated exceptional creativity, technical skill, and a dedication to making a meaningful impact on global health through thoughtful analysis and implementation of data-driven solutions.",
-		imagePath: palantir,
+		imagePath: healthcare_prize,
 	},
 	{
 		name: "Best Sustainability Hack",
@@ -70,7 +74,7 @@ export const minorPrizes: Prize[] = [
 		amount: "Air Fryer ($180 Value)",
 		description:
 			"Ready to implement ChatGPT, Gemeni, Claude or another AI into your project? The winner of this prize best implements an external AI model into their project.",
-		imagePath: quantum_prize,
+		imagePath: ai_prize,
 	},
 	{
 		name: "Best Data Science Hack",
@@ -98,7 +102,7 @@ export const minorPrizes: Prize[] = [
 		amount: "Amazon Fire stick ($160 Value)",
 		description:
 			"Are you more of a hardware person? If you are, then this track is for you - blow everyone away with technology that moves beyond just a screen.",
-		imagePath: quantum_prize,
+		imagePath: hardware_prize,
 	},
   {
 		name: "Best Quantum Computing Hack",
@@ -118,8 +122,8 @@ export const minorPrizes: Prize[] = [
 		name: "Code Golf",
 		amount: "$50 Cash Prize",
 		description:
-			"WHAT IS CODE GOLF",
-		imagePath: ugly_code_prize,
+			"Code Golf! No, not coding the game golf. Come to the workshop and maybe win some money along the way!",
+		imagePath: golf_prize,
 	}
 ];
 
