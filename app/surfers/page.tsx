@@ -113,15 +113,6 @@ const ThreeJSPage = () => {
 				character.scale.set(0.2,0.2,0.2);
 				character.position.set(0.5,2,0);
 				character.rotation.set(0,Math.PI/2,0);
-
-				function controlJoints(model: any, skeleton: any) {
-					// Find a specific bone by its name from Blender
-					let headBone = model.getObjectByName('Head');
-
-					if (headBone) {
-						headBone.rotation.x = Math.PI / 2;
-					}
-				}
 				
 				let box = new THREE.Box3();
 				box.setFromObject(character);
@@ -135,7 +126,31 @@ const ThreeJSPage = () => {
 				
 				let skinnedMesh = character.getObjectByProperty('type', 'SkinnedMesh');
 				let skeleton = skinnedMesh.skeleton;
-				controlJoints(character, skeleton);
+				character.skeleton = {
+					head: character.getObjectByName('Head'),
+					spine: character.getObjectByName('Spine'),
+					torso: character.getObjectByName('Torso'),
+					leftLeg: character.getObjectByName('LeftLeg'),
+					leftLegLower: character.getObjectByName('LeftLegLower'),
+					rightLeg: character.getObjectByName('RightLeg'),
+					rightLegLower: character.getObjectByName('RightLegLower'),
+				}
+				character.animations = [
+					{arr: [
+							{name: 'head', x:  45, y: 0, z: 0, motion: 'linear'},
+							{name: 'leftLeg', x:  0, y: -30, z: 30, motion: 'linear'},
+							{name: 'rightLeg', x:  0, y: 30, z: 150, motion: 'linear'},
+							{name: 'rightLegLower', x:  0, y: 0, z: 0, motion: 'linear'},
+							{name: 'leftLegLower', x:  0, y: 0, z: 0, motion: 'linear'},
+						], speed: 0.05},
+					{arr: [
+							{name: 'head', x:  -45, y: 0, z: 0, motion: 'linear'},
+							{name: 'leftLeg', x:  0, y: -30, z: 150, motion: 'linear'},
+							{name: 'rightLeg', x: 0, y: 30, z: 30, motion: 'linear'},
+							{name: 'rightLegLower', x:  0, y: 0, z: 0, motion: 'linear'},
+							{name: 'leftLegLower', x:  0, y: 0, z: 0, motion: 'linear'},
+						], speed: 0.05}
+				];
 
 				scene.add(character);
 				loads-=1;
@@ -379,6 +394,34 @@ const ThreeJSPage = () => {
 			return mapSet;
 		}
 
+		function mixAnimation(body: any){
+
+			if(!body.frame) body.frame = 0;
+
+			let thisFrame = Math.floor(body.frame);
+			let nextFrame = (thisFrame+1)%body.animations.length;
+			let percentageToNext = (body.frame%1)
+
+			for(let i = 0; i < body.animations[thisFrame].arr.length; i++){
+				let jointData = body.animations[thisFrame].arr[i];
+				let bone = body.skeleton[jointData.name];
+				let targetJointData = body.animations[nextFrame].arr[i];
+
+				if(jointData.motion == 'linear'){
+					bone.rotation.x = (jointData.x + (targetJointData.x-jointData.x)*percentageToNext) * (Math.PI/180);
+					bone.rotation.y = (jointData.y + (targetJointData.y-jointData.y)*percentageToNext) * (Math.PI/180);
+					bone.rotation.z = (jointData.z + (targetJointData.z-jointData.z)*percentageToNext) * (Math.PI/180);
+				}
+
+			}
+
+			body.frame=(body.frame+body.animations[thisFrame].speed)%body.animations.length;
+		}
+		function characterAnimations(){
+			mixAnimation(character);
+			
+		}
+
 
 
 
@@ -427,20 +470,15 @@ const ThreeJSPage = () => {
 			}	
 			
 
-			console.log();
 			charMove();
 			if(map.loading > 0)
 				map.loading-=1;
 			if(map.loadedDist<=0 && map.loading<1) loadMap();
 			mapMove();
 
+			characterAnimations();
 
 			// light2.position.set(character.position.x, character.position.y, character.position.z);
-
-			// if (headBone) {
-			// 	headBone.rotation.x = Math.sin(performance.now() * 0.001) * 0.5;
-			// }
-
 			// cockroach idea (maybe if console is opened
 
 			renderer.render(scene, camera);
