@@ -108,11 +108,20 @@ const ThreeJSPage = () => {
 
 			const loader = new GLTFLoader();
 			
-			loader.load('/surfers/characters/shittysurferman2.glb', (gltf) => {
+			loader.load('/surfers/characters/shittysurferman.glb', (gltf) => {
 				character = gltf.scene;
 				character.scale.set(0.2,0.2,0.2);
 				character.position.set(0.5,2,0);
 				character.rotation.set(0,Math.PI/2,0);
+
+				function controlJoints(model: any, skeleton: any) {
+					// Find a specific bone by its name from Blender
+					let headBone = model.getObjectByName('Head');
+
+					if (headBone) {
+						headBone.rotation.x = Math.PI / 2;
+					}
+				}
 				
 				let box = new THREE.Box3();
 				box.setFromObject(character);
@@ -124,6 +133,10 @@ const ThreeJSPage = () => {
 					}
 				};
 				
+				let skinnedMesh = character.getObjectByProperty('type', 'SkinnedMesh');
+				let skeleton = skinnedMesh.skeleton;
+				controlJoints(character, skeleton);
+
 				scene.add(character);
 				loads-=1;
 			});
@@ -424,8 +437,11 @@ const ThreeJSPage = () => {
 
 			// light2.position.set(character.position.x, character.position.y, character.position.z);
 
+			// if (headBone) {
+			// 	headBone.rotation.x = Math.sin(performance.now() * 0.001) * 0.5;
+			// }
+
 			// cockroach idea (maybe if console is opened
-			// another canvas that shows the front view and rotates camera sometimes.
 
 			renderer.render(scene, camera);
 			cameraMan.renderer.render(scene, cameraMan.camera);
