@@ -14,7 +14,21 @@ export default function AboutUs() {
 				height: "110vh"
 			}}
 		>
-			<div className="w-full lg:w-3/6 lg:pl-4 pr-4">
+			
+			<div
+  				className="absolute"
+  				style={{
+   						top: "140%",
+    					left: "33%",
+    					width: "28%",
+   						height: "30%",
+    					overflowY: "auto",
+    					color: "white",
+    					backgroundColor: "rgba(32, 0, 32, 1)",
+    					padding: "1rem",
+    					borderRadius: "6px"
+ 						 }}
+			>
 				<h1 className="text-hackrpi-orange text-4xl mb-2 font-bold font-sans-Helvetica">About HackRPI</h1>
 
 				<div className="w-11/12">
