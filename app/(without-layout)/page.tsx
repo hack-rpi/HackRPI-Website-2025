@@ -6,6 +6,7 @@ import NavBar from "@/components/nav-bar/nav-bar";
 import AboutSection from "../../components/about-us";
 import TeamComponent from "@/components/team/team";
 import Sponsors from "@/components/sponsors";
+import Footer from "@/components/footer/footer";
 
 export default function Home() {
 	return (
@@ -20,6 +21,7 @@ export default function Home() {
 					<Sponsors />
 					<TeamComponent />
 				</div>
+        <Footer />
 				{/* Other components and elements */}
 			</div>
 		</>
