@@ -104,6 +104,7 @@ const config: Config = {
 			addUtilities(newUtilities);
 		}),
 	],
+	
 };
 
 export default config;

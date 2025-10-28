@@ -1,17 +1,35 @@
 import RegistrationLink from "./themed-components/registration-link";
 
+
+
 export default function AboutUs() {
 	return (
 		<div
 			id="about"
-			className="w-11/12 lg:w-full mx-auto mt-12 mb-8 flex flex-col lg:flex-row items-start justify-start h-fit ml-0 pl-8 lg:pl-0 font-modern"
+			className="w-11/12 lg:w-full mx-auto mt-12 mb-18 flex flex-col lg:flex-row items-start justify-start h-fit ml-0 pl-8 lg:pl-0 "
+			style={{
+				backgroundImage: "url('/aboutUs.jpeg')",
+				backgroundSize: "100% 100%",
+				width: "99vw",
+				height: "110vh"
+			}}
 		>
-			{/* Left Column */}
-			<div className="w-full lg:w-3/6 ml-auto lg:pl-4 pr-4">
-				<h1 className="text-hackrpi-orange text-4xl mb-2 font-bold">
-					About HackRPI
-				</h1>
-
+			
+			<div
+  				className="absolute"
+  				style={{
+   						top: "140%",
+    					left: "33%",
+    					width: "28%",
+   						height: "30%",
+    					overflowY: "auto",
+    					color: "white",
+    					backgroundColor: "rgba(32, 0, 32, 1)",
+    					padding: "1rem",
+    					borderRadius: "6px"
+ 						 }}
+			>
+				<h1 className="text-hackrpi-orange text-4xl mb-2 font-bold font-sans-Helvetica">About HackRPI</h1>
 				<div className="w-11/12">
 					<p className="pb-3 text-hackrpi-light-purple">
 						HackRPI 2025 is Rensselaer Polytechnic Institute&apos;s 12th annual intercollegiate hackathon hosted by
