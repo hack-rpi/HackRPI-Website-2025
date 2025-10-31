@@ -65,7 +65,7 @@ export const team: Team = {
 		{
 			name: "Xenia Khusid",
 			role: "President",
-			image: "xenia.jpg",
+			image: "xenia.JPG",
 			"team-color": teamColors.president,
 			teamDescription:
 				"The President leads the overall planning and execution of the hackathon, coordinating with all teams to ensure a successful event.",
@@ -73,7 +73,7 @@ export const team: Team = {
 		{
 			name: "CJ Marino",
 			role: "Vice President",
-			image: "/team/photos/Adwait_Naware.jpg",
+			image: "/team/photos/cj.JPG",
 			"team-color": teamColors.vicePresident,
 			teamDescription:
 				"The Vice President supports the President's role, providing leadership and assistance in many aspects of the hackathon.",
@@ -81,7 +81,7 @@ export const team: Team = {
 		{
 			name: "Matthew Treanor",
 			role: "Director of Outreach",
-			image: "/team/photos/Vickie_Chen.jpg",
+			image: "/team/photos/matthew.JPG",
 			"team-color": teamColors.Outreach,
 			teamDescription:
 				"The Outreach team is responsible for engaging with the community and local students to promote the hackathon and encourage participation.",
@@ -89,7 +89,7 @@ export const team: Team = {
 		{
 			name: "Shankar Gowrisankar",
 			role: "Director of Finance",
-			image: "/team/photos/Grace_Hui.jpg",
+			image: "/team/photos/shankar.JPG",
 			"team-color": teamColors.Finance,
 			teamDescription:
 				"The Finance team is responsible for managing the budget and purchasing necessary items for the hackathon.",
@@ -97,7 +97,7 @@ export const team: Team = {
 		{
 			name: "Aaryan Gautam",
 			role: "Director of Sponsorship",
-			image: "/team/photos/Heman_Kolla.jpg",
+			image: "/team/photos/aaryan.JPG",
 			"team-color": teamColors.Sponsorship,
 			teamDescription:
 				"The Sponsorship team is responsible for reaching out to companies and securing sponsorships to support the hackathon.",
@@ -105,7 +105,7 @@ export const team: Team = {
 		{
 			name: "Tobias Manayath",
 			role: "Director of Logistics",
-			image: "/team/photos/CJ_Marino.jpg",
+			image: "/team/photos/tobias.JPG",
 			"team-color": teamColors.Logistics,
 			teamDescription:
 				"The Logistics team is responsible for planning and executing the physical aspects of the hackathon, such as food, swag, transportation, and more.",
@@ -113,7 +113,7 @@ export const team: Team = {
 		{
 			name: "Jackson Baimel",
 			role: "Director of Technology",
-			image: "/team/photos/Cooper_Werner.jpg",
+			image: "/team/photos/jackson.JPG",
 			"team-color": teamColors.Technology,
 			teamDescription:
 				"The Technology team is responsible for developing and maintaining the hackathon website, discord server, and providing technical support during the event.",
@@ -121,7 +121,7 @@ export const team: Team = {
 		{
 			name: "Suyash Amatya",
 			role: "Director of Marketing",
-			image: "/team/photos/Miranda_Zheng.jpg",
+			image: "/team/photos/suyash.JPG",
 			"team-color": teamColors.Marketing,
 			teamDescription:
 				"The Marketing team is responsible for promoting the hackathon and engaging with participants through social media, fliers, and other marketing materials.",

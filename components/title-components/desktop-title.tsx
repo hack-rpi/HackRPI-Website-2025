@@ -14,7 +14,6 @@ export default function DesktopTitleComponent() {
       <div className="star-field z-0">
         <div className="layer"></div>
         <div className="layer"></div>
-        <div className="layer"></div>
       </div>
 
       {/* Foreground content */}
