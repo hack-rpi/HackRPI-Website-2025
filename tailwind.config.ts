@@ -73,6 +73,15 @@ const config: Config = {
 				"radial-green-700": "radial-gradient(circle, #047857, #065f46)",
 				"radial-green-800": "radial-gradient(circle, #065f46, #064e3b)",
 			},
+			keyframes: {
+				fadeIn: {
+					"0%": { opacity: "0", transform: "translateY(10px)" },
+					"100%": { opacity: "1", transform: "translateY(0)" },
+				},
+			},
+			animation: {
+				fadeIn: "fadeIn 0.8s ease-out forwards",
+			},
 		},
 	},
 	daisyui: {
