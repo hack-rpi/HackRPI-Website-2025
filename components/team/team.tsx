@@ -188,50 +188,71 @@ return (
   );
 }
 
-/* -----------------------------
-   Director Card Component
------------------------------ */
 function DirectorCard(director: Director, offset: number) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <div
       key={director.name}
-      className="w-[200px] flex-shrink-0 mr-8 flex items-center justify-center flex-col"
-      style={{ transform: `translate(${offset}%, 0%)` }}
+      className="w-[200px] sm:w-[180px] md:w-[200px] flex-shrink-0 mr-8 flex flex-col items-center justify-center"
+      style={{ transform: `translate(${offset}%, 0%)`, perspective: "1000px" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {!hovered && (
-        <Image
-          src={executive[director.name]}
-          alt={director.name}
-          height={200}
-          width={200}
-          className="w-[200px] h-[200px] rounded-full object-cover"
-          loading="eager"
-          priority
-        />
-      )}
-
-      {hovered && (
-        <div
-          className="w-[200px] h-[200px] rounded-full flex items-center justify-center whitespace-pre-wrap"
-          style={{ backgroundColor: director["team-color"].bg }}
-        >
-          <p className="w-11/12 h-fit rounded-full text-sm text-center">{director.teamDescription}</p>
-        </div>
-      )}
-
+      {/* Flip Wrapper */}
       <div
-        className="my-2 w-full rounded-full flex items-center justify-center flex-col"
+        className={`relative w-full aspect-square transition-transform duration-700 transform-style-preserve-3d ${
+          hovered ? "rotate-y-180" : ""
+        }`}
+      >
+        {/* FRONT SIDE */}
+        <div className="absolute inset-0 rounded-full overflow-hidden backface-hidden">
+          <Image
+            src={executive[director.name]}
+            alt={director.name}
+            width={200}
+            height={200}
+            className="w-full h-full object-cover rounded-full"
+            priority
+          />
+        </div>
+
+        {/* BACK SIDE */}
+        <div
+          className="absolute inset-0 rounded-full flex items-center justify-center p-2 sm:p-3 md:p-4 text-center backface-hidden"
+          style={{
+            backgroundColor: director["team-color"].bg,
+            color: director["team-color"].text,
+            transform: "rotateY(180deg)",
+          }}
+        >
+          <div className="flex flex-col items-center justify-center h-full w-[90%] overflow-hidden text-center">
+            <p
+              className="break-words whitespace-normal text-center leading-tight font-medium"
+              style={{
+                fontSize: "clamp(10px, 1.5vw, 14px)", // 👈 responsive scaling
+                lineHeight: "1.2em",
+                wordBreak: "break-word",
+              }}
+            >
+              {director.teamDescription}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Name + Role */}
+      <div
+        className="mt-2 w-full rounded-full flex flex-col items-center justify-center py-1 px-1"
         style={{
           backgroundColor: director["team-color"].bg,
           color: director["team-color"].text,
         }}
       >
-        <h3 className="text-xl font-bold">{director.name}</h3>
-        <p>{director.role}</p>
+        <h3 className="text-base sm:text-lg font-bold leading-tight text-center">
+          {director.name}
+        </h3>
+        <p className="text-xs sm:text-sm text-center">{director.role}</p>
       </div>
     </div>
   );
