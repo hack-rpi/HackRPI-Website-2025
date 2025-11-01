@@ -2,7 +2,7 @@
 
 //import { useState } from "react";
 //import { useEffect } from "react";
-import NavBar from "@/components/nav-bar/nav-bar";
+//import NavBar from "@/components/nav-bar/nav-bar";
 import "@/app/globals.css";
 import HackRPIButton from "@/components/themed-components/hackrpi-button";
 //Removing the backend for convenience

@@ -1,6 +1,6 @@
 "use client";
 
-import NavBar from "@/components/nav-bar/nav-bar";
+//import NavBar from "@/components/nav-bar/nav-bar";
 import "@/app/globals.css";
 import HackRPILink from "@/components/themed-components/hackrpi-link";
 

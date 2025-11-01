@@ -1,25 +1,25 @@
 import ai_prize from "@/public/prizes/AITrack.jpeg";
 import sustainability_prize from "@/public/prizes/sustainability.png";
-import education_prize from "@/public/prizes/education.jpg";
+//import education_prize from "@/public/prizes/education.jpg";
 import quantum_prize from "@/public/prizes/quantum_computer.jpg";
-import cybersecurity_prize from "@/public/prizes/cybersecurity.jpg";
+//import cybersecurity_prize from "@/public/prizes/cybersecurity.jpg";
 import mobile_prize from "@/public/prizes/mobile_app.jpg";
-import startup_prize from "@/public/prizes/startup.png";
+//import startup_prize from "@/public/prizes/startup.png";
 import data_science_prize from "@/public/prizes/data_science.jpg";
 import beginner_prize from "@/public/prizes/coding.webp";
 import ugly_code_prize from "@/public/prizes/ugly_code.png";
-import thin_air from "@/public/sponsors/sponsor_logos/ThinAir.png";
-import palantir from "@/public/sponsors/sponsor_logos/Palantir.png";
-import accessibility_prize from "@/public/prizes/Accessibility.webp";
-import midnight from "@/public/prizes/midnight.webp";
-import cloudflare from "@/public/prizes/cloudflare.webp";
-import tech from "@/public/prizes/tech.webp";
-import hashicorp from "@/public/prizes/hashicorp.webp";
-import databricks from "@/public/prizes/databricks.webp";
+//import thin_air from "@/public/sponsors/sponsor_logos/ThinAir.png";
+//import palantir from "@/public/sponsors/sponsor_logos/Palantir.png";
+//import accessibility_prize from "@/public/prizes/Accessibility.webp";
+//import midnight from "@/public/prizes/midnight.webp";
+//import cloudflare from "@/public/prizes/cloudflare.webp";
+//import tech from "@/public/prizes/tech.webp";
+//import hashicorp from "@/public/prizes/hashicorp.webp";
+//import databricks from "@/public/prizes/databricks.webp";
 import hardware_prize from "@/public/prizes/hardwareTrack.webp";
-import golf_prize from "@/public/prizes/golf.jpg"
-import machine_learning_prize from "@/public/prizes/machine_learning_track (1).png"
-import healthcare_prize from "@/public/prizes/stethoscope.png"
+import golf_prize from "@/public/prizes/golf.jpg";
+import machine_learning_prize from "@/public/prizes/machine_learning_track (1).png";
+import healthcare_prize from "@/public/prizes/stethoscope.png";
 
 import { StaticImageData } from "next/image";
 
@@ -43,13 +43,11 @@ export const podiumPrizes: Prize[] = [
 	},
 ];
 
-
 export const majorPrizes: Prize[] = [
 	{
 		name: "Best Machine Learning Hack",
 		amount: "$400 Cash Prize",
-		description:
-			"Coding an AI from scratch? This prize goes to the best project utilizing a homegrown AI model.",
+		description: "Coding an AI from scratch? This prize goes to the best project utilizing a homegrown AI model.",
 		imagePath: machine_learning_prize,
 	},
 	{
@@ -65,11 +63,11 @@ export const majorPrizes: Prize[] = [
 		description:
 			"Go green or go home! This prize recognizes the project that most creatively tackles environmental challenges in the city, making urban living sustainable and eco-friendly.",
 		imagePath: sustainability_prize,
-	}
+	},
 ];
 
 export const minorPrizes: Prize[] = [
-  {
+	{
 		name: "Best Use of AI",
 		amount: "Air Fryer ($180 Value)",
 		description:
@@ -83,28 +81,28 @@ export const minorPrizes: Prize[] = [
 			"Crunch those numbers! Given to the project that uses data science to unravel the mysteries of city living, driving decisions with insightful analytics.",
 		imagePath: data_science_prize,
 	},
-  {
+	{
 		name: "Best First Time Hack",
 		amount: "Lego Set ($140 Value)",
 		description:
 			"Newbies unite! Awarded to the top project by first-time hackers that addresses urban challenges, showing off their fresh creativity and hard work.",
 		imagePath: beginner_prize,
 	},
-  {
+	{
 		name: "Best Mobile Hack",
 		amount: "Portable Charger ($80 Value)",
 		description:
 			"Got an app for that? Recognizes the project that delivers the slickest, most useful mobile application for folks in a retro (or modern) world.",
 		imagePath: mobile_prize,
 	},
-  {
+	{
 		name: "Best Hardware Hack",
 		amount: "Amazon Fire stick ($160 Value)",
 		description:
 			"Are you more of a hardware person? If you are, then this track is for you - blow everyone away with technology that moves beyond just a screen.",
 		imagePath: hardware_prize,
 	},
-  {
+	{
 		name: "Best Quantum Computing Hack",
 		amount: "JBL Speakers ($80 Value)",
 		description:
@@ -118,13 +116,13 @@ export const minorPrizes: Prize[] = [
 			"Embrace the spaghetti! A fun award for the participant with the most convoluted code in our ugliest code competition, reminding us all why clean coding matters, especially in urban tech.",
 		imagePath: ugly_code_prize,
 	},
-  {
+	{
 		name: "Code Golf",
 		amount: "$50 Cash Prize",
 		description:
 			"Code Golf! No, not coding the game golf. Come to the workshop and maybe win some money along the way!",
 		imagePath: golf_prize,
-	}
+	},
 ];
 
 /*export const majorPrizes: Prize[] = [

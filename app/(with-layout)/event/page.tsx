@@ -2,7 +2,7 @@
 
 import React from "react";
 import "@/app/globals.css";
-import NavBar from "@/components/nav-bar/nav-bar";
+//import NavBar from "@/components/nav-bar/nav-bar";
 import MapsDCCLow from "@/components/maps/maps";
 // import GoogleMapsWidget from "@/components/maps/google_maps"; // Commenting out for now, may be used in the future
 import HackRPILink from "@/components/themed-components/hackrpi-link";

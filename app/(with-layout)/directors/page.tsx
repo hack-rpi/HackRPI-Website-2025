@@ -1,6 +1,6 @@
 "use client";
 
-import NavBar from "@/components/nav-bar/nav-bar";
+//import NavBar from "@/components/nav-bar/nav-bar";
 import { useEffect, useState } from "react";
 import { Event } from "@/data/schedule";
 

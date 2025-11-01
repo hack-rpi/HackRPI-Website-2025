@@ -1,7 +1,7 @@
 "use client";
 
 import "@/app/globals.css";
-import NavBar from "@/components/nav-bar/nav-bar";
+//import NavBar from "@/components/nav-bar/nav-bar";
 import HackRPILink from "@/components/themed-components/hackrpi-link";
 
 export default function page() {

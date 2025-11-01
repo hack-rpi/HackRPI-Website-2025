@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import "@/app/globals.css";
-import NavBar from "@/components/nav-bar/nav-bar";
+//import NavBar from "@/components/nav-bar/nav-bar";
 
 export default function Announcements() {
 	const [announcements, setAnnouncements] = useState([]);

@@ -1,6 +1,6 @@
 "use client";
 
-import NavBar from "@/components/nav-bar/nav-bar";
+//import NavBar from "@/components/nav-bar/nav-bar";
 import "@/app/globals.css";
 import { podiumPrizes, majorPrizes, minorPrizes } from "@/data/prizes";
 import Podium from "@/components/prizes/podium";

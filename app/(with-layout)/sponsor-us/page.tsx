@@ -2,7 +2,7 @@
 
 import React from "react";
 import "@/app/globals.css";
-import NavBar from "@/components/nav-bar/nav-bar";
+//import NavBar from "@/components/nav-bar/nav-bar";
 import HackRPILink from "@/components/themed-components/hackrpi-link";
 
 function SponsorUsPage() {
