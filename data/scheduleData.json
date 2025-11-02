@@ -9,7 +9,6 @@
       "eventType": "important",
       "visible": true,
       "column": 1,
-      "width": 3,
       "startMinutesFromDayStart": 0,
       "durationMinutes": 60
     },
