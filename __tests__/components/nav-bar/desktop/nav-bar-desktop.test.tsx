@@ -72,7 +72,8 @@ describe("DesktopNavBar Component", () => {
 		render(<DesktopNavBar links={mockLinks} />);
 
 		const registerLink = screen.getByRole("link", { name: /register/i });
-		expect(registerLink).toHaveAttribute("href", "https://hackrpi2025.devpost.com/");
+		expect(registerLink).toHaveAttribute("href", "https://hackrpi2024.devpost.com/project-gallery");
+		expect(registerLink).toHaveAttribute("target", "_blank");
 	});
 
 	it("applies correct styling to the navbar", () => {

@@ -23,6 +23,7 @@ describe("Schedule Component", () => {
 		endHour: number,
 		eventType: string = "default",
 		visible: boolean = true,
+		column: number = 1,
 	): Event => ({
 		id,
 		title: `Event ${id}`,
@@ -33,7 +34,8 @@ describe("Schedule Component", () => {
 		speaker: startHour % 2 === 0 ? `Speaker ${id}` : "", // Alternate between having a speaker and not
 		eventType,
 		visible,
-		column: 0,
+		column,
+		width: 1,
 	});
 
 	// Sample data for testing
@@ -250,10 +252,10 @@ describe("Schedule Component", () => {
 
 	it("renders multiple columns for overlapping events", () => {
 		// Create events that overlap
-		const overlappingEvents = [
-			createEvent("1", 10, 12, "default"), // 10:00 AM - 12:00 PM
-			createEvent("2", 11, 13, "workshop"), // 11:00 AM - 1:00 PM - overlaps with event 1
-		];
+	const overlappingEvents = [
+		createEvent("1", 10, 12, "default", true, 1), // 10:00 AM - 12:00 PM
+		createEvent("2", 11, 13, "workshop", true, 2), // 11:00 AM - 1:00 PM - overlaps with event 1
+	];
 
 		render(
 			<Schedule

@@ -22,23 +22,6 @@ jest.mock("next/navigation", () => ({
 	usePathname: () => "/",
 }));
 
-jest.mock("@/components/themed-components/registration-link", () => {
-	return {
-		__esModule: true,
-		default: ({ className }: { className?: string }) => (
-			<a
-				data-testid="registration-link"
-				href="https://hackrpi2025.devpost.com/"
-				target="_blank"
-				rel="noopener noreferrer"
-				className={className}
-			>
-				Register Here!
-			</a>
-		),
-	};
-});
-
 // Define the current theme and year for better test maintainability
 const CURRENT_THEME = "Retro vs. Modern";
 const HACKRPI_YEAR = getCurrentHackrpiYear();
@@ -115,19 +98,16 @@ describe("AboutUs Component", () => {
 		expect(parentContainer).toContainElement(venueElement);
 	});
 
-	it("renders the registration link with correct styling", () => {
+	it("renders the registration banner with correct styling", () => {
 		const { container } = renderWithProviders(<AboutUs />);
 
-		const registrationLink = screen.getByRole("link", { name: /register here!/i });
-		expect(registrationLink).toBeInTheDocument();
-		expect(registrationLink).toHaveClass("text-xl");
-		expect(registrationLink).toHaveAttribute("href", "https://hackrpi2025.devpost.com/");
+		const registerBanner = screen.getByTestId("register-now-banner");
+		expect(registerBanner).toBeInTheDocument();
+		expect(registerBanner).toHaveTextContent(/REGISTER NOW!/i);
+		expect(registerBanner).toHaveClass("bg-hackrpi-secondary-orange");
+		expect(registerBanner).toHaveClass("text-white");
 
-		const registerNowText = screen.getByText(/REGISTER NOW!/i);
-		expect(registerNowText).toBeInTheDocument();
-
-		expect(container).toContainElement(registrationLink);
-		expect(container).toContainElement(registerNowText);
+		expect(container).toContainElement(registerBanner);
 	});
 
 	it('renders the scrolling "REGISTER NOW!" text with correct styling', () => {
@@ -167,11 +147,8 @@ describe("AboutUs Component", () => {
 		const { container } = renderWithProviders(<AboutUs />);
 
 		// 2025 best practice: Test for basic accessibility patterns
-		const links = screen.getAllByRole("link");
-		expect(links.length).toBeGreaterThan(0);
-		links.forEach((link) => {
-			expect(link).toHaveAccessibleName();
-		});
+		const links = screen.queryAllByRole("link");
+		expect(links.length).toBe(0);
 
 		const headings = screen.getAllByRole("heading");
 		expect(headings.length).toBeGreaterThan(1);
@@ -190,7 +167,7 @@ describe("AboutUs Component", () => {
 
 		// Check that key elements are still visible on mobile
 		expect(screen.getByRole("heading", { name: /About HackRPI/i })).toBeInTheDocument();
-		expect(screen.getByRole("link", { name: /register here!/i })).toBeInTheDocument();
+		expect(screen.getByTestId("register-now-banner")).toBeInTheDocument();
 
 		// Clean up mobile test and set up desktop test
 		cleanup();
@@ -200,7 +177,7 @@ describe("AboutUs Component", () => {
 
 		// Verify desktop layout elements
 		expect(screen.getByRole("heading", { name: /About HackRPI/i })).toBeInTheDocument();
-		expect(screen.getByRole("link", { name: /register here!/i })).toBeInTheDocument();
+		expect(screen.getByTestId("register-now-banner")).toBeInTheDocument();
 	});
 
 	// 2025 Best Practice: Add automated accessibility testing
