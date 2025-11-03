@@ -72,14 +72,14 @@ export default function Schedule({ events, times, currentTime, onEventClick }: S
 								colorClass = "bg-hackrpi-dark-purple text-gray-300 border-gray-300";
 							} else if (event.eventType === "constant") {
 								colorClass = "bg-hackrpi-orange text-black border-black";
-							}
+              }
 
 							if (eventStarted) {
 								colorClass = "bg-hackrpi-secondary-yellow text-black border-black";
-							}
+              }
 							if (eventPassed) {
 								colorClass = "bg-hackrpi-secondary-light-blue text-gray-300 border-gray-300";
-							}
+              }
 
 							return (
 								<div
@@ -99,12 +99,12 @@ export default function Schedule({ events, times, currentTime, onEventClick }: S
 									<p className={`font-normal text-xs xs:text-sm sm:text-base pl-1 ${colorClass}`}>{event.description}</p>
 								</div>
 							);
-						})}
-					</div>
+            })}
+          </div>
 				))}
-			</div>
-		</div>
-	);
+      </div>
+    </div>
+  );
 }
 
 function TimelineElement(props: { time: TimelineLabel; currentTime: Date }) {

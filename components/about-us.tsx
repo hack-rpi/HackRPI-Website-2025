@@ -1,3 +1,5 @@
+import RegistrationLink from "@/components/themed-components/registration-link";
+
 export default function AboutUs() {
 	return (
 		<div>
@@ -68,14 +70,17 @@ export default function AboutUs() {
 				}}
 			>
 				<div>
-					<div className="w-full flex flex-col items-center lg:items-startlg:mt-0 h-full lg:ml-4">
+				<div className="w-full flex flex-col items-center lg:items-start lg:mt-0 h-full lg:ml-4">
 						{/* Registration Banner */}
 						<div
 							data-testid="register-now-banner"
-							className="w-full lg:w-11/12 bg-hackrpi-secondary-orange text-white text-xl h-fit overflow-hidden whitespace-nowrap font-bold lg:mt-16\\ pl-1"
+						className="w-full lg:w-11/12 bg-hackrpi-secondary-orange text-white text-xl h-fit overflow-hidden whitespace-nowrap font-bold lg:mt-16 pl-1"
 						>
 							REGISTER NOW!
 						</div>
+					<div className="w-full lg:w-11/12 flex justify-center lg:justify-start mt-3">
+						<RegistrationLink className="text-xl" />
+					</div>
 						{/* Event Info Box */}
 						<div className="w-full lg:w-11/12 bg-gray-900 text-white h-fit flex flex-col items-start justify-start font-modern">
 							<div className="w-full h-2 bg-white mt-4" />

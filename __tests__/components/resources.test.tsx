@@ -46,7 +46,7 @@ jest.mock("next/image", () => ({
 }));
 
 // Import the component after all mocks are defined
-import ResourcesPage from "@/app/resources/page";
+import ResourcesPage from "@/app/(with-layout)/resources/page";
 
 describe("Resources Page", () => {
 	beforeEach(() => {
@@ -56,9 +56,9 @@ describe("Resources Page", () => {
 	it("renders the main layout components", () => {
 		render(<ResourcesPage />);
 
-		// Check if the main structural components are rendered
-		expect(screen.getByTestId("nav-bar")).toBeInTheDocument();
-		// Footer is imported but not actually used in the component
+		// Verify primary headings render
+		expect(screen.getByText("Web Development")).toBeInTheDocument();
+		expect(screen.getByText("Submitting Your Project")).toBeInTheDocument();
 	});
 
 	it("renders all resource section headings", () => {

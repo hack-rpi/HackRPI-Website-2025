@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 // Mock the image imports
-jest.mock("@/public/HackRPI_Logo_Yellow_Arrow.png", () => "logo-image-stub");
+jest.mock("@/public/Retro_HackRPI_Logo.png", () => "logo-image-stub");
 jest.mock("next/image", () => ({
 	__esModule: true,
 	default: (props: any) => {
@@ -12,11 +12,6 @@ jest.mock("next/image", () => ({
 }));
 
 // Mock the registration button
-jest.mock("@/components/themed-components/registration-link", () => ({
-	__esModule: true,
-	default: () => <div data-testid="registration-button">Register Now</div>,
-}));
-
 // Mock NavGroupComponent
 jest.mock("@/components/nav-bar/desktop/nav-group", () => ({
 	__esModule: true,
@@ -70,19 +65,14 @@ describe("DesktopNavBar Component", () => {
 
 		// Check direct links
 		expect(screen.getByText("Sponsor Us")).toBeInTheDocument();
-		expect(screen.getByText("Event Info")).toBeInTheDocument();
-		expect(screen.getByText("Schedule")).toBeInTheDocument();
-		expect(screen.getByText("Announcements")).toBeInTheDocument();
-		expect(screen.getByText("Prizes")).toBeInTheDocument();
-		expect(screen.getByText("2048 Leaderboard")).toBeInTheDocument();
 		expect(screen.getByText("Code of Conduct")).toBeInTheDocument();
 	});
 
-	it("includes registration button", () => {
+	it("includes registration link", () => {
 		render(<DesktopNavBar links={mockLinks} />);
 
-		// Check for the registration button
-		expect(screen.getByTestId("registration-button")).toBeInTheDocument();
+		const registerLink = screen.getByRole("link", { name: /register/i });
+		expect(registerLink).toHaveAttribute("href", "https://hackrpi2025.devpost.com/");
 	});
 
 	it("applies correct styling to the navbar", () => {

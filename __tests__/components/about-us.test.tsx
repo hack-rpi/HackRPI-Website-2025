@@ -25,10 +25,16 @@ jest.mock("next/navigation", () => ({
 jest.mock("@/components/themed-components/registration-link", () => {
 	return {
 		__esModule: true,
-		default: ({ children, className }: { children?: React.ReactNode; className?: string }) => (
-			<div data-testid="registration-link" className={className} role="link" aria-label="Registration Link">
-				{children || "Registration Link"}
-			</div>
+		default: ({ className }: { className?: string }) => (
+			<a
+				data-testid="registration-link"
+				href="https://hackrpi2025.devpost.com/"
+				target="_blank"
+				rel="noopener noreferrer"
+				className={className}
+			>
+				Register Here!
+			</a>
 		),
 	};
 });
@@ -110,19 +116,16 @@ describe("AboutUs Component", () => {
 	});
 
 	it("renders the registration link with correct styling", () => {
-		// 2025 best practice: Render the component and get the container
 		const { container } = renderWithProviders(<AboutUs />);
 
-		// 2025 best practice: Use data-testid for more reliable selection
-		const registrationLink = screen.getByTestId("registration-link");
+		const registrationLink = screen.getByRole("link", { name: /register here!/i });
 		expect(registrationLink).toBeInTheDocument();
 		expect(registrationLink).toHaveClass("text-xl");
+		expect(registrationLink).toHaveAttribute("href", "https://hackrpi2025.devpost.com/");
 
-		// 2025 best practice: Find the REGISTER NOW text using a pattern
 		const registerNowText = screen.getByText(/REGISTER NOW!/i);
 		expect(registerNowText).toBeInTheDocument();
 
-		// Verify they are both in the document but don't assert they're in the same container
 		expect(container).toContainElement(registrationLink);
 		expect(container).toContainElement(registerNowText);
 	});
@@ -137,7 +140,7 @@ describe("AboutUs Component", () => {
 
 		// Check styling directly on the element with data-testid
 		expect(registerBanner).toHaveClass("bg-hackrpi-secondary-orange");
-		expect(registerBanner).toHaveClass("text-black");
+		expect(registerBanner).toHaveClass("text-white");
 		expect(registerBanner).toHaveClass("overflow-hidden");
 		expect(registerBanner).toHaveClass("whitespace-nowrap");
 	});
@@ -187,7 +190,7 @@ describe("AboutUs Component", () => {
 
 		// Check that key elements are still visible on mobile
 		expect(screen.getByRole("heading", { name: /About HackRPI/i })).toBeInTheDocument();
-		expect(screen.getByTestId("registration-link")).toBeInTheDocument();
+		expect(screen.getByRole("link", { name: /register here!/i })).toBeInTheDocument();
 
 		// Clean up mobile test and set up desktop test
 		cleanup();
@@ -197,7 +200,7 @@ describe("AboutUs Component", () => {
 
 		// Verify desktop layout elements
 		expect(screen.getByRole("heading", { name: /About HackRPI/i })).toBeInTheDocument();
-		expect(screen.getByTestId("registration-link")).toBeInTheDocument();
+		expect(screen.getByRole("link", { name: /register here!/i })).toBeInTheDocument();
 	});
 
 	// 2025 Best Practice: Add automated accessibility testing

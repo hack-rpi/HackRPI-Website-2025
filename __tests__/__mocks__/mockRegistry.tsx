@@ -17,9 +17,15 @@ import extendedMocks from "./extendedMocks";
  */
 export const MockRegistrationLink = ({ className }: { className?: string }) => {
 	return (
-		<div data-testid="registration-link" className={className} role="link" aria-label="Registration Link">
-			Registration Link
-		</div>
+		<a
+			data-testid="registration-link"
+			className={className}
+			href="https://hackrpi2025.devpost.com/"
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			Register Here!
+		</a>
 	);
 };
 
