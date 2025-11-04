@@ -4,12 +4,7 @@ import NavBar from "@/components/nav-bar/nav-bar";
 import "@/app/globals.css";
 import { useState, useEffect } from "react";
 import type { Event } from "@/data/schedule";
-import {
-	saturdayTimes,
-	sundayTimes,
-	SATURDAY_START,
-	SUNDAY_START
-} from "@/data/schedule";
+import { saturdayTimes, sundayTimes, SATURDAY_START, SUNDAY_START } from "@/data/schedule";
 
 import Schedule from "@/components/schedule/schedule";
 import HackRPILink from "@/components/themed-components/hackrpi-link";
@@ -24,9 +19,9 @@ type RawEvent = {
 	eventType: "workshop" | "constant" | "important" | "food" | "deadline";
 	visible: boolean;
 	column: number;
-	width: number;  // Added width for multi-column spanning
+	width: number; // Added width for multi-column spanning
 	startMinutesFromDayStart: number; // minutes offset
-	durationMinutes: number;          // length
+	durationMinutes: number; // length
 };
 
 export default function Page() {
@@ -54,7 +49,7 @@ export default function Page() {
 					eventType: ev.eventType ?? "general",
 					visible: ev.visible,
 					column: ev.column,
-					width: ev.width // New property to handle multi-column span
+					width: ev.width, // New property to handle multi-column span
 				};
 			});
 
@@ -73,7 +68,7 @@ export default function Page() {
 					eventType: ev.eventType ?? "general",
 					visible: ev.visible,
 					column: ev.column,
-					width: ev.width // New property to handle multi-column span
+					width: ev.width, // New property to handle multi-column span
 				};
 			});
 
@@ -102,7 +97,10 @@ export default function Page() {
 	return (
 		<div className="flex flex-col w-full h-fit min-h-screen items-center justify-center">
 			<NavBar showOnScroll={false} />
-			<div className="w-11/12 desktop:w-2/3 flex-grow flex-shrink basis-auto mt-28 desktop:mt-16" data-testid="schedule-container">
+			<div
+				className="w-11/12 desktop:w-2/3 flex-grow flex-shrink basis-auto mt-28 desktop:mt-16"
+				data-testid="schedule-container"
+			>
 				{/*<div className="flex w-full items-center justify-center">
 					<HackRPILink
 						href="https://calendar.google.com/calendar/u/0?cid=..."
@@ -180,7 +178,7 @@ export default function Page() {
 							<div className="flex items-center justify-between mb-4 border-b-2 border-b-gray-400 h-24">
 								<h1 className=" text-3xl xs:text-4xl md:text-5xl font-bold">{modalEvent.title}</h1>
 								<button
-                                    className="text-4xl font-bold text-black mr-4 hover:text-primary focus:text-primary"
+									className="text-4xl font-bold text-black mr-4 hover:text-primary focus:text-primary"
 									onClick={() => {
 										setModalEvent(null);
 									}}
@@ -192,8 +190,7 @@ export default function Page() {
 								{modalEvent.location} {modalEvent.speaker ? `• ${modalEvent.speaker}` : ""}
 							</p>
 							<p className="text-3xl mb-4">
-								{new Date(modalEvent.startTime).toLocaleString()} –{" "}
-								{new Date(modalEvent.endTime).toLocaleString()}
+								{new Date(modalEvent.startTime).toLocaleString()} – {new Date(modalEvent.endTime).toLocaleString()}
 							</p>
 							<p className="text-2xl">{modalEvent.description}</p>
 						</div>
