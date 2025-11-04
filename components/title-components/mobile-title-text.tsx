@@ -68,6 +68,7 @@ export default function TitleText() {
 					<span
 						className="absolute text-[4vw] font-modern font-extrabold drop-shadow-lg text-white"
 						style={{ top: "90%", left: "10%" }}
+						data-testid="event-date"
 					>
 						November 15-16, 2025 &#8226; Troy, NY
 					</span>
