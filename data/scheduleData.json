@@ -25,7 +25,7 @@
       "durationMinutes": 60
     },
     {
-      "id": "sat-1",
+      "id": "sat-2",
       "title": "Coding Starts!",
       "description": "Ready! Set! Code! Start working on your projects!",
       "location": "DCC 308",
@@ -169,7 +169,7 @@
       "durationMinutes": 60
     },
     {
-      "id": "sat-workshop8",
+      "id": "sat-workshop8abc",
       "title": "Making AI Agents Workshop with RPai",
       "description": "",
       "location": "DCC 308",
@@ -262,7 +262,7 @@
       "visible": true,
       "column": 3,
       "startMinutesFromDayStart": 780,
-      "durationMinutes": 90
+      "durationMinutes": 120
     }
 
   ],

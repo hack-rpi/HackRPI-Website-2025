@@ -18,7 +18,7 @@ import ugly_code_prize from "@/public/prizes/ugly_code.png";
 //import databricks from "@/public/prizes/databricks.webp";
 import hardware_prize from "@/public/prizes/hardwareTrack.webp";
 import golf_prize from "@/public/prizes/golf.jpg";
-import machine_learning_prize from "@/public/prizes/machine_learning_track (1).png";
+import machine_learning_prize from "@/public/prizes/machine_learning_track.png";
 import healthcare_prize from "@/public/prizes/stethoscope.png";
 
 import { StaticImageData } from "next/image";
@@ -61,7 +61,7 @@ export const majorPrizes: Prize[] = [
 		name: "Best Sustainability Hack",
 		amount: "$400 Cash Prize",
 		description:
-			"Go green or go home! This prize recognizes the project that most creatively tackles environmental challenges in the city, making urban living sustainable and eco-friendly.",
+			"Go green or go home! This prize recognizes the project that most creatively tackles environmental challenges with a retro or modern spin.",
 		imagePath: sustainability_prize,
 	},
 ];
@@ -69,51 +69,51 @@ export const majorPrizes: Prize[] = [
 export const minorPrizes: Prize[] = [
 	{
 		name: "Best Use of AI",
-		amount: "Air Fryer ($180 Value)",
+		amount: "Air Fryers",
 		description:
 			"Ready to implement ChatGPT, Gemeni, Claude or another AI into your project? The winner of this prize best implements an external AI model into their project.",
 		imagePath: ai_prize,
 	},
 	{
 		name: "Best Data Science Hack",
-		amount: "Amazon Echo Dot ($200 Value)",
+		amount: "Amazon Echo Dots",
 		description:
-			"Crunch those numbers! Given to the project that uses data science to unravel the mysteries of city living, driving decisions with insightful analytics.",
+			"Crunch those numbers! Given to the project that uses data science to unravel the mysteries of a retro v. modern world, driving decisions with insightful analytics.",
 		imagePath: data_science_prize,
 	},
 	{
 		name: "Best First Time Hack",
-		amount: "Lego Set ($140 Value)",
+		amount: "Lego Sets",
 		description:
-			"Newbies unite! Awarded to the top project by first-time hackers that addresses urban challenges, showing off their fresh creativity and hard work.",
+			"Newbies unite! Awarded to the top project by first-time hackers that addresses retro (or modern!) challenges, showing off their fresh creativity and hard work.",
 		imagePath: beginner_prize,
 	},
 	{
 		name: "Best Mobile Hack",
-		amount: "Portable Charger ($80 Value)",
+		amount: "Portable Chargers",
 		description:
 			"Got an app for that? Recognizes the project that delivers the slickest, most useful mobile application for folks in a retro (or modern) world.",
 		imagePath: mobile_prize,
 	},
 	{
 		name: "Best Hardware Hack",
-		amount: "Amazon Fire stick ($160 Value)",
+		amount: "Amazon Fire sticks",
 		description:
 			"Are you more of a hardware person? If you are, then this track is for you - blow everyone away with technology that moves beyond just a screen.",
 		imagePath: hardware_prize,
 	},
 	{
 		name: "Best Quantum Computing Hack",
-		amount: "JBL Speakers ($80 Value)",
+		amount: "JBL Speakers",
 		description:
-			"Entangle some qubits and blow our minds! This prize celebrates the project that uses quantum computing to solve urban problems, proving that the future really is now (and at RPI!).",
+			"Entangle some qubits and blow our minds! This prize celebrates the project that uses quantum computing to solve a retro/modern problem, proving that the future really is now (and at RPI!).",
 		imagePath: quantum_prize,
 	},
 	{
 		name: "Ugliest Code Competition",
 		amount: "$50 Cash Prize",
 		description:
-			"Embrace the spaghetti! A fun award for the participant with the most convoluted code in our ugliest code competition, reminding us all why clean coding matters, especially in urban tech.",
+			"Embrace the spaghetti! A fun award for the participant with the most convoluted code in our ugliest code competition, reminding us all why clean coding matters, especially in tech. All code is retro code, given enough time.",
 		imagePath: ugly_code_prize,
 	},
 	{
