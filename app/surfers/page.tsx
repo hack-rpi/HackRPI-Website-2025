@@ -39,13 +39,13 @@ const ThreeJSPage = () => {
 		objects: [] as THREE.Object3D[],
 		previous: [0,0,0],
 		currentGeneratingPosition: 1,
-		tileSize: 5,
+		tileSize: 6,
 		presets: [
-			{ // train
-				id: 1,
-				geometry: new THREE.BoxGeometry(2, 2, 4.7),
-				material: new THREE.MeshBasicMaterial({ color: `rgb(${Math.round(Math.random()*255)},${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})` })
-			},
+			// { // train
+			// 	id: 1,
+			// 	geometry: new THREE.BoxGeometry(2, 2, 4.7),
+			// 	material: new THREE.MeshBasicMaterial({ color: `rgb(${Math.round(Math.random()*255)},${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})` })
+			// },
 			{ // ramp up
 				id: 2,
 				geometry: new THREE.BoxGeometry(2, 1, 4.7),
@@ -66,7 +66,7 @@ const ThreeJSPage = () => {
 				geometry: new THREE.BoxGeometry(0, 0, 4.7),
 				material: new THREE.MeshBasicMaterial({ color: `rgb(${Math.round(Math.random()*255)},${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})` })
 			}
-		]
+		] as any
 	}
 	let animationId = useRef<number | null>(null);
 	let instance = 0;
@@ -104,7 +104,7 @@ const ThreeJSPage = () => {
 			renderer = new THREE.WebGLRenderer();
 			cameraMan.renderer = new THREE.WebGLRenderer();
 
-			let loads = 1;
+			let loads = 2;
 
 			const loader = new GLTFLoader();
 			
@@ -153,6 +153,33 @@ const ThreeJSPage = () => {
 				];
 
 				scene.add(character);
+				loads-=1;
+			});
+
+			loader.load('/surfers/environment/train.glb', (gltf) => {
+				let train: any | null;
+				train = gltf.scene;
+				train.scale.set(0.3,0.3,0.3);
+				train.rotation.set(0,Math.PI/2,0);
+				
+				let box = new THREE.Box3();
+				box.setFromObject(train);
+				let size = new THREE.Vector3();
+				box.getSize(size);
+				
+				train.geometry = {
+					parameters: {
+						height: Math.floor(size.y*100)/100,
+						width: Math.floor(size.x*100)/100,
+						depth: Math.floor(size.z*100)/100
+					}
+				};
+
+				map.presets.push(
+					{
+						id: 1,
+						object: train
+					} as any);
 				loads-=1;
 			});
 
@@ -258,10 +285,21 @@ const ThreeJSPage = () => {
 		function makeModel(id: number, x: any, y: any, z: any){
 			for(let i = 0; i < map.presets.length; i++){
 				if(map.presets[i].id==id){
-					var temp = new THREE.Mesh(map.presets[i].geometry,  map.presets[i].material);
-					temp.position.y = x+map.presets[i].geometry.parameters.height/2;
-					temp.position.z = y;
-					temp.position.x = z;
+					var temp;
+					if(map.presets[i].object){
+						temp = map.presets[i].object.clone();
+						temp.geometry = map.presets[i].object.geometry;
+						temp.position.y = x;
+						temp.position.z = y;
+						temp.position.x = z;
+					}else{
+						temp = new THREE.Mesh(map.presets[i].geometry,  map.presets[i].material);
+						temp.geometry = map.presets[i].geometry;
+						temp.position.y = x+temp.geometry.parameters.height/2;
+						temp.position.z = y;
+						temp.position.x = z;
+					}
+						
 					scene.add(temp);
 					map.objects.push(temp);
 					return temp;
@@ -304,10 +342,12 @@ const ThreeJSPage = () => {
 			for(let i = 0; i < map.objects.length; i++){
 				map.objects[i].position.z+=map.speed;
 
-				let mesh = map.objects[i] as THREE.Mesh;
-				if(map.objects[i].position.z > 10 + (mesh.geometry as any).parameters.depth){
-					(map.objects[i] as THREE.Mesh).geometry.dispose();
-					((map.objects[i] as THREE.Mesh).material as THREE.Material).dispose();
+				let mesh = map.objects[i] as any; //THREE.Mesh | THREE.Object3D;
+				if(map.objects[i].position.z > 10 + mesh.geometry.parameters.depth){
+					try{
+						(map.objects[i] as THREE.Mesh).geometry.dispose();
+						((map.objects[i] as THREE.Mesh).material as THREE.Material).dispose();
+					}catch{}
 					scene.remove(map.objects[i]);
 					map.objects.splice(i, 1);
 					i--;
@@ -465,10 +505,12 @@ const ThreeJSPage = () => {
 
 			if(keys.includes("z")) {
 				// makeModel(1,0, map.loadDist+(0*-map.tileSize), (0+lanes.minLane)*lanes.laneWidth);
-				map.speed*=2;
+				scene.add(makeModel(1,0,0,0));
+				// map.speed*=2;
 				if(keys.includes("z")) removeKey("z");
 			}	
 			
+			// console.log(map.objects)
 
 			charMove();
 			if(map.loading > 0)
@@ -477,6 +519,16 @@ const ThreeJSPage = () => {
 			mapMove();
 
 			characterAnimations();
+
+
+			//TODO: 
+			// make models in Blender and import
+			// make collision detection
+
+			// add a nicer skybox and background scene + lighting
+			// implement score and coins.
+
+			//add leaderboard and shop
 
 			// light2.position.set(character.position.x, character.position.y, character.position.z);
 			// cockroach idea (maybe if console is opened
