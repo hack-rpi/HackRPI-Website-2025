@@ -67,6 +67,11 @@
       "logoPath": "/MonsterEnergy.png",
       "url": "https://www.monsterenergy.com/en-us/"
     },
+    {
+			"name": "Photon",
+			"logoPath": "/Photon.png",
+			"url": "https://photon.codes/"
+		},
 		{
 			"name": "Pure Buttons",
 			"logoPath": "/Pure-Buttons-Blue-Gradient-Logo-RGB.svg",
