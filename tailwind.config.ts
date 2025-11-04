@@ -2,6 +2,7 @@ import type { Config } from "tailwindcss";
 import plugin from "tailwindcss/plugin";
 
 const config: Config = {
+	
 	content: [
 		"./pages/**/*.{js,ts,jsx,tsx,mdx}",
 		"./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -55,6 +56,7 @@ const config: Config = {
 			screens: {
 				desktop: "860px",
 				xs: "475px",
+				shift: { max: "950px" },
 				"2xs": "375px",
 			},
 			backgroundImage: {
@@ -72,6 +74,15 @@ const config: Config = {
 				"radial-green-600": "radial-gradient(circle, #059669, #047857)",
 				"radial-green-700": "radial-gradient(circle, #047857, #065f46)",
 				"radial-green-800": "radial-gradient(circle, #065f46, #064e3b)",
+			},
+			keyframes: {
+				fadeIn: {
+					"0%": { opacity: "0", transform: "translateY(10px)" },
+					"100%": { opacity: "1", transform: "translateY(0)" },
+				},
+			},
+			animation: {
+				fadeIn: "fadeIn 0.8s ease-out forwards",
 			},
 		},
 	},
@@ -104,6 +115,7 @@ const config: Config = {
 			addUtilities(newUtilities);
 		}),
 	],
+	
 };
 
 export default config;

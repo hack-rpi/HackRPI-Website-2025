@@ -1,21 +1,25 @@
-import ai_prize from "@/public/prizes/AiPrize.jpg";
+import ai_prize from "@/public/prizes/AITrack.jpeg";
 import sustainability_prize from "@/public/prizes/sustainability.png";
-import education_prize from "@/public/prizes/education.jpg";
+//import education_prize from "@/public/prizes/education.jpg";
 import quantum_prize from "@/public/prizes/quantum_computer.jpg";
-import cybersecurity_prize from "@/public/prizes/cybersecurity.jpg";
+//import cybersecurity_prize from "@/public/prizes/cybersecurity.jpg";
 import mobile_prize from "@/public/prizes/mobile_app.jpg";
-import startup_prize from "@/public/prizes/startup.png";
+//import startup_prize from "@/public/prizes/startup.png";
 import data_science_prize from "@/public/prizes/data_science.jpg";
 import beginner_prize from "@/public/prizes/coding.webp";
 import ugly_code_prize from "@/public/prizes/ugly_code.png";
-import thin_air from "@/public/sponsors/sponsor_logos/ThinAir.png";
-import palantir from "@/public/sponsors/sponsor_logos/Palantir.png";
-import accessibility_prize from "@/public/prizes/Accessibility.webp";
-import midnight from "@/public/prizes/midnight.webp";
-import cloudflare from "@/public/prizes/cloudflare.webp";
-import tech from "@/public/prizes/tech.webp";
-import hashicorp from "@/public/prizes/hashicorp.webp";
-import databricks from "@/public/prizes/databricks.webp";
+//import thin_air from "@/public/sponsors/sponsor_logos/ThinAir.png";
+//import palantir from "@/public/sponsors/sponsor_logos/Palantir.png";
+//import accessibility_prize from "@/public/prizes/Accessibility.webp";
+//import midnight from "@/public/prizes/midnight.webp";
+//import cloudflare from "@/public/prizes/cloudflare.webp";
+//import tech from "@/public/prizes/tech.webp";
+//import hashicorp from "@/public/prizes/hashicorp.webp";
+//import databricks from "@/public/prizes/databricks.webp";
+import hardware_prize from "@/public/prizes/hardwareTrack.webp";
+import golf_prize from "@/public/prizes/golf.jpg";
+import machine_learning_prize from "@/public/prizes/machine_learning_track.png";
+import healthcare_prize from "@/public/prizes/stethoscope.png";
 
 import { StaticImageData } from "next/image";
 
@@ -29,7 +33,7 @@ export interface Prize {
 export const podiumPrizes: Prize[] = [
 	{
 		name: "1st",
-		amount: "$1500",
+		amount: "$1000",
 		description: "",
 	},
 	{
@@ -40,6 +44,88 @@ export const podiumPrizes: Prize[] = [
 ];
 
 export const majorPrizes: Prize[] = [
+	{
+		name: "Best Machine Learning Hack",
+		amount: "$400 Cash Prize",
+		description: "Coding an AI from scratch? This prize goes to the best project utilizing a homegrown AI model.",
+		imagePath: machine_learning_prize,
+	},
+	{
+		name: "Best Healthcare Hack",
+		amount: "$400 Cash Prize",
+		description:
+			"Does an apple a day really keep the doctor away? With your project, we're sure it will! This prize goes those who have demonstrated exceptional creativity, technical skill, and a dedication to making a meaningful impact on global health through thoughtful analysis and implementation of data-driven solutions.",
+		imagePath: healthcare_prize,
+	},
+	{
+		name: "Best Sustainability Hack",
+		amount: "$400 Cash Prize",
+		description:
+			"Go green or go home! This prize recognizes the project that most creatively tackles environmental challenges with a retro or modern spin.",
+		imagePath: sustainability_prize,
+	},
+];
+
+export const minorPrizes: Prize[] = [
+	{
+		name: "Best Use of AI",
+		amount: "Air Fryers",
+		description:
+			"Ready to implement ChatGPT, Gemeni, Claude or another AI into your project? The winner of this prize best implements an external AI model into their project.",
+		imagePath: ai_prize,
+	},
+	{
+		name: "Best Data Science Hack",
+		amount: "Amazon Echo Dots",
+		description:
+			"Crunch those numbers! Given to the project that uses data science to unravel the mysteries of a retro v. modern world, driving decisions with insightful analytics.",
+		imagePath: data_science_prize,
+	},
+	{
+		name: "Best First Time Hack",
+		amount: "Lego Sets",
+		description:
+			"Newbies unite! Awarded to the top project by first-time hackers that addresses retro (or modern!) challenges, showing off their fresh creativity and hard work.",
+		imagePath: beginner_prize,
+	},
+	{
+		name: "Best Mobile Hack",
+		amount: "Portable Chargers",
+		description:
+			"Got an app for that? Recognizes the project that delivers the slickest, most useful mobile application for folks in a retro (or modern) world.",
+		imagePath: mobile_prize,
+	},
+	{
+		name: "Best Hardware Hack",
+		amount: "Amazon Fire sticks",
+		description:
+			"Are you more of a hardware person? If you are, then this track is for you - blow everyone away with technology that moves beyond just a screen.",
+		imagePath: hardware_prize,
+	},
+	{
+		name: "Best Quantum Computing Hack",
+		amount: "JBL Speakers",
+		description:
+			"Entangle some qubits and blow our minds! This prize celebrates the project that uses quantum computing to solve a retro/modern problem, proving that the future really is now (and at RPI!).",
+		imagePath: quantum_prize,
+	},
+	{
+		name: "Ugliest Code Competition",
+		amount: "$50 Cash Prize",
+		description:
+			"Embrace the spaghetti! A fun award for the participant with the most convoluted code in our ugliest code competition, reminding us all why clean coding matters, especially in tech. All code is retro code, given enough time.",
+		imagePath: ugly_code_prize,
+	},
+	{
+		name: "Code Golf",
+		amount: "$50 Cash Prize",
+		description:
+			"Code Golf! No, not coding the game golf. Come to the workshop and maybe win some money along the way!",
+		imagePath: golf_prize,
+	},
+];
+
+/*export const majorPrizes: Prize[] = [
 	{
 		name: "Ship Fast, Ship Often - Build a Payworthy MVP in a Weekend",
 		amount: "$800 Cash Prize",
@@ -83,9 +169,9 @@ Whether it's an app, Chrome extension, or web app, your goal is to solve a real 
 			"Time to hit the books—or tablets! Awarded to the project that best improves urban education, making city learning more fun, accessible, and effective.",
 		imagePath: education_prize,
 	},
-];
+];*/
 
-export const minorPrizes: Prize[] = [
+/*export const minorPrizes: Prize[] = [
 	{
 		name: "Best Quantum Computing Hack",
 		amount: "JBL Speaker ($200 Value)",
@@ -174,4 +260,4 @@ Terraform’s community edition is free to use with no credit card required! Uti
 Build an AI powered project utilizing Databricks Open Source projects like the ones mentioned, or Databricks friendly Open Source projects like LanceDB and Llama Index, for a chance to win some amazing prizes for you and your teammates! Check out the following link to see all qualifying Databricks' Open Source technologies. `,
 		imagePath: databricks,
 	},
-];
+];*/

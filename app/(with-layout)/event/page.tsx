@@ -2,7 +2,7 @@
 
 import React from "react";
 import "@/app/globals.css";
-import NavBar from "@/components/nav-bar/nav-bar";
+//import NavBar from "@/components/nav-bar/nav-bar";
 import MapsDCCLow from "@/components/maps/maps";
 // import GoogleMapsWidget from "@/components/maps/google_maps"; // Commenting out for now, may be used in the future
 import HackRPILink from "@/components/themed-components/hackrpi-link";
@@ -95,9 +95,8 @@ function EventPage() {
 								Have questions for the staff? Want to chat with other participants? Looking for a team? Join the
 								conversation on Discord and get the support you need to succeed at HackRPI.
 							</p>
-							{/* //TODO: Change the discord link to 2025 HackRPI Discord */}
 							<HackRPILink
-								href="https://discord.gg/7b2zc8fe26"
+								href="https://discord.gg/BkDVUmrufa"
 								className="hover:bg-gradient-to-br hover:from-[#5865F2] hover:to-[#7289da] hover:bg-transparent hover:border-[#5865F2] w-20 h-20 flex items-center justify-center"
 								target="_blank"
 							>

@@ -10,9 +10,8 @@ const socialLinks: CardProps[] = [
 		bgGradientTo: "to-[#4f5bd5]", // Deep blue/purple
 	},
 	{
-		//TODO: Change discord link to 2025 HackRPI Discord
 		svgPath: "/social/discord.svg",
-		link: "https://discord.gg/7b2zc8fe26",
+		link: "https://discord.gg/BkDVUmrufa",
 		name: "Discord",
 		bgGradientFrom: "from-[#5865F2]",
 		bgGradientTo: "to-[#7289da]",

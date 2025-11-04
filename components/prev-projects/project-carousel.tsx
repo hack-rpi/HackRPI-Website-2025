@@ -32,7 +32,9 @@ export default function ProjectCarousel({ projects }: { projects: ProjectCarouse
 			>
 				{projects.map((project, index) => (
 					<div className="items-center flex-col w-full h-fit flex items-start justify-center my-4" key={index}>
-						<h1 className=" text-ellipsis w-11/12 text-center text-xl xs:text-2xl sm:text-3xl font-bold font-sans">{project.prizeCategory}</h1>
+						<h1 className=" text-ellipsis w-11/12 text-center text-xl xs:text-2xl sm:text-3xl font-bold font-sans">
+							{project.prizeCategory}
+						</h1>
 						<div className="bg-transparent lightText w-full sm:w-3/4 flex flex-col items-center justify-start bg-silver rounded-md m-4 text-hackrpi-secondary-dark-blue">
 							<h2 className="w-11/12 mb-2 text-center mb-1em text-2xl font-bold font-sans">{project.title}</h2>
 							<p className="mb-4 w-11/12 text-center m">{project.authors.join(", \n")}</p>
