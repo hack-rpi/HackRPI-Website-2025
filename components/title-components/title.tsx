@@ -5,21 +5,24 @@ import DesktopTitleComponent from "./desktop-title";
 import MobileTitleComponent from "./mobile-title";
 
 export default function TitleComponent() {
-	const [windowWidth, setWindowWidth] = useState(0);
+	const [windowWidth, setWindowWidth] = useState<number | null>(null);
 
 	useEffect(() => {
-		setWindowWidth(window.innerWidth);
 		const handleResize = () => {
 			setWindowWidth(window.innerWidth);
 		};
+		handleResize();
 		window.addEventListener("resize", handleResize);
 		return () => {
 			window.removeEventListener("resize", handleResize);
 		};
 	}, []);
-	if (windowWidth > 860) return <DesktopTitleComponent />;
 
-	if (windowWidth < 859 && windowWidth > 0) return <MobileTitleComponent />;
+	const shouldRenderMobile = windowWidth !== null && windowWidth <= 860;
 
-	return <div className="h-screen"></div>;
+	return (
+		<section data-testid="hero-section" className="w-full">
+			{shouldRenderMobile ? <MobileTitleComponent /> : <DesktopTitleComponent />}
+		</section>
+	);
 }

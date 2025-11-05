@@ -112,7 +112,7 @@ jest.mock("dotenv", () => ({
 }));
 
 // Now import the route handlers
-import { GET, POST } from "@/app/api/announcements/route";
+import { GET, POST } from "@/app/(with-layout)/api/announcements/route";
 
 describe("Announcements API Route", () => {
 	beforeEach(() => {

@@ -11,8 +11,8 @@ jest.mock("next/image", () => ({
 }));
 
 // Mock logo import
-jest.mock("@/public/HackRPI_Logo_Yellow_Arrow.png", () => ({
-	default: "mock-logo-path",
+jest.mock("@/public/Retro_HackRPI_Logo.png", () => ({
+	default: "mock-retro-logo",
 }));
 
 jest.mock("@/components/socials-links/social-links", () => {
@@ -24,9 +24,15 @@ jest.mock("@/components/socials-links/social-links", () => {
 jest.mock("@/components/themed-components/registration-link", () => {
 	return function MockRegistrationLink({ className }: { className?: string }) {
 		return (
-			<div data-testid="registration-link" className={className}>
-				Registration Link
-			</div>
+			<a
+				data-testid="registration-link"
+				className={className}
+				href="https://hackrpi2025.devpost.com/"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				Register Here!
+			</a>
 		);
 	};
 });
@@ -72,6 +78,7 @@ describe("Footer Component", () => {
 		expect(registrationLink).toBeInTheDocument();
 		expect(registrationLink).toHaveClass("text-xl");
 		expect(registrationLink).toHaveClass("mb-4");
+		expect(registrationLink).toHaveAttribute("href", "https://hackrpi2025.devpost.com/");
 	});
 
 	it("renders the social links", () => {

@@ -80,6 +80,23 @@ jest.mock("@/components/themed-components/hackrpi-link", () => {
 	};
 });
 
+jest.mock("@/components/prev-projects/LastYearCollage", () => {
+	return function MockLastYearCollage() {
+		return (
+			<div data-testid="photo-gallery">
+				{Array.from({ length: 12 }).map((_, index) => (
+					<img
+						key={index}
+						data-testid="mock-image"
+						src={`/lastYearPhotos/photo-${index + 1}.jpg`}
+						alt={`HackRPI XI Photo ${index + 1}`}
+					/>
+				))}
+			</div>
+		);
+	};
+});
+
 jest.mock("next/image", () => ({
 	__esModule: true,
 	default: (props: any) => {
@@ -88,7 +105,7 @@ jest.mock("next/image", () => ({
 }));
 
 // Import the component after all mocks are defined
-import PastYearProjects from "@/app/last-year/page";
+import PastYearProjects from "@/app/(with-layout)/last-year/page";
 
 describe("Last Year Projects Page", () => {
 	beforeEach(() => {
