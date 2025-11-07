@@ -69,6 +69,14 @@ export default function DesktopNavBar({ links }: { links: NavGroup[] }) {
 					>
 						Code of Conduct
 					</Link>
+
+					<Link
+						href="https://securelb.imodules.com/s/1225/lg22/form.aspx?sid=1225&gid=1&pgid=6795&cid=15861&dids=257&bledit=1&sort=1"
+						className="mx-2 whitespace-nowrap text-lg xl:text-xl bg-[length:0%_2px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-yellow to-hackrpi-pink hover:bg-[length:100%_2px]"
+						target="_blank"
+					>
+						Give Now
+					</Link>
 				</div>
 				<div className="ml-2">
 					<RegistrationButton className="w-auto" />
