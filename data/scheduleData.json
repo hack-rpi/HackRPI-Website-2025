@@ -30,7 +30,7 @@
       "description": "Ready! Set! Code! Start working on your projects!",
       "location": "DCC 308",
       "speaker": "",
-      "eventType": "important",
+      "eventType": "deadline",
       "visible": true,
       "column": 1,
       "startMinutesFromDayStart": 120,
@@ -82,7 +82,7 @@
       "visible": true,
       "column": 2,
       "startMinutesFromDayStart": 120,
-      "durationMinutes": 60
+      "durationMinutes": 90
     },
     {
       "id": "sat-workshop2",
@@ -92,7 +92,7 @@
       "speaker": "",
       "eventType": "workshop",
       "visible": true,
-      "column": 2,
+      "column": 1,
       "startMinutesFromDayStart": 270,
       "durationMinutes": 60
     },
@@ -128,7 +128,7 @@
       "speaker": "Professor John Sturman, lecturer in CS at RPI",
       "eventType": "workshop",
       "visible": true,
-      "column": 2,
+      "column": 1,
       "startMinutesFromDayStart": 360,
       "durationMinutes": 60
     },
@@ -152,7 +152,7 @@
       "speaker": "",
       "eventType": "workshop",
       "visible": true,
-      "column": 3,
+      "column": 2,
       "startMinutesFromDayStart": 480,
       "durationMinutes": 30
     },
@@ -164,7 +164,7 @@
       "speaker": "",
       "eventType": "workshop",
       "visible": true,
-      "column": 2,
+      "column": 3,
       "startMinutesFromDayStart": 510,
       "durationMinutes": 60
     },
@@ -176,7 +176,7 @@
       "speaker": "",
       "eventType": "workshop",
       "visible": true,
-      "column": 3,
+      "column": 2,
       "startMinutesFromDayStart": 570,
       "durationMinutes": 60
     },
@@ -188,7 +188,7 @@
       "speaker": "",
       "eventType": "workshop",
       "visible": true,
-      "column": 2,
+      "column": 3,
       "startMinutesFromDayStart": 630,
       "durationMinutes": 90
     },
@@ -263,8 +263,31 @@
       "column": 3,
       "startMinutesFromDayStart": 780,
       "durationMinutes": 120
+    },
+    {
+      "id": "sat-velan",
+      "title": "Velan Studios Fireside Chat",
+      "description": "",
+      "location": "DCC 318",
+      "speaker": "",
+      "eventType": "workshop",
+      "visible": true,
+      "column": 2,
+      "startMinutesFromDayStart": 210,
+      "durationMinutes": 60
+    },
+    {
+      "id": "sat-globalFoundaries",
+      "title": "Global Foundries Fireside Chat",
+      "description": "",
+      "location": "DCC 318",
+      "speaker": "",
+      "eventType": "workshop",
+      "visible": true,
+      "column": 1,
+      "startMinutesFromDayStart": 420,
+      "durationMinutes": 60
     }
-
   ],
   "sundayEvents": [
     {
@@ -290,18 +313,6 @@
       "column": 1,
       "startMinutesFromDayStart": 420,
       "durationMinutes": 120
-    },
-    {
-      "id": "sun-food3",
-      "title": "Lunch",
-      "description": "",
-      "location": "DCC Lounge",
-      "speaker": "",
-      "eventType": "food",
-      "visible": true,
-      "column": 1,
-      "startMinutesFromDayStart": 720,
-      "durationMinutes": 60
     },
     {
       "id": "sun-sleepingrooms",
@@ -361,7 +372,7 @@
       "visible": true,
       "column": 2,
       "startMinutesFromDayStart": 660,
-      "durationMinutes": 60
+      "durationMinutes": 90
     },
     {
       "id": "sun-judging2",
@@ -373,7 +384,7 @@
       "visible": true,
       "column": 2,
       "startMinutesFromDayStart": 780,
-      "durationMinutes": 60
+      "durationMinutes": 90
     },
     {
       "id": "sun-closing1",
