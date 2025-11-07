@@ -101,16 +101,15 @@ export default function Page() {
 
 	return (
 		<div className="flex flex-col w-full h-fit min-h-screen items-center justify-center">
-			<NavBar showOnScroll={false} />
-			<div className="w-11/12 desktop:w-2/3 flex-grow flex-shrink basis-auto mt-28 desktop:mt-16" data-testid="schedule-container">
-				{/*<div className="flex w-full items-center justify-center">
+			<div className="w-11/12 desktop:w-2/3 flex-grow flex-shrink basis-auto mt-28 desktop:mt-20" data-testid="schedule-container">
+				<div className="flex w-full items-center justify-center">
 					<HackRPILink
-						href="https://calendar.google.com/calendar/u/0?cid=..."
+						href="https://calendar.google.com/calendar/u/0?cid=OGE3ZmViYjcyNGM3OWE3MWZkMWY4YTBjOWFiNDIzZGY3YTUyNjdhNjU1ZmFmYzc1ZjllNWI1Yzk0ZmMxODAyYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
 						className="text-primary text-xl lg:text-2xl px-5 py-2"
 					>
 						Google Calendar
 					</HackRPILink>
-				</div>*/}
+				</div>
 
 				<div className="flex w-full items-center justify-between">
 					<h1 className="text-3xl xs:text-4xl font-bold text-center">Schedule</h1>
