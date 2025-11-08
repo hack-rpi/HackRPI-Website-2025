@@ -6,9 +6,10 @@ type FadeInImageValues = {
 	width: number;
 	height: number;
 	className?: string;
+  lazy?: boolean;
 };
 
-const FadeInImage: React.FC<FadeInImageValues> = ({ src, alt, width, height, className }) => {
+const FadeInImage: React.FC<FadeInImageValues> = ({ src, alt, width, height, className, lazy }) => {
 	const imgRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -35,6 +36,7 @@ const FadeInImage: React.FC<FadeInImageValues> = ({ src, alt, width, height, cla
 				alt={alt}
 				width={width}
 				height={height}
+        loading={lazy ? "lazy" : "eager"}
 				className={`fade-in-effect rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 ${className}`}
 			/>
 		</div>
