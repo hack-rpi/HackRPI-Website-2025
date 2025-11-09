@@ -6,10 +6,13 @@ import * as THREE from 'three';
 import "@/app/globals.css";
 import { mx_bilerp_0 } from "three/src/nodes/materialx/lib/mx_noise.js";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { get_leaderboard } from "../actions";
+import { lensflare } from "three/examples/jsm/tsl/display/LensflareNode.js";
 
 const ThreeJSPage = () => {
 
 	const canvasRef = useRef<HTMLDivElement | null>(null);
+	const scoreKeeper = useRef<HTMLDivElement | null>(null);
 	var keys: any[] = [];
 	var lanes = {
 		characterRow: 0,
@@ -19,48 +22,38 @@ const ThreeJSPage = () => {
 	}
 	var physics = {
 		gravity: 0.01,
-		jumpForce: 0.3,
+		jumpForce: 0.2,
+		superJumpForce: 0.3,
 		rollForce: 0.6,
 		speed: 0.1,
 		yv: 0,
-		touchingGround: false
+		touchingGround: false as any,
+		touchingPlatform: false as any
 	};
 	var char = {
 		camAngle: 0,
-		camDist: 3,
+		camDist: 4,
 		score: 0
 	}
 	var map = {
 		speed: 0.1,
+		acceleration: 0.4/(10*60*100),
 		loading: 30,
 		dist: 0,
 		loadDist: -40,
 		loadedDist: 0,
-		objects: [] as THREE.Object3D[],
+		objects: [] as any,
 		previous: [0,0,0],
 		currentGeneratingPosition: 1,
 		tileSize: 6,
+		lines: [] as any,
+		lineSpace: 5,
+		heightMap: [0,0,0] as any,
 		presets: [
-			// { // train
-			// 	id: 1,
-			// 	geometry: new THREE.BoxGeometry(2, 2, 4.7),
-			// 	material: new THREE.MeshBasicMaterial({ color: `rgb(${Math.round(Math.random()*255)},${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})` })
-			// },
-			{ // ramp up
-				id: 2,
-				geometry: new THREE.BoxGeometry(2, 1, 4.7),
-				material: new THREE.MeshBasicMaterial({ color: `rgb(${Math.round(Math.random()*255)},${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})` })
-			},
-			{ // little stop
-				id: 3,
-				geometry: new THREE.BoxGeometry(2, 1, 1),
-				material: new THREE.MeshBasicMaterial({ color: `rgb(${Math.round(Math.random()*255)},${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})` })
-			},
-			{ // big stop
-				id: 4,
-				geometry: new THREE.BoxGeometry(2, 3, 1),
-				material: new THREE.MeshBasicMaterial({ color: `rgb(${Math.round(Math.random()*255)},${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})` })
-			},
+			// 	id: 1, train
+			// 	id: 2, ramp up
+			// 	id: 3, little stop
+			// 	id: 4, big stop
 			{ // tunnel
 				id: 5,
 				geometry: new THREE.BoxGeometry(0, 0, 4.7),
@@ -86,6 +79,25 @@ const ThreeJSPage = () => {
 		dist: 1.5
 	}
 
+	var collision = {
+		charFront: null as any,
+		charBack: null as any,
+		previouslyAboveGround: false,
+		previousHeight: 0,
+		previousLane: 1 as any,
+		laneChange: 0,
+		tripTimer: 0
+	}
+
+	var randomCrap = {
+		score: 0,
+		name: '',
+		gameBegan: false,
+		leaderBoard: [] as any,
+		leaderBoardObjects: [] as any
+
+	}
+
 
 
 
@@ -101,10 +113,10 @@ const ThreeJSPage = () => {
 			scene = new THREE.Scene();
 			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 			cameraMan.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-			renderer = new THREE.WebGLRenderer();
+			renderer = new THREE.WebGLRenderer({alpha: true});
 			cameraMan.renderer = new THREE.WebGLRenderer();
 
-			let loads = 2;
+			let loads = 5;
 
 			const loader = new GLTFLoader();
 			
@@ -120,7 +132,9 @@ const ThreeJSPage = () => {
 				box.getSize(size);
 				character.geometry = {
 					parameters: {
-						height: Math.floor(size.y*100)/100
+						height: Math.floor(size.y*100)/100,
+						width: Math.floor(size.x*100)/100,
+						depth: Math.floor(size.z*100)/100
 					}
 				};
 				
@@ -161,7 +175,7 @@ const ThreeJSPage = () => {
 				train = gltf.scene;
 				train.scale.set(0.3,0.3,0.3);
 				train.rotation.set(0,Math.PI/2,0);
-				
+
 				let box = new THREE.Box3();
 				box.setFromObject(train);
 				let size = new THREE.Vector3();
@@ -183,6 +197,88 @@ const ThreeJSPage = () => {
 				loads-=1;
 			});
 
+			loader.load('/surfers/environment/clippy.glb', (gltf) => {
+				let model: any | null;
+				model = gltf.scene;
+				model.scale.set(1,1,1);
+				
+				let box = new THREE.Box3();
+				box.setFromObject(model);
+				let size = new THREE.Vector3();
+				box.getSize(size);
+				
+				model.geometry = {
+					parameters: {
+						height: Math.floor(size.y*100)/100,
+						width: Math.floor(size.x*100)/100,
+						depth: Math.floor(size.z*100)/100
+					}
+				};
+
+				map.presets.push(
+					{
+						id: 3,
+						object: model
+					} as any);
+				loads-=1;
+			});
+
+			loader.load('/surfers/environment/warning.glb', (gltf) => {
+				let model: any | null;
+				model = gltf.scene;
+				model.scale.set(0.4,0.4,0.4);
+				model.rotation.set(0, -Math.PI/2, 0);
+				model.position.set(0,2,0);
+				
+				let box = new THREE.Box3();
+				box.setFromObject(model);
+				let size = new THREE.Vector3();
+				box.getSize(size);
+				
+				model.geometry = {
+					parameters: {
+						height: Math.floor(size.y*100)/100,
+						width: Math.floor(size.x*100)/100,
+						depth: Math.floor(size.z*100)/100,
+						heightOffset: 2
+					}
+				};
+
+				map.presets.push(
+					{
+						id: 4,
+						object: model
+					} as any);
+				loads-=1;
+			});
+
+			loader.load('/surfers/environment/ramp.glb', (gltf) => {
+				let model: any | null;
+				model = gltf.scene;
+				model.scale.set(0.7,0.7,0.55);
+				
+				let box = new THREE.Box3();
+				box.setFromObject(model);
+				let size = new THREE.Vector3();
+				box.getSize(size);
+				
+				model.geometry = {
+					parameters: {
+						height: Math.floor(2.87*100)/100,
+						width: Math.floor(size.x*100)/100,
+						depth: Math.floor(size.z*100)/100,
+						depthOffset: 0.8
+					}
+				};
+
+				map.presets.push(
+					{
+						id: 2,
+						object: model
+					} as any);
+				loads-=1;
+			});
+
 			function check(){
 				if(loads<=0){
 					init();
@@ -200,13 +296,38 @@ const ThreeJSPage = () => {
 			renderer.setSize(window.innerWidth, window.innerHeight);
 			if (canvasRef.current) canvasRef.current.appendChild(renderer.domElement); // Append the canvas to the ref
 			if (cameraMan.ref.current) cameraMan.ref.current.appendChild(cameraMan.renderer.domElement); // Append the canvas to the ref
+
+			let lineMat = new THREE.LineBasicMaterial( { color: 0xfc4576 } );
+			for(let i = -30; i <30; i+=1){
+				let points = [];
+				points.push( new THREE.Vector3(i*map.lineSpace*0.5, 0, -200 ) );
+				points.push( new THREE.Vector3( i*map.lineSpace, 0, 200 ) );
+				let lineGeo = new THREE.BufferGeometry().setFromPoints( points );
+				let line = new THREE.Line( lineGeo, lineMat );
+				scene.add( line );
+			}
+
+			for(let i = -40; i < 40; i+=1){
+				let points = [];
+				points.push( new THREE.Vector3(-1000, 0, -i*map.lineSpace ) );
+				points.push( new THREE.Vector3( 1000, 0, -i*map.lineSpace ) );
+				let lineGeo = new THREE.BufferGeometry().setFromPoints( points );
+				let line = new THREE.Line( lineGeo, lineMat );
+				map.lines.push(line);
+				scene.add( line );
+			}
+
+			loadLeaderBoard();
+			let leaderBoardHeight = randomCrap.leaderBoard.length;
+			let leaderBoardTop = 5-(leaderBoardHeight/2);
+			randomCrap.leaderBoardObjects.push(makeCustomBox(0.5,leaderBoardHeight,8, leaderBoardTop, 0, -5));
 			
-			let groundGeometry = new THREE.PlaneGeometry(10, 100);
-			let groundMaterial = new THREE.MeshBasicMaterial({ color: 0x7cfc00 });
-			let ground = new THREE.Mesh(groundGeometry, groundMaterial);
-			ground.rotation.x = -Math.PI / 2;
-			ground.position.x = 0;
-			scene.add(ground);
+			for(let i = 0; i < randomCrap.leaderBoard.length; i++){
+				let tempHeight = 0.5;
+				let tempGap = 0.1;
+				let tempTop = leaderBoardTop + (leaderBoardHeight/2) - (tempHeight/2) - tempGap;
+				randomCrap.leaderBoardObjects.push(makeCustomBox(0.7,tempHeight,8-(tempGap*2), tempTop-(i*(tempHeight+tempGap)), 0, -5));
+			}
 
 			let color = 0xFFFFFF;
 			let light = new THREE.AmbientLight(color, 5);
@@ -219,6 +340,9 @@ const ThreeJSPage = () => {
 			camera.position.z = 5;
 			camera.position.y = 2;
 			camera.lookAt(character.position);
+
+			collision.charFront = character.position.z - character.geometry.parameters.depth/2;
+			collision.charBack = character.position.z + character.geometry.parameters.depth/2;
 
 			animate();
 
@@ -299,7 +423,13 @@ const ThreeJSPage = () => {
 						temp.position.z = y;
 						temp.position.x = z;
 					}
-						
+					
+					if(temp.geometry.parameters.heightOffset) temp.position.y += temp.geometry.parameters.heightOffset;
+					if(temp.geometry.parameters.depthOffset) temp.position.z += temp.geometry.parameters.depthOffset;
+					if(temp.geometry.parameters.heightOffset) temp.position.z += temp.geometry.parameters.heightOffset;
+					
+					temp.ID = id;
+
 					scene.add(temp);
 					map.objects.push(temp);
 					return temp;
@@ -308,28 +438,163 @@ const ThreeJSPage = () => {
 		}
 
 		function charMove(){
+			updateHeightMap();
+
 			character.position.x += ((lanes.characterRow*lanes.laneWidth)-character.position.x)*0.2;
 
-			if(character.position.y + physics.yv < character.geometry.parameters.height/2) physics.yv = -(character.position.y - character.geometry.parameters.height/2);
-			physics.yv = parseFloat(physics.yv.toFixed(3));
-			character.position.y += physics.yv;
+			let laneHeight = map.heightMap[lanes.characterRow-lanes.minLane];
+			let groundLevel;
+			let platformLevel = 0;
+			let baseGround = character.geometry.parameters.height/2 - 0.5;
+			let maxLevel;
+			let currentObjectID = map.heightMap.objectID[lanes.characterRow-lanes.minLane];
+			if(laneHeight.length == 1){
+				groundLevel = baseGround + laneHeight[0];
+				maxLevel = 999;
+			}else{
+				groundLevel = baseGround;
+				maxLevel = -laneHeight[0];
+				platformLevel = laneHeight[1];
+			}
 
-			camera.position.y = character.position.y + 1.5;
+			if(collision.laneChange > 0){
+				collision.laneChange--;
+			}
+
+
+			let laneTripping = false;
+			let grace = 0.4;
+			let hitWall = false;
+			if(currentObjectID == 2)
+				if(collision.previousHeight != groundLevel && collision.previousHeight < groundLevel)
+					if(character.position.y < groundLevel)
+						if(groundLevel-character.position.y > grace){
+							hitWall = true;
+							if(collision.laneChange > 0){
+								laneTripping = true;
+								if(Math.abs(lanes.characterRow*lanes.laneWidth - character.position.x) < 1){
+									warn('lane trip')
+									lanes.characterRow = collision.previousLane;
+								}
+							}
+						}
+
+			if(currentObjectID == 1 || currentObjectID == 3)
+				if(collision.previousHeight != groundLevel && collision.previousHeight < groundLevel)
+					if(character.position.y < groundLevel){
+						if(groundLevel-character.position.y > grace){
+							hitWall = true;
+							if(collision.laneChange > 0){
+								laneTripping = true;
+								if(Math.abs(lanes.characterRow*lanes.laneWidth - character.position.x) < 1){
+									warn('lane trip')
+									lanes.characterRow = collision.previousLane;
+								}
+							}else
+								warn('splat');
+						}else{
+							warn('tripped');
+							character.position.y = groundLevel;
+						}
+					}
+			let grace2 = 0.2;
+			
+			if(currentObjectID == 4){
+				let head = character.position.y + character.geometry.parameters.height/2;
+				if(head > maxLevel && character.position.y < platformLevel){
+					if(head - maxLevel < grace2){
+						warn('top tripped')
+					}else{
+						warn('top splat')
+						hitWall = true;
+						character.position.y = maxLevel - character.geometry.parameters.height/2 -0.3;
+						physics.yv = Math.min(0, physics.yv);
+					}
+
+				}
+			}
+
+			if(!laneTripping){
+
+				if(character.position.y > groundLevel) physics.touchingGround = false;
+				if(character.position.y == groundLevel) physics.touchingGround = true;
+
+				if(physics.touchingGround == false) physics.yv -= physics.gravity;
+
+				let fallingBelowGround = character.position.y > groundLevel && character.position.y + physics.yv < groundLevel;
+				let clipFellIntoGround = collision.previouslyAboveGround && character.position.y + physics.yv < groundLevel;
+				let clippedIntoGround = collision.previouslyAboveGround && !(character.position.y > groundLevel);
+				
+				physics.touchingPlatform = false;
+				if(platformLevel != 0 && character.position.y > platformLevel){
+					if(character.position.y > platformLevel && character.position.y + physics.yv < platformLevel){
+						physics.touchingPlatform = true;
+						physics.touchingGround = false;
+						physics.yv = Math.max(0, physics.yv);
+					}
+				}else
+					if(fallingBelowGround || clipFellIntoGround || clippedIntoGround){
+						if(character.position.y > groundLevel) physics.yv = -(character.position.y - groundLevel);
+						physics.touchingGround = true;
+					}
+				collision.previouslyAboveGround = character.position.y > groundLevel;
+
+				if(physics.touchingGround && physics.yv < 0) physics.yv = 0;
+				if(physics.touchingGround) character.position.y = groundLevel;
+				if(physics.touchingPlatform){ 
+					character.position.y = platformLevel;
+				}
+
+				character.position.y += physics.yv;
+
+			}
+
+			// let grace = 0.1;
+			// if(character.position.y > maxLevel){
+			// 	if(character.position.y - maxLevel < grace){
+			// 		character.position.y = maxLevel;
+			// 	}else
+			// 		warn();
+			// } 
+			// if(character.position.y < groundLevel){
+			// 	if(groundLevel - character.position.y < grace){
+			// 		character.position.y = groundLevel;
+			// 		physics.touchingGround = true;
+			// 	}else
+			// 		warn();
+			// } 
+
+			// if(physics.touchingGround == null){
+
+			// 	character.position.y = Math.round(character.position.y * 1000) / 1000;
+			// 	if(physics.yv < 0 && character.position.y > groundLevel && character.position.y + physics.yv < groundLevel)
+			// 		physics.yv = -(character.position.y - groundLevel);
+
+			// 	// if(character.position.y <= groundLevel){
+			// 	if(groundLevel > character.position && groundLevel - character.position.y <= grace ){
+			// 		warn()
+			// 		physics.touchingGround = true;
+			// 	}else{
+			// 		physics.touchingGround = false;
+			// 		physics.yv -= physics.gravity;
+			// 	}
+			// }
+
+			// if(physics.touchingGround) physics.yv = Math.max(0,physics.yv);
+			// character.position.y = Math.max(character.position.y, baseGround);
+
+			// physics.yv = parseFloat(physics.yv.toFixed(3));
+			// character.position.y += physics.yv;
+			// if(character.position.y < baseGround)
+			// 	character.position.y = baseGround;
+			
+			camera.position.y = character.position.y + 1;
 			camera.position.x = character.position.x+Math.sin(char.camAngle)*char.camDist;
 			camera.position.z = character.position.z+Math.cos(char.camAngle)*char.camDist;
 			char.camAngle = ((lanes.characterRow*0.3 - char.camAngle)*0.1)+char.camAngle;
 
 			camera.lookAt(character.position);
-
-			character.position.y = Math.round(character.position.y * 1000) / 1000;
-			if(character.position.y <= (character.geometry.parameters.height/2) + 0){
-				character.position.y = character.geometry.parameters.height/2;
-				physics.touchingGround = true;
-				physics.yv = 0;
-			}else{
-				physics.touchingGround = false;
-				physics.yv -= physics.gravity;
-			}
+			camera.position.y+=1;
 
 			cameraMan.angle = (cameraMan.angle+=0.01) % (Math.PI*2);
 			cameraMan.camera.position.z = character.position.z+0.4+Math.cos(cameraMan.angle)*cameraMan.dist;
@@ -353,8 +618,16 @@ const ThreeJSPage = () => {
 					i--;
 				}
 			}
+			
+			for(let i = 0; i < map.lines.length; i++){
+				map.lines[i].position.z+=map.speed;
+				if(map.lines[i].position.z > 0){
+					map.lines[i].position.z -= 40*map.lineSpace;
+				}
+			}
 			map.dist+=map.speed;
 			map.loadedDist-=map.speed;
+
 		}
 
 		function loadMap(){
@@ -365,7 +638,7 @@ const ThreeJSPage = () => {
 			//2 is ramp up
 			//3 is little stop thing
 			//4 is big stop thing
-			//5 is tunner
+			//5 is tunnel
 
 			for(let i = 0; i < 10; i++){
 				let previousTile = mapSet[mapSet.length-1][generatingPosition];
@@ -434,6 +707,40 @@ const ThreeJSPage = () => {
 			return mapSet;
 		}
 
+		function updateHeightMap(){
+
+			map.heightMap = [[0],[0],[0]];
+			map.heightMap.objectID = [null, null, null];
+			for(let i = map.objects.length-1; i > -1; i--){
+
+				if(map.objects[i].position.z > -5 && map.objects[i].position.z < 5){
+					let objectFront = map.objects[i].position.z + map.objects[i].geometry.parameters.depth/2;
+					let objectBack = map.objects[i].position.z - map.objects[i].geometry.parameters.depth/2;
+					if(objectFront > collision.charFront && objectBack < collision.charBack){
+
+						let objectLeft = map.objects[i].position.x - map.objects[i].geometry.parameters.width/2;
+						let objectRight = map.objects[i].position.x + map.objects[i].geometry.parameters.width/2;
+						let charLeft = character.position.x - character.geometry.parameters.width/2;
+						let charRight = character.position.x + character.geometry.parameters.width/2;
+
+						let objectLane =  Math.round(map.objects[i].position.x/lanes.laneWidth)-lanes.minLane;
+
+						if(objectFront > collision.charFront && objectBack < collision.charBack){
+							
+							if(map.objects[i].ID == 4){
+								map.heightMap[objectLane] = [-map.objects[i].position.y, map.objects[i].position.y + map.objects[i].geometry.parameters.height];
+							}else if(map.objects[i].ID == 2){
+								map.heightMap[objectLane] = [map.objects[i].position.y + map.objects[i].geometry.parameters.height*((objectFront-character.position.z)/map.objects[i].geometry.parameters.depth)];
+							}else{
+								map.heightMap[objectLane] = [map.objects[i].position.y + map.objects[i].geometry.parameters.height];
+							}
+							map.heightMap.objectID[objectLane] = map.objects[i].ID;
+						}
+					}
+				}
+			}
+		}
+
 		function mixAnimation(body: any){
 
 			if(!body.frame) body.frame = 0;
@@ -457,24 +764,44 @@ const ThreeJSPage = () => {
 
 			body.frame=(body.frame+body.animations[thisFrame].speed)%body.animations.length;
 		}
+
+		function warn(type: any){
+			console.log(type)
+			// if (animationId.current) cancelAnimationFrame(animationId.current);
+			if(collision.tripTimer > 0)
+				lose();
+			if(type == 'lane trip')
+				collision.tripTimer = 100;
+			if(type == 'tripped')
+				collision.tripTimer = 100;
+			if(type == 'top trip')
+				collision.tripTimer = 100;
+
+			if(type == 'splat')
+				lose();
+			if(type == 'top splat')
+				lose();
+				
+		}
+
 		function characterAnimations(){
 			mixAnimation(character);
-			
+		}
+
+		function lose(){
+
+		}
+
+		function begin(){
+			randomCrap.gameBegan = true;
 		}
 
 
-
-
-
-
-
-
-
-		const animate = () => {
-			animationId.current = requestAnimationFrame(animate);
-
-			if((keys.includes("w") || keys.includes('arrowup')) && physics.touchingGround){
+		function keybinds(){
+			if((keys.includes("w") || keys.includes('arrowup')) && (physics.touchingGround || physics.touchingPlatform)){
 				physics.yv = physics.jumpForce;
+				physics.touchingGround = false;
+				character.position.y += 0.01;
 				if(keys.includes("w")) removeKey("w");	
 				if(keys.includes("arrowup")) removeKey("arrowup");
 			}
@@ -484,6 +811,8 @@ const ThreeJSPage = () => {
 				if(keys.includes("arrowdown")) removeKey("arrowdown");
 			}
 			if(keys.includes("a") || keys.includes('arrowleft')) {
+				collision.previousLane = lanes.characterRow;
+				collision.laneChange = 10;
 				if(lanes.characterRow > lanes.minLane){
 					lanes.characterRow--;
 				}
@@ -491,6 +820,8 @@ const ThreeJSPage = () => {
 				if(keys.includes("arrowleft")) removeKey("arrowleft");
 			}
 			if(keys.includes("d") || keys.includes('arrowright')) {
+				collision.previousLane = lanes.characterRow;
+				collision.laneChange = 10;
 				if(lanes.characterRow < lanes.maxLane){
 					lanes.characterRow++;
 				}
@@ -504,29 +835,70 @@ const ThreeJSPage = () => {
 			}	
 
 			if(keys.includes("z")) {
-				// makeModel(1,0, map.loadDist+(0*-map.tileSize), (0+lanes.minLane)*lanes.laneWidth);
-				scene.add(makeModel(1,0,0,0));
-				// map.speed*=2;
+				mapMove();
 				if(keys.includes("z")) removeKey("z");
 			}	
+		}
+
+		function loadLeaderBoard(){
+			//some get request here.
+
+			// leaderboard values stored as: {'name': 'BillyBobJones', 'score': 100}
 			
-			// console.log(map.objects)
+			let results = [ // filler leaderboard
+				{'name': 'second', 'score': 8080},
+				{'name': 'third', 'score': 500},
+				{'name': 'sixth', 'score': 100},
+				{'name': 'first', 'score': 10000},
+				{'name': 'fourth', 'score': 400},
+				{'name': 'fifth', 'score': 320},
+				{'name': 'seventh', 'score': 2},
+			];
+
+			// let results = [];
+
+			results.sort((a, b) => b.score - a.score);
+			for(let i = 0; i < results.length; i++){
+				console.log(results[i])
+			}
+			randomCrap.leaderBoard = results;
+		}
+
+
+
+
+
+
+		const animate = () => {
+			animationId.current = requestAnimationFrame(animate);
+
+			
 
 			charMove();
-			if(map.loading > 0)
-				map.loading-=1;
-			if(map.loadedDist<=0 && map.loading<1) loadMap();
-			mapMove();
-
 			characterAnimations();
+			if(randomCrap.gameBegan){
+				if(scoreKeeper.current) scoreKeeper.current.innerText = ''+randomCrap.score;
+				map.speed+=map.acceleration;
+				randomCrap.score+=1;
+				if(collision.tripTimer > 0) collision.tripTimer--;
+				if(map.loading > 0)
+					map.loading-=1;
+				if(map.loadedDist<=0 && map.loading<1) loadMap();
+				mapMove();
+				keybinds();
+			}else{
+				char.camAngle = Math.PI/2;
+
+			}
+
+			if(keys.length > 0 && randomCrap.gameBegan == false) randomCrap.gameBegan = true;
+			
+			
 
 
 			//TODO: 
-			// make models in Blender and import
-			// make collision detection
 
-			// add a nicer skybox and background scene + lighting
-			// implement score and coins.
+			// mess with lighting and background
 
 			//add leaderboard and shop
 
@@ -551,9 +923,20 @@ const ThreeJSPage = () => {
 	}, []);
 
 	return (<>
-		<div ref={canvasRef} style={{ width: '100%', height: '100vh' }}></div>
-		<div ref={cameraMan.ref} style={{ position: 'absolute', top: '0', right: '0', borderBottomLeftRadius: '10px'}}></div>
+		<div ref={canvasRef} style={{ width: '100%', height: '100vh' , background: 'linear-gradient(180deg,rgba(40, 4, 64, 1) 0%, rgba(134, 11, 159, 1) 25%, rgba(252, 69, 118, 0.85) 35%,rgba(130, 10, 108, 1) 55%, rgba(17, 2, 27, 1) 65%, rgba(17, 2, 27, 1) 100%);' }}>
+			<div ref={scoreKeeper} style={{ position: 'absolute', top: '0', right: '0', padding: '20px', 
+				fontFamily: 'Impact, Charcoal, sans-serif',
+				fontSize: '28px',
+				color: 'white',
+				letterSpacing: '2px',
+				wordSpacing: '6px',
+				lineHeight: '1.5',
+				textTransform: 'uppercase'
+			}}> 00000</div>
+		</div>
+		<div ref={cameraMan.ref} style={{ position: 'absolute', top: '0', left: '0', borderBottomLeftRadius: '10px'}}></div>
 	</>);
 };
+
 
 export default ThreeJSPage;
