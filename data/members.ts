@@ -195,53 +195,32 @@ export const team: Team = {
 	],
 	organizers: [
 		{
-			name: "Iain",
+			name: "Anthony Santisho",
 			team: "Sponsorship",
 		},
 		{
-			name: "Brian Witanowski",
-			team: "Sponsorship",
-		},
-		{
-			name: "Jackson Baimel",
-			team: "Sponsorship",
-		},
-		{
-			name: "Christian Marinkovich",
-			team: "Technology",
-		},
-		{
-			name: "Peter Ermishkin",
-			team: "Sponsorship",
-		},
-		{
-			name: "Anthony Smith",
-			team: "Technology",
-		},
-		{
-			name: "Devan Patel",
+			name: "Matthew Radford",
 			team: "Finance",
 		},
-		{
-			name: "Tobias Manayath",
+    {
+			name: "Liam Brown",
 			team: "Logistics",
 		},
-		{
-			name: "Matthew Treanor",
+    {
+			name: "Collin Inciong",
 			team: "Technology",
 		},
-		{
-			name: "Olivia Lee",
-			team: "Marketing",
+    {
+			name: "Gokul Sureshbabu",
+			team: "Technology",
 		},
-		{
-			name: "Mrunal Athaley",
-			team: "Sponsorship",
+    {
+			name: "William Chen",
+			team: "Technology",
 		},
-		{
-			name: "Evan Chen",
-			team: "Logistics",
+    {
+			name: "Jordan Ye",
+			team: "Technology",
 		},
-		{ name: "Amanda Ruan", team: "Marketing" },
 	],
 };
