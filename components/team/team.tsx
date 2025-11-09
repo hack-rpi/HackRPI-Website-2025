@@ -132,14 +132,14 @@ export default function TeamComponent() {
 					</HackRPILink>
 					<HackRPILink
 						className="w-72 h-12 flex items-center justify-center text-xl text-center my-1 sm:mx-2"
-						href="https://forms.gle/2riKKB6H2ajsd1FM7"
+						href="https://forms.gle/JzAHQuxse1MtwXrE8"
 						target="_blank"
 					>
 						Help Mentor!
 					</HackRPILink>
 					<HackRPILink
 						className="w-72 h-12 flex items-center justify-center text-xl text-center my-1"
-						href="https://forms.gle/3M6TZo7PRwgWSqqB8"
+						href="https://forms.gle/kUTAoJLXTHb5grZx9"
 						target="_blank"
 					>
 						Volunteer!

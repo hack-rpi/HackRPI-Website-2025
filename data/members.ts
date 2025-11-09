@@ -221,6 +221,6 @@ export const team: Team = {
     {
 			name: "Jordan Ye",
 			team: "Technology",
-		},
+		}
 	],
 };
