@@ -119,7 +119,7 @@ function EventPage() {
 								<div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-hackrpi-orange to-hackrpi-pink"></div>
 							</h2>
 							<p className="mt-8 text-lg text-hackrpi-yellow max-w-3xl mx-auto">
-								After coding ends at noon on Sunday, present your project to our panel of industry professionals,
+								After coding ends at 11am on Sunday, present your project to our panel of industry professionals,
 								professors, alumni, and fellow students. They&apos;ll evaluate your work based on these criteria:
 							</p>
 						</div>
@@ -282,11 +282,11 @@ function EventPage() {
 											<div className="space-y-2 text-gray-300 md:text-lg">
 												<p className="flex items-center">
 													<span className="text-hackrpi-orange font-bold mr-2">📅</span>
-													Submit by <span className="font-bold text-hackrpi-orange mx-1">11:00 AM Sunday</span>
+													Submit by <span className="font-bold text-hackrpi-orange mx-1">9:00 AM Sunday</span>
 												</p>
 												<p className="flex items-center">
 													<span className="text-hackrpi-pink font-bold mr-2">✏️</span>
-													Edit until <span className="font-bold text-hackrpi-pink mx-1">12:00 PM Sunday</span>
+													Edit until <span className="font-bold text-hackrpi-pink mx-1">11:00 AM Sunday</span>
 												</p>
 											</div>
 										</div>
@@ -302,7 +302,7 @@ function EventPage() {
 												Present Your Project
 											</h3>
 											<p className="text-gray-300 md:text-lg">
-												After noon, no changes allowed. Be ready to give a live demo and explain your project to the
+												After 11am, no changes allowed. Be ready to give a live demo and explain your project to the
 												judges!
 											</p>
 										</div>

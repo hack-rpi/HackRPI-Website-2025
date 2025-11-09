@@ -16,7 +16,7 @@ const faqs: FAQ[] = [
 	{
 		title: "When is HackRPI?",
 		content:
-			"HackRPI takes place on November 15th and 16th, 2025. Arrival and check-in takes place from 9-10 AM. Our opening ceremony starts at 10 AM, and hacking begins at 11am. Your projects must be on Devpost by 10 AM Sunday, and all coding must stop at 11 AM Sunday. Teams will present, and the event will end around 4PM on Sunday. We are excited to see you there!",
+			"HackRPI takes place on November 15th and 16th, 2025. Arrival and check-in takes place from 9-10 AM. Our opening ceremony starts at 10 AM, and hacking begins at 11am. Your projects must be on Devpost by 9 AM Sunday, and all coding must stop at 11 AM Sunday. Teams will present, and the event will end around 3 PM on Sunday. We are excited to see you there!",
 	},
 	{
 		title: "Where is HackRPI?",
