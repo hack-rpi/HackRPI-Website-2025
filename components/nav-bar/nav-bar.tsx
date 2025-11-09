@@ -12,7 +12,7 @@ export const links: NavGroup[] = [
 			{ href: "/#about", children: "About" },
 			{ href: "/#faq", children: "FAQ" },
 			{ href: "/#sponsors", children: "Sponsors" },
-			//{ href: "/#team", children: "Team" },
+			{ href: "/#team", children: "Team" },
 		],
 	},
 	{
