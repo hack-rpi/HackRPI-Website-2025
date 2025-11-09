@@ -17,6 +17,10 @@ export default function MajorPrizes({ majorPrizes }: { majorPrizes: Prize[] }) {
 						<h1 className="text-center text-3xl sm:text-4xl font-bold font-sans text-hackrpi-orange">{prize.name}</h1>
 						<h2 className="text-center text-2xl font-sans font-bold text-hackrpi-yellow">{prize.amount}</h2>
 						<p className="text-center w-5/6 sm:w-2/3 desktop:w-full">{prize.description}</p>
+						{prize.description.includes("Photon") ?
+              <a className="text-center w-5/6 sm:w-2/3 desktop:w-full border-2 border-black text-hackrpi-yellow" href="https://somethingreat.notion.site/hackrpi" target="_blank"><p className="">Read all about the Photon X HackRPI Track here</p></a>
+              : ""
+            }
 					</div>
 					<div className="h-full min-w-fit desktop:w-1/2 flex items-center justify-start desktop:justify-center my-2 ml-4">
 						<Image
