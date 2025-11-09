@@ -107,7 +107,7 @@ const FAQPage = () => {
 
 	return (
 		<div
-			className="h-auto mb-8 flex flex-col items-center text-hackrpi-pink bg-base-100 w-5/6 desktop:w-full pl-8 desktop:pl-0"
+			className="h-auto flex flex-col items-center text-hackrpi-pink bg-base-100 w-5/6 desktop:w-full pl-8 desktop:pl-0"
 			id="faq"
 			data-testid="faq-section"
 		>
