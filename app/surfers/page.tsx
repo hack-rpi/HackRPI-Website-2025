@@ -973,7 +973,7 @@ const ThreeJSPage = () => {
 		}
 
 		function loadLeaderBoard(){
-			//some get request here.
+			//LOAD LEADERBOARD OBJECTS
 
 			// leaderboard values stored as: {'name': 'BillyBobJones', 'score': 100}
 			
