@@ -2,17 +2,26 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from 'three';
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+
+// import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'; // Correct import for FontLoader
+// import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'; // Correct import for TextGeometry
+
 
 import "@/app/globals.css";
 import { mx_bilerp_0 } from "three/src/nodes/materialx/lib/mx_noise.js";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { get_leaderboard } from "../actions";
-import { lensflare } from "three/examples/jsm/tsl/display/LensflareNode.js";
+import { text } from "stream/consumers";
 
 const ThreeJSPage = () => {
 
 	const canvasRef = useRef<HTMLDivElement | null>(null);
 	const scoreKeeper = useRef<HTMLDivElement | null>(null);
+	const sendScore = useRef<HTMLButtonElement | null>(null);
+	const endGame = useRef<HTMLDivElement | null>(null);
+	const endName = useRef<HTMLInputElement | null>(null);
+
 	var keys: any[] = [];
 	var lanes = {
 		characterRow: 0,
@@ -94,15 +103,12 @@ const ThreeJSPage = () => {
 		name: '',
 		gameBegan: false,
 		leaderBoard: [] as any,
-		leaderBoardObjects: [] as any
+		leaderBoardObjects: [] as any,
+		cameraShake: 0,
+		shakeTimer: 0,
+		lostGame: false
 
 	}
-
-
-
-
-
-
 
 
 	useEffect(() => {
@@ -255,7 +261,7 @@ const ThreeJSPage = () => {
 			loader.load('/surfers/environment/ramp.glb', (gltf) => {
 				let model: any | null;
 				model = gltf.scene;
-				model.scale.set(0.7,0.7,0.55);
+				model.scale.set(0.7,0.8,0.55);
 				
 				let box = new THREE.Box3();
 				box.setFromObject(model);
@@ -267,7 +273,7 @@ const ThreeJSPage = () => {
 						height: Math.floor(2.87*100)/100,
 						width: Math.floor(size.x*100)/100,
 						depth: Math.floor(size.z*100)/100,
-						depthOffset: 0.8
+						depthOffset: 0.6
 					}
 				};
 
@@ -317,17 +323,7 @@ const ThreeJSPage = () => {
 				scene.add( line );
 			}
 
-			loadLeaderBoard();
-			let leaderBoardHeight = randomCrap.leaderBoard.length;
-			let leaderBoardTop = 5-(leaderBoardHeight/2);
-			randomCrap.leaderBoardObjects.push(makeCustomBox(0.5,leaderBoardHeight,8, leaderBoardTop, 0, -5));
-			
-			for(let i = 0; i < randomCrap.leaderBoard.length; i++){
-				let tempHeight = 0.5;
-				let tempGap = 0.1;
-				let tempTop = leaderBoardTop + (leaderBoardHeight/2) - (tempHeight/2) - tempGap;
-				randomCrap.leaderBoardObjects.push(makeCustomBox(0.7,tempHeight,8-(tempGap*2), tempTop-(i*(tempHeight+tempGap)), 0, -5));
-			}
+			createLeaderBoard();
 
 			let color = 0xFFFFFF;
 			let light = new THREE.AmbientLight(color, 5);
@@ -363,7 +359,7 @@ const ThreeJSPage = () => {
 
 
 
-
+		
 
 
 		function removeKey(key: string) {
@@ -396,9 +392,70 @@ const ThreeJSPage = () => {
 		window.addEventListener('keyup', listenKeyUp);
 		window.addEventListener('resize', resize)
 
-		function makeCustomBox(width: number | undefined, height: number | undefined, depth: number | undefined, x: any, y: any, z: any){
+		function createLeaderBoard(){
+			loadLeaderBoard();
+			let tempHeight = 0.5;
+			let tempGap = 0.1;
+
+			let leaderBoardHeight = randomCrap.leaderBoard.length * (tempHeight + tempGap) + tempGap;
+			let leaderBoardTop = 5-(leaderBoardHeight/2);
+			randomCrap.leaderBoardObjects.push(makeCustomBox(0.5,leaderBoardHeight,8, leaderBoardTop, 0, -5, {r: 50, g:0, b:50}));
+			
+			let tempTop = leaderBoardTop + (leaderBoardHeight/2) - (tempHeight/2) - tempGap;
+
+			for(let i = 0; i < randomCrap.leaderBoard.length; i++){
+				let colorGradient = Math.min(70, i*10);
+				randomCrap.leaderBoardObjects.push(makeCustomBox(0.7,tempHeight,8-(tempGap*2), tempTop-(i*(tempHeight+tempGap)), 0, -5, {r: colorGradient, g:colorGradient, b:colorGradient}));
+			
+				makeTextObject(randomCrap.leaderBoard[i], -5, tempTop-(i*(tempHeight+tempGap)), 0 );
+			}
+		}
+		function makeTextObject(textInfo: any, x:any, y:any, z:any){
+			let name = textInfo.name;
+			let score = textInfo.score;
+
+			let fullWidth = 35-name.length-(score).toString().length;
+
+			let completeText = name+' '.repeat(fullWidth)+score;
+
+			let material = new THREE.MeshStandardMaterial({ color: 0xdc24e2 });
+			const loader = new FontLoader();
+
+			let textMesh:any;
+
+			loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
+
+				let geometry = new TextGeometry(completeText, {
+					font: font,
+					size: 0.3,
+					depth: 0.4,
+					bevelEnabled: false,
+					bevelThickness: 0.01,
+					bevelSize: 0.01,
+					bevelSegments: 3,
+					curveSegments: 12,
+				});
+
+				textMesh = new THREE.Mesh(geometry, material);
+				geometry.center();
+
+				textMesh.position.x = x+0.2;
+				textMesh.position.y = y;
+				textMesh.position.z = z;
+				textMesh.rotation.set(0,Math.PI/2,0);
+				scene.add(textMesh);
+				randomCrap.leaderBoardObjects.push(textMesh);
+
+			});
+		}
+
+		function makeCustomBox(width: number | undefined, height: number | undefined, depth: number | undefined, x: any, y: any, z: any, color: any){
 			var tempGeometry = new THREE.BoxGeometry(width, height, depth);
-			var tempMaterial = new THREE.MeshBasicMaterial({ color: `rgb(${Math.round(Math.random()*255)},${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})` });
+			var tempMaterial;
+			if(color)
+				tempMaterial = new THREE.MeshBasicMaterial({ color: `rgb(${color.r},${color.g},${color.b})` });
+			else
+				tempMaterial = new THREE.MeshBasicMaterial({ color: `rgb(${Math.round(Math.random()*255)},${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})` });
 			var temp = new THREE.Mesh(tempGeometry, tempMaterial);
 			temp.position.y = x;
 			temp.position.z = y;
@@ -601,6 +658,16 @@ const ThreeJSPage = () => {
 			cameraMan.camera.position.y = character.position.y+character.geometry.parameters.height/2;
 			cameraMan.camera.position.x = character.position.x+Math.sin(cameraMan.angle)*cameraMan.dist;
 			cameraMan.camera.lookAt(character.position.x, character.position.y+character.geometry.parameters.height/2, character.position.z);
+
+			camera.position.x+=((randomCrap.cameraShake*Math.random())-(randomCrap.cameraShake/2));
+			camera.position.y+=((randomCrap.cameraShake*Math.random())-(randomCrap.cameraShake/2));
+			camera.position.z+=((randomCrap.cameraShake*Math.random())-(randomCrap.cameraShake/2));
+
+			if(randomCrap.shakeTimer > 0){
+				randomCrap.shakeTimer--;
+			}else{
+				randomCrap.cameraShake = 0;
+			}
 		}
 
 		function mapMove(){
@@ -624,6 +691,32 @@ const ThreeJSPage = () => {
 				if(map.lines[i].position.z > 0){
 					map.lines[i].position.z -= 40*map.lineSpace;
 				}
+			}
+
+			for(let i = 0; i < randomCrap.leaderBoardObjects.length; i++){
+				if(randomCrap.leaderBoardObjects[i] && randomCrap.leaderBoardObjects[i].position){
+					randomCrap.leaderBoardObjects[i].position.z+=map.speed;
+
+					if(randomCrap.leaderBoardObjects[i].position.z > 10 + randomCrap.leaderBoardObjects[i].geometry.parameters.depth){
+						try{
+							(randomCrap.leaderBoardObjects[i] as THREE.Mesh).geometry.dispose();
+							((randomCrap.leaderBoardObjects[i] as THREE.Mesh).material as THREE.Material).dispose();
+						}catch{}
+						scene.remove(randomCrap.leaderBoardObjects[i]);
+						randomCrap.leaderBoardObjects.splice(i, 1);
+						i--;
+					}
+				}else{
+					console.log(randomCrap.leaderBoardObjects[i])
+					try{
+						(randomCrap.leaderBoardObjects[i] as THREE.Mesh).geometry.dispose();
+						((randomCrap.leaderBoardObjects[i] as THREE.Mesh).material as THREE.Material).dispose();
+					}catch{}
+					scene.remove(randomCrap.leaderBoardObjects[i]);
+				}
+
+				
+
 			}
 			map.dist+=map.speed;
 			map.loadedDist-=map.speed;
@@ -767,15 +860,14 @@ const ThreeJSPage = () => {
 
 		function warn(type: any){
 			console.log(type)
-			// if (animationId.current) cancelAnimationFrame(animationId.current);
+			
 			if(collision.tripTimer > 0)
 				lose();
-			if(type == 'lane trip')
+			else if(type == 'lane trip' || type == 'tripped' || type == 'top tripped'){
 				collision.tripTimer = 100;
-			if(type == 'tripped')
-				collision.tripTimer = 100;
-			if(type == 'top trip')
-				collision.tripTimer = 100;
+				randomCrap.cameraShake = 0.7;
+				randomCrap.shakeTimer = 20;
+			}
 
 			if(type == 'splat')
 				lose();
@@ -789,11 +881,51 @@ const ThreeJSPage = () => {
 		}
 
 		function lose(){
+			// if (animationId.current) cancelAnimationFrame(animationId.current);
+			randomCrap.gameBegan = false;
+			randomCrap.lostGame = true;
+			if(endGame.current) endGame.current.style.display = 'flex';
+			if(sendScore.current) sendScore.current.onclick = function(){
+				if(endName.current?.value && endName.current?.value.length > 0){
+					
+					if(endGame.current) endGame.current.style.display = 'flex';
+					let tempData = {'name': endName.current?.value}
+
+					//SEND SCORE TO DATABASE
+					// send(tempData);
+					restartGame();
+
+					if(endGame.current) endGame.current.style.display = 'none';
+				}
+			}
+
 
 		}
 
 		function begin(){
+			if(endGame.current) endGame.current.style.display = 'none';
 			randomCrap.gameBegan = true;
+		}
+
+		function restartGame(){
+			for(let i = 0; i < map.objects.length; i++){
+				scene.remove(map.objects[i]);
+			}
+			map.objects = [];
+			map.dist = 0;
+			randomCrap.score = 0;
+
+			map.loading = 30;
+			map.loadDist = -40;
+			map.loadedDist = 0;
+			map.previous = [0,0,0];
+			map.currentGeneratingPosition = 1;
+
+			randomCrap.gameBegan = false;
+			randomCrap.lostGame = false;
+			createLeaderBoard();
+
+			if(scoreKeeper.current) scoreKeeper.current.innerText = ''+randomCrap.score;
 		}
 
 
@@ -876,31 +1008,34 @@ const ThreeJSPage = () => {
 
 			charMove();
 			characterAnimations();
-			if(randomCrap.gameBegan){
-				if(scoreKeeper.current) scoreKeeper.current.innerText = ''+randomCrap.score;
-				map.speed+=map.acceleration;
-				randomCrap.score+=1;
-				if(collision.tripTimer > 0) collision.tripTimer--;
-				if(map.loading > 0)
-					map.loading-=1;
-				if(map.loadedDist<=0 && map.loading<1) loadMap();
-				mapMove();
-				keybinds();
-			}else{
-				char.camAngle = Math.PI/2;
+			if(randomCrap.lostGame){
 
+			}else{
+				
+				if(randomCrap.gameBegan){
+					if(scoreKeeper.current) scoreKeeper.current.innerText = ''+randomCrap.score;
+					map.speed+=map.acceleration;
+					randomCrap.score+=1;
+					if(collision.tripTimer > 0) collision.tripTimer--;
+					if(map.loading > 0)
+						map.loading-=1;
+					if(map.loadedDist<=0 && map.loading<1) loadMap();
+					mapMove();
+					keybinds();
+				}else{
+					char.camAngle = Math.PI/2;
+				}
 			}
+			
 
 			if(keys.length > 0 && randomCrap.gameBegan == false) randomCrap.gameBegan = true;
-			
-			
 
 
 			//TODO: 
 
-			// mess with lighting and background
+			// background scene stuff + lights. + fog
 
-			//add leaderboard and shop
+			//add leaderboard
 
 			// light2.position.set(character.position.x, character.position.y, character.position.z);
 			// cockroach idea (maybe if console is opened
@@ -933,6 +1068,38 @@ const ThreeJSPage = () => {
 				lineHeight: '1.5',
 				textTransform: 'uppercase'
 			}}> 00000</div>
+			<div ref={endGame} style={{ position: 'absolute', top: '50%', right: '50%', transform: 'translate(50%, -50%)', justifyContent: 'center',
+				backgroundColor: 'black', width: '80vw', height: '40vh', borderRadius: '10px', opacity: 0.7, display: 'none', flexDirection: 'column'}}>
+					<div style={{ 
+						// fontFamily: 'Impact, Charcoal, sans-serif',
+						fontSize: '50px',
+						color: 'white',
+						letterSpacing: '2px',
+						wordSpacing: '6px',
+						lineHeight: '1.5',
+						textTransform: 'uppercase',
+						height: 'min-content',
+						textAlign: 'center',
+						marginBottom: '10px',
+					}} >ENTER YOUR NAME</div>
+					
+					<input ref={endName} placeholder='Your name' style={{ 
+						// fontFamily: 'Impact, Charcoal, sans-serif',
+						color: 'white',
+						backgroundColor: 'transparent',
+						border: '2px white',
+						fontSize: '50px',
+						textAlign: 'center',
+						outline: 'none',
+						letterSpacing: '2px',
+						wordSpacing: '6px',
+						lineHeight: '1.5',
+						textTransform: 'uppercase',
+						height: 'min-content',
+						marginBottom: '10px',
+					}} ></input>
+					<button ref={sendScore} className='fancySchmancyButton' style={{}}>SUBMIT</button>
+				</div>
 		</div>
 		<div ref={cameraMan.ref} style={{ position: 'absolute', top: '0', left: '0', borderBottomLeftRadius: '10px'}}></div>
 	</>);

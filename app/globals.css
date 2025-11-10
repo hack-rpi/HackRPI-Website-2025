@@ -68,3 +68,31 @@
 		line-height: 2.5rem;
 	}
 }
+
+
+.fancySchmancyButton{
+	border-radius: 10px;
+	background-color: white;
+	width: 140px;
+	height: 70px;
+
+	text-align: center;
+	outline: none;
+	letter-spacing: 2px;
+	word-spacing: 6px;
+	line-height: 1.5;
+	text-transform: uppercase;
+	align-self: center;
+	margin-bottom: 10px;
+	transition-duration: 0.2s;
+}
+
+.fancySchmancyButton:hover{
+	transform: scale(1.2);
+	outline: 3px;
+	border: 3px white;
+	background-color: transparent;
+	color:white;
+	transition-duration: 0.2s;
+
+}
