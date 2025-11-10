@@ -106,7 +106,8 @@ const ThreeJSPage = () => {
 		leaderBoardObjects: [] as any,
 		cameraShake: 0,
 		shakeTimer: 0,
-		lostGame: false
+		lostGame: false,
+		sun: null as any
 
 	}
 
@@ -122,20 +123,104 @@ const ThreeJSPage = () => {
 			renderer = new THREE.WebGLRenderer({alpha: true});
 			cameraMan.renderer = new THREE.WebGLRenderer();
 
-			let loads = 5;
+			let loads = 7;
 
 			const loader = new GLTFLoader();
-			
-			loader.load('/surfers/characters/shittysurferman.glb', (gltf) => {
+
+			loader.load('/surfers/characters/sprite.glb', (gltf) => {
+
 				character = gltf.scene;
 				character.scale.set(0.2,0.2,0.2);
 				character.position.set(0.5,2,0);
 				character.rotation.set(0,Math.PI/2,0);
 				
+				let skinnedMesh = character.getObjectByProperty('type', 'SkinnedMesh');
+				let skeleton = skinnedMesh.skeleton;
+				character.skeleton = {
+					torso: character.getObjectByName('Torso'),
+					leftHip: character.getObjectByName('LeftHip'),
+					leftLeg: character.getObjectByName('LeftLeg'),
+					leftLegLower: character.getObjectByName('LeftLegLower'),
+					reftHip: character.getObjectByName('RightHip'),
+					rightLeg: character.getObjectByName('RightLeg'),
+					rightLegLower: character.getObjectByName('RightLegLower'),
+				}
+				character.animations.walk = [
+					{arr: [
+							{name: 'leftLeg', x:  -90, y: 0, z: 90, motion: 'jitter'},
+							{name: 'rightLeg', x:  90, y: 0, z: -90, motion: 'jitter'},
+							{name: 'torso', x:  0, y: 0, z: 0, motion: 'jitter'},
+						], speed: 0.05},
+					{arr: [
+							{name: 'leftLeg', x:  -90, y: 0, z: 0, motion: 'jitter'},
+							{name: 'rightLeg', x:  90, y: 0, z: 0, motion: 'jitter'},
+							{name: 'torso', x:  0, y: 0, z: 0, motion: 'jitter'},
+						], speed: 0.05},
+					{arr: [
+							{name: 'leftLeg', x:  -90, y: 0, z: -90, motion: 'jitter'},
+							{name: 'rightLeg', x: 90, y: 0, z: 90, motion: 'jitter'},
+							{name: 'torso', x:  0, y: 0, z: 0, motion: 'jitter'},
+						], speed: 0.05},
+					{arr: [
+							{name: 'leftLeg', x:  -90, y: 0, z: 0, motion: 'jitter'},
+							{name: 'rightLeg', x:  90, y: 0, z: 0, motion: 'jitter'},
+							{name: 'torso', x:  0, y: 0, z: 0, motion: 'jitter'},
+						], speed: 0.05},
+				];
+				character.animations.die = [
+					{arr: [
+							{name: 'leftLeg', x:  -70, y: 0, z: 0, motion: 'linear'},
+							{name: 'rightLeg', x:  70, y: 0, z: 0, motion: 'linear'},
+							{name: 'torso', x:  0, y: 0, z: 90, motion: 'linear'},
+						], speed: 0.15},
+					{arr: [
+							{name: 'leftLeg', x:  -90, y: 0, z: 0, motion: 'linear'},
+							{name: 'rightLeg', x:  90, y: 0, z: 0, motion: 'linear'},
+							{name: 'torso', x:  0, y: 0, z: 90, motion: 'linear'},
+						], speed: 0.15}
+				];
+				character.animations.fall = [
+					{arr: [
+							{name: 'leftLeg', x:  -90, y: 0, z: -100, motion: 'linear'},
+							{name: 'rightLeg', x:  90, y: 0, z: -100, motion: 'linear'},
+							{name: 'torso', x:  0, y: 0, z: -30, motion: 'linear'},
+						], speed: 0.05},
+					{arr: [
+						{name: 'leftLeg', x:  -90, y: 0, z: -100, motion: 'linear'},
+						{name: 'rightLeg', x:  90, y: 0, z: -100, motion: 'linear'},
+						{name: 'torso', x:  0, y: 0, z: -30, motion: 'linear'},
+					], speed: 0.05}
+				];
+				character.animations.idle = [
+					{arr: [
+							{name: 'leftLeg', x:  -90, y: 0, z: 0, motion: 'jitter'},
+							{name: 'rightLeg', x:  90, y: 0, z: 0, motion: 'jitter'},
+							{name: 'torso', x:  0, y: 0, z: 0, motion: 'jitter'},
+						], speed: 0.05},
+					{arr: [
+							{name: 'leftLeg', x:  -90, y: 0, z: 0, motion: 'jitter'},
+							{name: 'rightLeg', x:  90, y: 0, z: 0, motion: 'jitter'},
+							{name: 'torso', x:  0, y: 0, z: 0, motion: 'jitter'},
+						], speed: 0.05}
+				];
+
+				scene.add(character);
+				loads-=1;
+			});
+
+			loader.load('/surfers/characters/shittysurferman.glb', (tempModel) => {
+
+				let tempcharacter = tempModel.scene;
+				tempcharacter.scale.set(0.2,0.2,0.2);
+				tempcharacter.position.set(0.5,2,0);
+				tempcharacter.rotation.set(0,Math.PI/2,0);
+				
 				let box = new THREE.Box3();
-				box.setFromObject(character);
+				box.setFromObject(tempcharacter);
 				let size = new THREE.Vector3();
 				box.getSize(size);
+
+				
 				character.geometry = {
 					parameters: {
 						height: Math.floor(size.y*100)/100,
@@ -143,36 +228,7 @@ const ThreeJSPage = () => {
 						depth: Math.floor(size.z*100)/100
 					}
 				};
-				
-				let skinnedMesh = character.getObjectByProperty('type', 'SkinnedMesh');
-				let skeleton = skinnedMesh.skeleton;
-				character.skeleton = {
-					head: character.getObjectByName('Head'),
-					spine: character.getObjectByName('Spine'),
-					torso: character.getObjectByName('Torso'),
-					leftLeg: character.getObjectByName('LeftLeg'),
-					leftLegLower: character.getObjectByName('LeftLegLower'),
-					rightLeg: character.getObjectByName('RightLeg'),
-					rightLegLower: character.getObjectByName('RightLegLower'),
-				}
-				character.animations = [
-					{arr: [
-							{name: 'head', x:  45, y: 0, z: 0, motion: 'linear'},
-							{name: 'leftLeg', x:  0, y: -30, z: 30, motion: 'linear'},
-							{name: 'rightLeg', x:  0, y: 30, z: 150, motion: 'linear'},
-							{name: 'rightLegLower', x:  0, y: 0, z: 0, motion: 'linear'},
-							{name: 'leftLegLower', x:  0, y: 0, z: 0, motion: 'linear'},
-						], speed: 0.05},
-					{arr: [
-							{name: 'head', x:  -45, y: 0, z: 0, motion: 'linear'},
-							{name: 'leftLeg', x:  0, y: -30, z: 150, motion: 'linear'},
-							{name: 'rightLeg', x: 0, y: 30, z: 30, motion: 'linear'},
-							{name: 'rightLegLower', x:  0, y: 0, z: 0, motion: 'linear'},
-							{name: 'leftLegLower', x:  0, y: 0, z: 0, motion: 'linear'},
-						], speed: 0.05}
-				];
 
-				scene.add(character);
 				loads-=1;
 			});
 
@@ -285,6 +341,30 @@ const ThreeJSPage = () => {
 				loads-=1;
 			});
 
+			loader.load('/surfers/environment/retroSun.glb', (gltf) => {
+				let model: any | null;
+				model = gltf.scene;
+				model.scale.set(1,1,1);
+				model.rotation.set(0,-Math.PI/2, 0);
+				
+				let box = new THREE.Box3();
+				box.setFromObject(model);
+				let size = new THREE.Vector3();
+				box.getSize(size);
+				
+				model.geometry = {
+					parameters: {
+						height: Math.floor(2.87*100)/100,
+						width: Math.floor(size.x*100)/100,
+						depth: Math.floor(size.z*100)/100,
+						depthOffset: 0.6
+					}
+				};
+
+				randomCrap.sun = model;
+				loads-=1;
+			});
+
 			function check(){
 				if(loads<=0){
 					init();
@@ -329,9 +409,22 @@ const ThreeJSPage = () => {
 			let light = new THREE.AmbientLight(color, 5);
 			scene.add(light);
 
-			let light2 = new THREE.PointLight(color, 150);
-			light2.position.set(5, 5, 5);
+			let light2 = new THREE.PointLight(color, 5);
+			light2.position.set(3, 3, 3);
 			scene.add(light2);
+
+			let light3 = new THREE.PointLight(color, 1.5);
+			light3.position.set(-3, 3, -3);
+			scene.add(light3);
+
+			let light4 = new THREE.PointLight(color, 30);
+			light4.position.set(0, 10, -110);
+			scene.add(light4);
+
+			let sun = randomCrap.sun;
+			sun.scale.set(10,10,10);
+			sun.position.set(0,10,-400);
+			scene.add(sun);
 
 			camera.position.z = 5;
 			camera.position.y = 2;
@@ -513,10 +606,12 @@ const ThreeJSPage = () => {
 				maxLevel = -laneHeight[0];
 				platformLevel = laneHeight[1];
 			}
+			if(currentObjectID == 2) groundLevel+=0.3;
 
 			if(collision.laneChange > 0){
 				collision.laneChange--;
 			}
+			
 
 
 			let laneTripping = false;
@@ -551,7 +646,8 @@ const ThreeJSPage = () => {
 								warn('splat');
 						}else{
 							warn('tripped');
-							character.position.y = groundLevel;
+							if(!randomCrap.lostGame)
+								character.position.y = groundLevel;
 						}
 					}
 			let grace2 = 0.2;
@@ -571,7 +667,7 @@ const ThreeJSPage = () => {
 				}
 			}
 
-			if(!laneTripping){
+			if(!laneTripping && !randomCrap.lostGame){
 
 				if(character.position.y > groundLevel) physics.touchingGround = false;
 				if(character.position.y == groundLevel) physics.touchingGround = true;
@@ -605,45 +701,11 @@ const ThreeJSPage = () => {
 				character.position.y += physics.yv;
 
 			}
+			if(randomCrap.lostGame && character.position.y > groundLevel){
+				physics.yv -= physics.gravity;
+				character.position.y = Math.max(character.position.y+physics.yv, groundLevel);
 
-			// let grace = 0.1;
-			// if(character.position.y > maxLevel){
-			// 	if(character.position.y - maxLevel < grace){
-			// 		character.position.y = maxLevel;
-			// 	}else
-			// 		warn();
-			// } 
-			// if(character.position.y < groundLevel){
-			// 	if(groundLevel - character.position.y < grace){
-			// 		character.position.y = groundLevel;
-			// 		physics.touchingGround = true;
-			// 	}else
-			// 		warn();
-			// } 
-
-			// if(physics.touchingGround == null){
-
-			// 	character.position.y = Math.round(character.position.y * 1000) / 1000;
-			// 	if(physics.yv < 0 && character.position.y > groundLevel && character.position.y + physics.yv < groundLevel)
-			// 		physics.yv = -(character.position.y - groundLevel);
-
-			// 	// if(character.position.y <= groundLevel){
-			// 	if(groundLevel > character.position && groundLevel - character.position.y <= grace ){
-			// 		warn()
-			// 		physics.touchingGround = true;
-			// 	}else{
-			// 		physics.touchingGround = false;
-			// 		physics.yv -= physics.gravity;
-			// 	}
-			// }
-
-			// if(physics.touchingGround) physics.yv = Math.max(0,physics.yv);
-			// character.position.y = Math.max(character.position.y, baseGround);
-
-			// physics.yv = parseFloat(physics.yv.toFixed(3));
-			// character.position.y += physics.yv;
-			// if(character.position.y < baseGround)
-			// 	character.position.y = baseGround;
+			}
 			
 			camera.position.y = character.position.y + 1;
 			camera.position.x = character.position.x+Math.sin(char.camAngle)*char.camDist;
@@ -834,28 +896,40 @@ const ThreeJSPage = () => {
 			}
 		}
 
-		function mixAnimation(body: any){
+		function mixAnimation(body: any, name: any){
 
 			if(!body.frame) body.frame = 0;
 
+			let animation = body.animations[name];
+
 			let thisFrame = Math.floor(body.frame);
-			let nextFrame = (thisFrame+1)%body.animations.length;
+			let nextFrame = (thisFrame+1)%animation.length;
 			let percentageToNext = (body.frame%1)
 
-			for(let i = 0; i < body.animations[thisFrame].arr.length; i++){
-				let jointData = body.animations[thisFrame].arr[i];
+			if(thisFrame >= animation.length)
+				thisFrame = thisFrame%animation.length;
+
+			for(let i = 0; i < animation[thisFrame].arr.length; i++){
+				let jointData = animation[thisFrame].arr[i];
 				let bone = body.skeleton[jointData.name];
-				let targetJointData = body.animations[nextFrame].arr[i];
+				let targetJointData = animation[nextFrame].arr[i];
 
 				if(jointData.motion == 'linear'){
 					bone.rotation.x = (jointData.x + (targetJointData.x-jointData.x)*percentageToNext) * (Math.PI/180);
 					bone.rotation.y = (jointData.y + (targetJointData.y-jointData.y)*percentageToNext) * (Math.PI/180);
 					bone.rotation.z = (jointData.z + (targetJointData.z-jointData.z)*percentageToNext) * (Math.PI/180);
 				}
+				if(jointData.motion == 'jitter'){
+					if(percentageToNext <= 0.1)
+					bone.rotation.x = (targetJointData.x) * (Math.PI/180);
+					bone.rotation.y = (targetJointData.y) * (Math.PI/180);
+					bone.rotation.z = (targetJointData.z) * (Math.PI/180);
+				}
+				
 
 			}
 
-			body.frame=(body.frame+body.animations[thisFrame].speed)%body.animations.length;
+			body.frame=(body.frame+animation[thisFrame].speed)%animation.length;
 		}
 
 		function warn(type: any){
@@ -877,7 +951,15 @@ const ThreeJSPage = () => {
 		}
 
 		function characterAnimations(){
-			mixAnimation(character);
+			if(randomCrap.lostGame)
+				mixAnimation(character, 'die');
+			else if(randomCrap.gameBegan)
+				if(physics.touchingGround)
+					mixAnimation(character, 'walk');
+				else
+					mixAnimation(character, 'fall');
+			else
+				mixAnimation(character, 'idle');
 		}
 
 		function lose(){
@@ -889,7 +971,7 @@ const ThreeJSPage = () => {
 				if(endName.current?.value && endName.current?.value.length > 0){
 					
 					if(endGame.current) endGame.current.style.display = 'flex';
-					let tempData = {'name': endName.current?.value}
+					let tempData = {'name': endName.current?.value, 'score': Math.floor(randomCrap.score)}
 
 					//SEND SCORE TO DATABASE
 					// send(tempData);
@@ -1013,9 +1095,9 @@ const ThreeJSPage = () => {
 			}else{
 				
 				if(randomCrap.gameBegan){
-					if(scoreKeeper.current) scoreKeeper.current.innerText = ''+randomCrap.score;
+					if(scoreKeeper.current) scoreKeeper.current.innerText = ''+Math.floor(randomCrap.score);
 					map.speed+=map.acceleration;
-					randomCrap.score+=1;
+					randomCrap.score+=0.1*(map.speed*10);
 					if(collision.tripTimer > 0) collision.tripTimer--;
 					if(map.loading > 0)
 						map.loading-=1;
