@@ -107,7 +107,8 @@ const ThreeJSPage = () => {
 		cameraShake: 0,
 		shakeTimer: 0,
 		lostGame: false,
-		sun: null as any
+		sun: null as any,
+		song: null as any
 
 	}
 
@@ -404,6 +405,7 @@ const ThreeJSPage = () => {
 			}
 
 			createLeaderBoard();
+			playMusic('lobby');
 
 			let color = 0xFFFFFF;
 			let light = new THREE.AmbientLight(color, 5);
@@ -962,6 +964,32 @@ const ThreeJSPage = () => {
 				mixAnimation(character, 'idle');
 		}
 
+		function playMusic(mode:any){
+			if(mode=='lobby'){
+				if(randomCrap.song)
+					randomCrap.song.pause();
+				randomCrap.song = new Audio('/surfers/environment/lobby.mp3');
+				randomCrap.song.addEventListener('ended', function() {
+					if(!(randomCrap.gameBegan && !randomCrap.lostGame)){
+						randomCrap.song.currentTime = 0;
+						randomCrap.song.play();
+					}
+				}, false);
+				randomCrap.song.play();
+			}
+			if(mode=='game'){
+				if(randomCrap.song)
+					randomCrap.song.pause();
+				randomCrap.song = new Audio('/surfers/environment/shittySurfers.wav');
+				randomCrap.song.addEventListener('ended', function() {
+					if(randomCrap.gameBegan && !randomCrap.lostGame){
+						randomCrap.song.currentTime = 0;
+						randomCrap.song.play();
+					}
+				}, false);
+				randomCrap.song.play();
+			}
+		}
 		function lose(){
 			// if (animationId.current) cancelAnimationFrame(animationId.current);
 			randomCrap.gameBegan = false;
@@ -980,6 +1008,7 @@ const ThreeJSPage = () => {
 					if(endGame.current) endGame.current.style.display = 'none';
 				}
 			}
+			randomCrap.song.pause();
 
 
 		}
@@ -987,9 +1016,13 @@ const ThreeJSPage = () => {
 		function begin(){
 			if(endGame.current) endGame.current.style.display = 'none';
 			randomCrap.gameBegan = true;
+
+			playMusic('game');
 		}
 
 		function restartGame(){
+
+			playMusic('lobby');
 			for(let i = 0; i < map.objects.length; i++){
 				scene.remove(map.objects[i]);
 			}
@@ -1110,7 +1143,9 @@ const ThreeJSPage = () => {
 			}
 			
 
-			if(keys.length > 0 && randomCrap.gameBegan == false) randomCrap.gameBegan = true;
+			if(keys.length > 0 && randomCrap.gameBegan == false && randomCrap.lostGame == false){
+				begin();
+			}
 
 
 			//TODO: 
