@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-    "prebuild": "node scripts/optimize-lastyear.js",
+		"prebuild": "node scripts/optimize-lastyear.js",
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
@@ -46,9 +46,7 @@
 		"@trpc/react-query": "^11.6.0",
 		"@trpc/server": "^11.6.0",
 		"ampx": "^0.2.3",
-		"body-parser": "^2.2.0",
 		"dotenv": "^16.4.7",
-		"express": "^5.1.0",
 		"jquery": "^3.7.1",
 		"jquery-ui": "^1.14.1",
 		"mongodb": "^6.15.0",
@@ -57,9 +55,8 @@
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"react-multi-carousel": "^2.8.5",
-  	"react-query": "^3.39.3",
+		"react-query": "^3.39.3",
 		"sharp": "^0.33.5",
-		"three": "^0.180.0",
 		"superjson": "^2.2.2"
 	},
 	"devDependencies": {
@@ -78,10 +75,10 @@
 		"@types/node": "^22.13.10",
 		"@types/react": "^18.3.18",
 		"@types/react-dom": "^18.3.5",
-		"@types/three": "^0.180.0",
 		"@typescript-eslint/eslint-plugin": "^8.26.1",
 		"@typescript-eslint/parser": "^8.26.1",
 		"autoprefixer": "^10.4.21",
+
 		"babel-jest": "^29.7.0",
 		"constructs": "^10.4.2",
 		"daisyui": "^4.12.24",
