@@ -16,6 +16,14 @@ export const links: NavGroup[] = [
 		],
 	},
 	{
+		name: "Event",
+		links: [
+			{ href: "/event", children: "Event Info" },
+			{ href: "/event/schedule", children: "Schedule" },
+			{ href: "/event/prizes", children: "Prizes" },
+		],
+	},
+	{
 		name: "HackRPI XI",
 		links: [
 			{ href: "/last-year#winners", children: "Winners" },
@@ -86,21 +94,9 @@ export default function NavBar({ showOnScroll }: { showOnScroll: boolean }) {
 			</>
 		);
 	return (
-		<>
-			<div className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-10`}>
-				<div className="absolute top-4 right-4 z-20">
-					<button
-						onClick={toggleDarkMode}
-						className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 text-black dark:text-white shadow"
-						aria-label="Toggle Dark Mode"
-					>
-						🌓
-					</button>
-				</div>
-
-				<DesktopNavBar links={links} />
-				<MlhBanner />
-			</div>
-		</>
+    <div className={`${showOnScroll ? (showNav ? "top-0" : "-top-24") : "top-0"} fixed transition-all w-full z-10`}>
+      <DesktopNavBar links={links} />
+      <MlhBanner />
+    </div>
 	);
 }

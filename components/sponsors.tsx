@@ -22,9 +22,9 @@ const Sponsors = () => {
 				backgroundSize: "100% 100%",
 			}}
 		>
-			<div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-hackrpi-dark-blue to-transparent z-10" />
+			<div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-hackrpi-dark-blue to-transparent" />
 
-			<div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-hackrpi-dark-blue to-transparent z-10" />
+			<div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-hackrpi-dark-blue to-transparent" />
 
 			<div className=" w-11/12 desktop:w-2/3  mt-20">
 				<h2 className="pb-10 text-retro-orange font-modern font-bold text-left text-4xl">
@@ -47,7 +47,7 @@ const Sponsors = () => {
 									return (
 										<div
 											key={sponsor.name}
-											className={`w-fit h-fit p-4 m-4 hover:scale-110 bg-hackrpi-light-purple bg-opacity-0 hover:bg-opacity-45 rounded-md transition-all duration-300 flex items-center justify-center mx-4 ${tierColors[tier].glow}`}
+											className={`w-fit h-fit p-4 m-4 hover:scale-110 bg-hackrpi-light-purple bg-opacity-75 hover:bg-opacity-100 rounded-md transition-all duration-300 flex items-center justify-center mx-4 ${tierColors[tier].glow}`}
 										>
 											<a href={sponsor.url} target="_blank" rel="noreferrer">
 												<NextImage

@@ -1,14 +1,20 @@
 "use client";
 
-import Timer from "./timer";
-import TitleText from "./title-text";
+import TitleText from "./mobile-title-text";
+import RegistrationButton from "@/components/themed-components/registration-link";
 
 export default function MobileTitleComponent() {
 	return (
-		<div className="w-full h-fit flex flex-col items-start justify-start mb-8 pl-8">
-			<div className="h-28 w-full"></div>
-			<TitleText />
-			<Timer />
+		<div className="w-full flex flex-col items-center justify-start space-y-6 p-4">
+			{/* Skyline box / main title */}
+			<div className="w-full max-w-[700px]">
+				<TitleText />
+			</div>
+
+			{/* Registration button below everything */}
+			<div className="w-full flex justify-center">
+				<RegistrationButton className="text-[28px] px-6 py-3" />
+			</div>
 		</div>
 	);
 }

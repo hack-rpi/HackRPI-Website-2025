@@ -43,7 +43,7 @@ function MobileProjectDisplay(props: ProjectDisplayProps) {
 	return (
 		<div className="flex xl:hidden flex-col items-start justify-start w-fit">
 			<div className="w-full flex items-center justify-center">
-				<Image src={props.imageUrl} alt={props.title} height={500} width={500} className="" />
+				<Image src={props.imageUrl} alt={props.title} height={500} width={500} className="previousWinnersImages" />
 			</div>
 			<div>
 				<h1 className="font-modern text-retro-orange text-left text-4xl text-shadow-md pb-4">{props.prizeCategory}</h1>
