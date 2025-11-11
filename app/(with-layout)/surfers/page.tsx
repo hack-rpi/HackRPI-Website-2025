@@ -10,10 +10,7 @@ import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 
 import "@/app/globals.css";
-import { mx_bilerp_0 } from "three/src/nodes/materialx/lib/mx_noise.js";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { text } from "stream/consumers";
-import { numberToCloudFormation } from "aws-cdk-lib";
 
 const ThreeJSPage = () => {
 
