@@ -13,6 +13,7 @@ import "@/app/globals.css";
 import { mx_bilerp_0 } from "three/src/nodes/materialx/lib/mx_noise.js";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { text } from "stream/consumers";
+import { numberToCloudFormation } from "aws-cdk-lib";
 
 const ThreeJSPage = () => {
 
@@ -45,8 +46,8 @@ const ThreeJSPage = () => {
 		score: 0
 	}
 	var map = {
-		speed: 0.1,
-		acceleration: 0.4/(10*60*100),
+		speed: 0.2,
+		acceleration: 0.8/(10*60*100),
 		loading: 30,
 		dist: 0,
 		loadDist: -40,
@@ -404,7 +405,7 @@ const ThreeJSPage = () => {
 				scene.add( line );
 			}
 
-			createLeaderBoard();
+			loadLeaderBoard();
 			playMusic('lobby');
 
 			let color = 0xFFFFFF;
@@ -488,9 +489,11 @@ const ThreeJSPage = () => {
 		window.addEventListener('resize', resize)
 
 		function createLeaderBoard(){
-			loadLeaderBoard();
 			let tempHeight = 0.5;
 			let tempGap = 0.1;
+
+      alert("Creating leaderboard with data")
+      alert(JSON.stringify(randomCrap.leaderBoard));
 
 			let leaderBoardHeight = randomCrap.leaderBoard.length * (tempHeight + tempGap) + tempGap;
 			let leaderBoardTop = 5-(leaderBoardHeight/2);
@@ -994,14 +997,41 @@ const ThreeJSPage = () => {
 			// if (animationId.current) cancelAnimationFrame(animationId.current);
 			randomCrap.gameBegan = false;
 			randomCrap.lostGame = true;
+      console.log("ONE")
 			if(endGame.current) endGame.current.style.display = 'flex';
+            console.log("TWO")
 			if(sendScore.current) sendScore.current.onclick = function(){
+        console.log("THREE")
 				if(endName.current?.value && endName.current?.value.length > 0){
+          console.log("FOUR")
 					
 					if(endGame.current) endGame.current.style.display = 'flex';
+          console.log("FIVE")
 					let tempData = {'name': endName.current?.value, 'score': Math.floor(randomCrap.score)}
 
+          console.log("WE ARE ABOUT TO SEND THE SCORE")
 					//SEND SCORE TO DATABASE
+
+          //Sending score
+          //const tempData = { 'name': endName.current?.value, 'score': Math.floor(randomCrap.score) };
+
+        fetch('http://hackpi.com/api/scores', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(tempData),
+        })
+          .then(response => response.json())
+          .then(data => console.log('Score saved:', data))
+          .catch((error) => {
+            console.error('Error:', error);
+            alert("There was an error submitting the score.");
+          });
+
+          alert(JSON.stringify(tempData))
+
+          //End of sending score
 					// send(tempData);
 					restartGame();
 
@@ -1038,7 +1068,7 @@ const ThreeJSPage = () => {
 
 			randomCrap.gameBegan = false;
 			randomCrap.lostGame = false;
-			createLeaderBoard();
+			loadLeaderBoard();
 
 			if(scoreKeeper.current) scoreKeeper.current.innerText = ''+randomCrap.score;
 		}
@@ -1082,17 +1112,42 @@ const ThreeJSPage = () => {
 			}	
 
 			if(keys.includes("z")) {
-				mapMove();
+				//mapMove();
 				if(keys.includes("z")) removeKey("z");
 			}	
 		}
 
 		function loadLeaderBoard(){
-			//LOAD LEADERBOARD OBJECTS
+			//LOAD LEADERBOARD 
+      
+      interface Result {
+        name: string,
+        score: number,
+      }
+      //Getting results:
+      fetch('http://hackpi.com/api/scores')
+      .then(response => response.json())
+      .then(data => {
+        console.log('Scores:', data)
+        if(data.length > 0){
+          alert(JSON.stringify(data))
+
+          data.sort((a, b) => b.score - a.score);
+          for(let i = 0; i < data.length; i++){
+            console.log(data[i])
+          }
+          randomCrap.leaderBoard = data;
+        }
+        let results: Result[] = data;
+        alert(JSON.stringify(results))
+        createLeaderBoard();
+      })
+      .catch((error) => console.error('Error:', error));
+
 
 			// leaderboard values stored as: {'name': 'BillyBobJones', 'score': 100}
 			
-			let results = [ // filler leaderboard
+			/*let results = [ // filler leaderboard
 				{'name': 'second', 'score': 8080},
 				{'name': 'third', 'score': 500},
 				{'name': 'sixth', 'score': 100},
@@ -1100,22 +1155,11 @@ const ThreeJSPage = () => {
 				{'name': 'fourth', 'score': 400},
 				{'name': 'fifth', 'score': 320},
 				{'name': 'seventh', 'score': 2},
-			];
+			];*/
 
 			// let results = [];
-
-			results.sort((a, b) => b.score - a.score);
-			for(let i = 0; i < results.length; i++){
-				console.log(results[i])
-			}
-			randomCrap.leaderBoard = results;
 		}
-
-
-
-
-
-
+    
 		const animate = () => {
 			animationId.current = requestAnimationFrame(animate);
 
