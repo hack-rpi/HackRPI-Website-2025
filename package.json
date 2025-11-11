@@ -57,7 +57,8 @@
 		"react-multi-carousel": "^2.8.5",
 		"react-query": "^3.39.3",
 		"sharp": "^0.33.5",
-		"superjson": "^2.2.2"
+		"superjson": "^2.2.2",
+		"three": "^0.181.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.26.10",
@@ -78,7 +79,6 @@
 		"@typescript-eslint/eslint-plugin": "^8.26.1",
 		"@typescript-eslint/parser": "^8.26.1",
 		"autoprefixer": "^10.4.21",
-
 		"babel-jest": "^29.7.0",
 		"constructs": "^10.4.2",
 		"daisyui": "^4.12.24",
