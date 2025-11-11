@@ -1,102 +1,14 @@
 import React, { useState } from "react";
 import "../../app/globals.css";
 import RegistrationButton from "@/components/themed-components/registration-link";
+import faqs from "@/data/faqData";
 
 type FAQ = {
 	title: string;
 	content: React.ReactNode;
 };
 
-const faqs: FAQ[] = [
-	{
-		title: "What is HackRPI?",
-		content:
-			"Teams of 1-4 have 24 hours to build a project relating to our theme Retro V. Modern. Teams will then present their projects, and the best projects win prizes!",
-	},
-	{
-		title: "When is HackRPI?",
-		content:
-			"HackRPI takes place on November 15th and 16th, 2025. Arrival and check-in takes place from 9-10 AM. Our opening ceremony starts at 10 AM, and hacking begins at 11am. Your projects must be on Devpost by 10 AM Sunday, and all coding must stop at 11 AM Sunday. Teams will present, and the event will end around 4PM on Sunday. We are excited to see you there!",
-	},
-	{
-		title: "Where is HackRPI?",
-		content:
-			"HackRPI takes place at Rensselaer Polytechnic Institute, in the Darrin Communication Center. Darrin Communications Center, 51 College Ave, Troy, NY 12180. See our event information page for more details.",
-	},
-	{
-		title: "Is HackRPI free to attend?",
-		content: "Yes! Thanks to our many wonderful sponsors, all food and swag are completely free for participants!",
-	},
-	{
-		title: "How do I register?",
-		content: (
-			<div className="flex items-start md:items-center justify-start flex-col md:flex-row">
-				<p className="pr-2">You can click here to register with Major League Hacking (MLH).</p>
-				<RegistrationButton /> {/* This is a custom button component will update later */}
-			</div>
-		),
-	},
-	{
-		title: "Who can participate?",
-		content:
-			"Everyone is welcome to participate, whether you are a hackathon veteran or this is your first hackathon, this is a great opportunity to learn, experiment with new technologies, and grow your skills. Our team of experienced mentors is here to help you in every step of the way.",
-	},
-	{
-		title: "I'm under 18, can I still participate?",
-		content:
-			"Students under 18 are welcome to attend, but are not allowed to stay overnight in the sleep rooms. Students under the age of 17 must have an adult (21+) chaperone with them at all times during the event.",
-	},
-	{
-		title: "Do I have to be an RPI student?",
-		content:
-			"No! HackRPI is open to everyone, students of all experience levels from all colleges and universities are welcome to attend. Did you know that students from over 45 other colleges attended HackRPI!",
-	},
-	{
-		title: "Does HackRPI provide travel reimbursement?",
-		content: (
-			<p>
-				Unfortunately, we are unable to provide travel reimbursement at this time, however, we have sleep rooms on
-				campus for students 18 and older, and we are more than happy to recommend local accommodations if you email us
-				at{" "}
-				<a href="mailto:hackrpi@rpi.edu" className="text-hackrpi-primary-blue underline">
-					hackrpi@rpi.edu
-				</a>
-				.
-			</p>
-		),
-	},
-	{
-		title: "What should I bring?",
-		content: "Bring your team, your laptop, chargers, any hardware you need, and a good night's sleep!",
-	},
-	{
-		title: "What is the theme?",
-		//TODO: Change the description
-		content:
-			"The theme for 2025's HackRPI is Retro vs Modern. In a world where nostalgia meets innovation, our 12th annual hackathon, Retro vs Modern, invites creators to explore the contrasts and possibilities between the past and the future. Join us in shaping the future through a creative lens that honors the old while embracing the new.",
-	},
-	{
-		title: "Is it okay if I am late to the event?",
-		content:
-			"Yes! You can arrive at any time during the event, but we recommend arriving before 11 AM on Saturday. Remember, the later you are, the less time you have to work on your project!",
-	},
-	{
-		title: "When are submissions due?",
-		content:
-			"All projects must be submitted to Devpost by 10 AM on Sunday. You will be able to modify your submission until 11am. After 11an, no coding or changes to your project are allowed.",
-	},
-	{
-		title: "How do I submit my project?",
-		content:
-			// eslint-disable-next-line
-			'You will submit your project on Devpost. See our "Event Information" and "Resources" pages for more details.',
-	},
-	{
-		title: "When and how will prizes be awarded?",
-		content:
-			"Prizes are announced at the closing ceremony, which will take place around 4 PM on Sunday. Physical prizes will be distributed during the closing ceremony. Winners of cash prizes will be contacted by our team after the event. ",
-	},
-];
+
 
 const FAQPage = () => {
 	const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
@@ -107,10 +19,52 @@ const FAQPage = () => {
 
 	return (
 		<div
-			className="h-auto mb-8 flex flex-col items-center text-hackrpi-pink bg-base-100 w-5/6 desktop:w-full pl-8 desktop:pl-0"
+			className="h-auto flex flex-col items-center text-hackrpi-pink bg-base-100 w-5/6 desktop:w-full pl-8 desktop:pl-0"
 			id="faq"
 			data-testid="faq-section"
 		>
+				<div>
+					<div className="w-full flex flex-col items-center lg:items-startlg:mt-0 h-full lg:ml-4 p-2 bg-gray-900 bg-opacity-100 m-2 hover:bg-opacity-100 rounded-xl">
+						{/* Registration Banner */}
+						<div
+							data-testid="register-now-banner"
+							className="w-full bg-hackrpi-secondary-orange text-white text-xl h-fit overflow-hidden whitespace-nowrap font-bold lg:mt-16\\ pl-1"
+						>
+							REGISTER NOW!
+						</div>
+						{/* Event Info Box */}
+						<div className="w-full bg-gray-900 text-white h-fit flex flex-col items-start justify-start font-modern">
+							<div className="w-full h-2 bg-white mt-4" />
+
+							<h2 className="flex items-center text-2xl xs:text-4xl font-semibold pl-2 mt-2 text-nowrap">
+								When &amp; Where{" "}
+								<svg
+									className="fill-white ml-4 rotate-180 md:rotate-90 lg:rotate-180"
+									xmlns="http://www.w3.org/2000/svg"
+									width="25"
+									height="25"
+									viewBox="0 0 11 11"
+								>
+									<path d="M11 1C11 0.447715 10.5523 -3.74211e-07 10 4.72575e-08L1 -1.63477e-07C0.447715 -1.63477e-07 2.8711e-07 0.447715 2.8711e-07 1C2.8711e-07 1.55228 0.447715 2 1 2L9 2L9 10C9 10.5523 9.44772 11 10 11C10.5523 11 11 10.5523 11 10L11 1ZM1.70711 10.7071L10.7071 1.70711L9.29289 0.292893L0.292893 9.29289L1.70711 10.7071Z" />
+								</svg>
+							</h2>
+
+							<div className="w-11/12 flex flex-col md:flex-row lg:flex-col items-start justify-center md:justify-start md:items-center lg:items-start lg:justify-center">
+								<div className="pl-2 text-md xs:text-xl mb-4 md:mb-8 lg:mb-4 mt-2 w-1/2 md:min-w-80">
+									<p data-testid="event-date" className="w-fit text-nowrap">
+										November 15-16, 2025
+									</p>
+									<p data-testid="event-location" className="w-fit text-nowrap">
+										Rensselaer Polytechnic Institute
+									</p>
+									<p data-testid="event-venue" className="w-fit text-nowrap">
+										Darrin Communications Center
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			<div className="flex w-full desktop:w-2/3">
 				<h1 className="font-modern text-hackrpi-orange text-left text-4xl text-shadow-md pb-4">FAQs</h1>
 			</div>
