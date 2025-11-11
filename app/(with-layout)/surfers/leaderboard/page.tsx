@@ -19,7 +19,7 @@ export default function Page() {
   // Function to fetch leaderboard entries
   const fetchLeaderboard = async () => {
     try {
-      const response = await fetch("http://hackrpi.com/api/scores");
+      const response = await fetch("https://hackrpi.com/api/scores");
       if (response.ok) {
         const data: Result[] = await response.json(); // Ensure the data is typed as Result[]
         setLeaderboardEntries(data); // Update state with the fetched leaderboard data
