@@ -1,0 +1,29 @@
+version: 1
+applications:
+  - frontend:
+      phases:
+        preBuild:
+          commands:
+            # Install dependencies
+            - npm ci || npm install
+            # Surface key environment variables into a Next.js .env file so they are available at build (and SSR runtime picks them up)
+            # IMPORTANT: Define MONGO_URI (and any others) in Amplify Console App Settings > Environment variables.
+            # These echo lines DO NOT hardcode secrets; they just write whatever Amplify injects at build time.
+            - echo "MONGO_URI=$MONGO_URI" >> .env
+            - echo "MONGO_URI=$MONGO_URI" >> .env.production
+            # If you have public variables prefixed with NEXT_PUBLIC_, add them similarly:
+            # - echo "NEXT_PUBLIC_API_BASE=$NEXT_PUBLIC_API_BASE" >> .env
+        build:
+          commands:
+            # Optional: show which env vars resolved (avoid printing secrets—mask length only)
+            - echo "Building with MONGO_URI length: ${#MONGO_URI}"
+            - npm run build
+      artifacts:
+        # For Next.js the build output served by Amplify Hosting is in .next (not 'build' like CRA)
+        baseDirectory: .next
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
+          - .next/cache/**
