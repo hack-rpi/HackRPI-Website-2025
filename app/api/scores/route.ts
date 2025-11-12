@@ -2,16 +2,12 @@
 import { NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 import { Score } from '@/app/models/Score';
+import { getMongoUri } from '@/utils/secrets';
 
 // Ensure Node.js runtime (not Edge) so we can use Mongoose
 export const runtime = 'nodejs';
 // Force dynamic to prevent aggressive caching
 export const dynamic = 'force-dynamic';
-
-// IMPORTANT: For Amplify Hosting inconsistencies with runtime env injection, we inline
-// the secret at build time by reading from .env during build. Amplify writes .env in amplify.yaml.
-// This results in the value being embedded in the server bundle similarly to a Lambda env var.
-const DB_URI = process.env.MONGO_URI as string | undefined;
 
 // Reuse a cached connection across hot reloads / lambda invocations to avoid creating many sockets.
 declare global {
@@ -33,10 +29,8 @@ async function connectToDatabase(uri: string) {
 
 // Handle POST request to save a score
 export async function POST(req: Request) {
-  if (!DB_URI) {
-    return NextResponse.json({ error: 'Server not configured (MONGO_URI missing)' }, { status: 503 });
-  }
   try {
+    const DB_URI = await getMongoUri();
     const { name, score } = await req.json();
     if (typeof name !== 'string' || name.trim().length === 0 || name.length > 40) {
       return NextResponse.json({ error: 'Invalid name' }, { status: 400 });
@@ -44,27 +38,29 @@ export async function POST(req: Request) {
     if (typeof score !== 'number' || !Number.isFinite(score) || score < 0) {
       return NextResponse.json({ error: 'Invalid score' }, { status: 400 });
     }
-  await connectToDatabase(DB_URI);
+    await connectToDatabase(DB_URI);
     const newScore = new Score({ name: name.trim(), score: Math.floor(score) });
     await newScore.save();
     return NextResponse.json({ message: 'Score saved', score: newScore }, { status: 201 });
   } catch (err: any) {
     console.error('Error saving score:', err);
+    if (err.message === 'Database connection not configured') {
+      return NextResponse.json({ error: 'Server not configured (MONGO_URI missing)' }, { status: 503 });
+    }
     return NextResponse.json({ error: 'Failed to save score' }, { status: 500 });
   }
-}
-
-// Handle GET request to fetch all scores
+}// Handle GET request to fetch all scores
 export async function GET() {
-  if (!DB_URI) {
-    return NextResponse.json({ error: 'Server not configured (MONGO_URI missing)' }, { status: 503 });
-  }
   try {
+    const DB_URI = await getMongoUri();
     await connectToDatabase(DB_URI);
     const scores = await Score.find().sort({ score: -1 }).limit(100).lean();
     return NextResponse.json(scores);
   } catch (err: any) {
     console.error('Error retrieving scores:', err);
+    if (err.message === 'Database connection not configured') {
+      return NextResponse.json({ error: 'Server not configured (MONGO_URI missing)' }, { status: 503 });
+    }
     return NextResponse.json({ error: 'Failed to retrieve scores' }, { status: 500 });
   }
 }
