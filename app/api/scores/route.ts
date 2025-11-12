@@ -8,6 +8,11 @@ export const runtime = 'nodejs';
 // Force dynamic to prevent aggressive caching
 export const dynamic = 'force-dynamic';
 
+// IMPORTANT: For Amplify Hosting inconsistencies with runtime env injection, we inline
+// the secret at build time by reading from .env during build. Amplify writes .env in amplify.yaml.
+// This results in the value being embedded in the server bundle similarly to a Lambda env var.
+const DB_URI = process.env.MONGO_URI as string | undefined;
+
 // Reuse a cached connection across hot reloads / lambda invocations to avoid creating many sockets.
 declare global {
   // eslint-disable-next-line no-var
@@ -28,8 +33,6 @@ async function connectToDatabase(uri: string) {
 
 // Handle POST request to save a score
 export async function POST(req: Request) {
-  const DB_URI = process.env.MONGO_URI; // read at request time to avoid build-time inlining issues
-  console.log('POST /api/scores - MONGO_URI present:', !!DB_URI, 'length:', DB_URI?.length || 0);
   if (!DB_URI) {
     return NextResponse.json({ error: 'Server not configured (MONGO_URI missing)' }, { status: 503 });
   }
@@ -41,7 +44,7 @@ export async function POST(req: Request) {
     if (typeof score !== 'number' || !Number.isFinite(score) || score < 0) {
       return NextResponse.json({ error: 'Invalid score' }, { status: 400 });
     }
-    await connectToDatabase(DB_URI);
+  await connectToDatabase(DB_URI);
     const newScore = new Score({ name: name.trim(), score: Math.floor(score) });
     await newScore.save();
     return NextResponse.json({ message: 'Score saved', score: newScore }, { status: 201 });
@@ -53,8 +56,6 @@ export async function POST(req: Request) {
 
 // Handle GET request to fetch all scores
 export async function GET() {
-  const DB_URI = process.env.MONGO_URI; // read at request time
-  console.log('GET /api/scores - MONGO_URI present:', !!DB_URI, 'length:', DB_URI?.length || 0);
   if (!DB_URI) {
     return NextResponse.json({ error: 'Server not configured (MONGO_URI missing)' }, { status: 503 });
   }
