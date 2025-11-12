@@ -13,6 +13,8 @@ applications:
             # These echo lines DO NOT hardcode secrets; they just write whatever Amplify injects at build time.
             - echo "MONGO_URI=$MONGO_URI" >> .env
             - echo "MONGO_URI=$MONGO_URI" >> .env.production
+            - echo "MONGO_URI=$MONGO_URI" >> .config.env
+            - echo "MONGO_URI=$MONGO_URI" >> .config.env.production
             # If you have public variables prefixed with NEXT_PUBLIC_, add them similarly:
             # - echo "NEXT_PUBLIC_API_BASE=$NEXT_PUBLIC_API_BASE" >> .env
             # Optional: show which env vars resolved (avoid printing secrets—mask length only)
