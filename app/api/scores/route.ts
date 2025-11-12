@@ -3,9 +3,8 @@ import { NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 import { Score } from '@/app/models/Score';
 
-// We rely on an environment variable MONGO_URI set in Amplify / hosting environment.
-// Earlier build logs showed SSM secrets failing to load, so provide defensive handling.
-const DB_URI = process.env.MONGO_URI;
+// Ensure Node.js runtime (not Edge) so we can use Mongoose
+export const runtime = 'nodejs';
 
 // Reuse a cached connection across hot reloads / lambda invocations to avoid creating many sockets.
 declare global {
@@ -13,13 +12,10 @@ declare global {
   var __MONGO_READY: Promise<typeof mongoose> | undefined;
 }
 
-async function connectToDatabase() {
-  if (!DB_URI) {
-    throw new Error('Missing MONGO_URI environment variable');
-  }
+async function connectToDatabase(uri: string) {
   if (mongoose.connection.readyState === 1) return; // already connected
   if (!global.__MONGO_READY) {
-    global.__MONGO_READY = mongoose.connect(DB_URI).catch((err) => {
+    global.__MONGO_READY = mongoose.connect(uri).catch((err) => {
       // Reset so future calls can retry
       global.__MONGO_READY = undefined;
       throw err;
@@ -30,7 +26,7 @@ async function connectToDatabase() {
 
 // Handle POST request to save a score
 export async function POST(req: Request) {
-  // Validate env up front for clearer error surface
+  const DB_URI = process.env.MONGO_URI; // read at request time to avoid build-time inlining issues
   if (!DB_URI) {
     return NextResponse.json({ error: 'Server not configured (MONGO_URI missing)' }, { status: 503 });
   }
@@ -42,7 +38,7 @@ export async function POST(req: Request) {
     if (typeof score !== 'number' || !Number.isFinite(score) || score < 0) {
       return NextResponse.json({ error: 'Invalid score' }, { status: 400 });
     }
-    await connectToDatabase();
+    await connectToDatabase(DB_URI);
     const newScore = new Score({ name: name.trim(), score: Math.floor(score) });
     await newScore.save();
     return NextResponse.json({ message: 'Score saved', score: newScore }, { status: 201 });
@@ -54,11 +50,12 @@ export async function POST(req: Request) {
 
 // Handle GET request to fetch all scores
 export async function GET() {
+  const DB_URI = process.env.MONGO_URI; // read at request time
   if (!DB_URI) {
     return NextResponse.json({ error: 'Server not configured (MONGO_URI missing)' }, { status: 503 });
   }
   try {
-    await connectToDatabase();
+    await connectToDatabase(DB_URI);
     const scores = await Score.find().sort({ score: -1 }).limit(100).lean();
     return NextResponse.json(scores);
   } catch (err: any) {
