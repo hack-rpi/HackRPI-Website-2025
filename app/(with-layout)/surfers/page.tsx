@@ -1012,7 +1012,7 @@ const ThreeJSPage = () => {
           //Sending score
           //const tempData = { 'name': endName.current?.value, 'score': Math.floor(randomCrap.score) };
 
-        fetch('https://hackpi.com/api/scores', {
+	fetch('/api/scores', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -1122,7 +1122,7 @@ const ThreeJSPage = () => {
         score: number,
       }
       //Getting results:
-      fetch('https://hackpi.com/api/scores')
+	fetch('/api/scores', { cache: 'no-store' })
       .then(response => response.json())
       .then(data => {
         console.log('Scores:', data)

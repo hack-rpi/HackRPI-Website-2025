@@ -45,6 +45,7 @@
 		"@trpc/client": "^11.6.0",
 		"@trpc/react-query": "^11.6.0",
 		"@trpc/server": "^11.6.0",
+		"@types/three": "^0.181.0",
 		"ampx": "^0.2.3",
 		"dotenv": "^16.4.7",
 		"jquery": "^3.7.1",
