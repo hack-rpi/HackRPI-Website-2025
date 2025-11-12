@@ -5,6 +5,8 @@ import { Score } from '@/app/models/Score';
 
 // Ensure Node.js runtime (not Edge) so we can use Mongoose
 export const runtime = 'nodejs';
+// Force dynamic to prevent aggressive caching
+export const dynamic = 'force-dynamic';
 
 // Reuse a cached connection across hot reloads / lambda invocations to avoid creating many sockets.
 declare global {
@@ -27,6 +29,7 @@ async function connectToDatabase(uri: string) {
 // Handle POST request to save a score
 export async function POST(req: Request) {
   const DB_URI = process.env.MONGO_URI; // read at request time to avoid build-time inlining issues
+  console.log('POST /api/scores - MONGO_URI present:', !!DB_URI, 'length:', DB_URI?.length || 0);
   if (!DB_URI) {
     return NextResponse.json({ error: 'Server not configured (MONGO_URI missing)' }, { status: 503 });
   }
@@ -51,6 +54,7 @@ export async function POST(req: Request) {
 // Handle GET request to fetch all scores
 export async function GET() {
   const DB_URI = process.env.MONGO_URI; // read at request time
+  console.log('GET /api/scores - MONGO_URI present:', !!DB_URI, 'length:', DB_URI?.length || 0);
   if (!DB_URI) {
     return NextResponse.json({ error: 'Server not configured (MONGO_URI missing)' }, { status: 503 });
   }
