@@ -56,6 +56,9 @@ export async function GET() {
 	try {
 		await connectDB();
 		const items = await Schedule.find().sort({ start_time: 1, createdAt: -1 });
+
+    console.log(`Items: ${items}`);
+
 		return NextResponse.json(items);
 	} catch (err) {
 		console.error("Error fetching schedule:", err);
