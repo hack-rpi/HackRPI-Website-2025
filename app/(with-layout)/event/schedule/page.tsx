@@ -71,15 +71,11 @@ export default function Page() {
 	const [state, setState] = useState<"loading" | "loaded" | "error">("loading");
 	const [modalEvent, setModalEvent] = useState<Event | null>(null);
 
-  // TODO: make prettier
   useEffect(() => {
     async function fetchSchedule() {
       try {
         setState("loading");
-        console.log("hi")
         const response = await fetch("/api/schedule");
-        // const response = await GET();
-
 
         if (!response.ok) {
           throw new Error("Failed to fetch schedule data");
@@ -90,7 +86,7 @@ export default function Page() {
         const satEvents: Event[] = [];
         const sunEvents: Event[] = [];
 
-        // 2. Process and convert the fetched data
+        // process data
         rawEvents.forEach((rawEv) => {
             const convertedEvent = convertToEvent(rawEv);
             const eventDate = new Date(convertedEvent.startTime);
@@ -101,35 +97,34 @@ export default function Page() {
             } else {
                 sunEvents.push(convertedEvent);
             }
-
-            console.log(satEvents)
-            console.log(sunEvents)
         });
 
+        // TODO: fix infinite loop
         setSaturdayEvents(satEvents);
         setSundayEvents(sunEvents);
         setState("loaded");
-    } catch (e) {
-      console.error(e);
-      setState("error");
-    }
-  }
-
-  fetchSchedule();
-
-  // Keep the interval for current time
-  const interval = setInterval(() => {
-    setCurrentDateTime(new Date());
-  }, 1000);
-
-  // Keep the keydown listener
-  addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-          setModalEvent(null);
+      } catch (e) {
+        console.error(e);
+        setState("error");
       }
-  });
+    }
 
-  return () => clearInterval(interval);
+    fetchSchedule();
+
+    const interval = setInterval(() => {
+      setCurrentDateTime(new Date());
+    }, 1000);
+
+    const keydownHandler = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setModalEvent(null);
+      }
+    }
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("keydown", keydownHandler);
+    }
   }, []);
 
 	return (

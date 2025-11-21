@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { Event } from "@/data/schedule";
 
 export default function Schedule(props: {
