@@ -5,6 +5,8 @@ dotenv.config({path:"./config.env"});
 
 const MONGO_URI = process.env.MONGO_URI;
 
+// connect to DB
+// being called twice, see https://github.com/vercel/next.js/issues/37715
 export async function connectDB() {
 	if (MONGO_URI) {
 		const connectDB = mongoose

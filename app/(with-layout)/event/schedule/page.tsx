@@ -6,16 +6,12 @@ import type { Event } from "@/data/schedule";
 import {
 	saturdayTimes,
 	sundayTimes,
-	SATURDAY_START,
-	SUNDAY_START
 } from "@/data/schedule";
 
 import Schedule from "@/components/schedule/schedule";
 import HackRPILink from "@/components/themed-components/hackrpi-link";
-import scheduleData from "@/data/scheduleData.json";
-import { GET } from "@/app/api/schedule/route";
 
-type MongoEvent = {
+type RawEvent = {
     _id: string;
     name: string;
     location: string;
@@ -30,7 +26,8 @@ type MongoEvent = {
 const DEFAULT_WIDTH = 1;
 const isSaturday = (date: Date) => date.getDay() === 6; // Saturday is day 6 (0=Sun, 6=Sat)
 
-function convertToEvent(ev: MongoEvent): Event {
+// convert fetched data from DB to Event Type
+function convertToEvent(ev: RawEvent): Event {
     const startTime = new Date(ev.start_time).getTime();
     const endTime = new Date(ev.end_time).getTime();
 
@@ -81,8 +78,7 @@ export default function Page() {
           throw new Error("Failed to fetch schedule data");
         }
 
-        const rawEvents: MongoEvent[] = await response.json();
-        
+        const rawEvents: RawEvent[] = await response.json();
         const satEvents: Event[] = [];
         const sunEvents: Event[] = [];
 
@@ -99,9 +95,11 @@ export default function Page() {
             }
         });
 
-        // TODO: fix infinite loop
+        // TODO: investigate possibility of infinite re-rendering
+        // update saturdayEvents and sundayEvents arrays
         setSaturdayEvents(satEvents);
         setSundayEvents(sunEvents);
+
         setState("loaded");
       } catch (e) {
         console.error(e);
