@@ -1,33 +1,65 @@
 "use client";
 
-import NavBar from "@/components/nav-bar/nav-bar";
 import "@/app/globals.css";
 import { useState, useEffect } from "react";
 import type { Event } from "@/data/schedule";
 import {
 	saturdayTimes,
 	sundayTimes,
-	SATURDAY_START,
-	SUNDAY_START
 } from "@/data/schedule";
 
 import Schedule from "@/components/schedule/schedule";
 import HackRPILink from "@/components/themed-components/hackrpi-link";
-import scheduleData from "@/data/scheduleData.json";
 
 type RawEvent = {
-	id: string;
-	title: string;
-	description: string;
-	location: string;
-	speaker: string;
-	eventType: "workshop" | "constant" | "important" | "food" | "deadline";
-	visible: boolean;
-	column: number;
-	width: number;  // Added width for multi-column spanning
-	startMinutesFromDayStart: number; // minutes offset
-	durationMinutes: number;          // length
+    _id: string;
+    name: string;
+    location: string;
+    host: string;
+    description: string;
+    start_time: string;
+    end_time: string;
+    column: number;
+    event_type: string;
 };
+
+const DEFAULT_WIDTH = 1;
+const isSaturday = (date: Date) => date.getDay() === 6; // Saturday is day 6 (0=Sun, 6=Sat)
+
+// convert fetched data from DB to Event Type
+function convertToEvent(ev: RawEvent): Event {
+    const startTime = new Date(ev.start_time).getTime();
+    const endTime = new Date(ev.end_time).getTime();
+
+    let eventType: "workshop" | "constant" | "important" | "food" | "deadline" = "workshop"; 
+    switch (ev.event_type) {
+        case "food":
+            eventType = "food";
+            break;
+        case "ceremony":
+            eventType = "important";
+            break;
+        case "deadline":
+            eventType = "deadline";
+            break;
+        default:
+        eventType = "workshop";
+    }
+
+  return {
+    id: ev._id,
+    title: ev.name,
+    description: ev.description ?? "",
+    startTime,
+    endTime,
+    location: ev.location ?? "",
+    speaker: ev.host ?? "",
+    eventType,
+    visible: true,
+    column: ev.column,
+    width: DEFAULT_WIDTH, 
+  };
+}
 
 export default function Page() {
 	const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -36,68 +68,62 @@ export default function Page() {
 	const [state, setState] = useState<"loading" | "loaded" | "error">("loading");
 	const [modalEvent, setModalEvent] = useState<Event | null>(null);
 
-	useEffect(() => {
-		try {
-			// Convert raw scheduleData into real Events
-			const satConverted: Event[] = (scheduleData.saturdayEvents as RawEvent[]).map((ev) => {
-				const startTime = SATURDAY_START + ev.startMinutesFromDayStart * 60_000;
-				const endTime = startTime + ev.durationMinutes * 60_000;
+  useEffect(() => {
+    async function fetchSchedule() {
+      try {
+        setState("loading");
+        const response = await fetch("/api/schedule");
 
-				return {
-					id: ev.id,
-					title: ev.title,
-					description: ev.description ?? "",
-					startTime,
-					endTime,
-					location: ev.location ?? "",
-					speaker: ev.speaker ?? "",
-					eventType: ev.eventType ?? "general",
-					visible: ev.visible,
-					column: ev.column,
-					width: ev.width // New property to handle multi-column span
-				};
-			});
+        if (!response.ok) {
+          throw new Error("Failed to fetch schedule data");
+        }
 
-			const sunConverted: Event[] = (scheduleData.sundayEvents as RawEvent[]).map((ev) => {
-				const startTime = SUNDAY_START + ev.startMinutesFromDayStart * 60_000;
-				const endTime = startTime + ev.durationMinutes * 60_000;
+        const rawEvents: RawEvent[] = await response.json();
+        const satEvents: Event[] = [];
+        const sunEvents: Event[] = [];
 
-				return {
-					id: ev.id,
-					title: ev.title,
-					description: ev.description ?? "",
-					startTime,
-					endTime,
-					location: ev.location ?? "",
-					speaker: ev.speaker ?? "",
-					eventType: ev.eventType ?? "general",
-					visible: ev.visible,
-					column: ev.column,
-					width: ev.width // New property to handle multi-column span
-				};
-			});
+        // process data
+        rawEvents.forEach((rawEv) => {
+            const convertedEvent = convertToEvent(rawEv);
+            const eventDate = new Date(convertedEvent.startTime);
 
-			setSaturdayEvents(satConverted);
-			setSundayEvents(sunConverted);
+            // Separate events into Saturday and Sunday based on the start date
+            if (isSaturday(eventDate)) { 
+                satEvents.push(convertedEvent);
+            } else {
+                sunEvents.push(convertedEvent);
+            }
+        });
 
-			setState("loaded");
-		} catch (e) {
-			console.error(e);
-			setState("error");
-		}
+        // TODO: investigate possibility of infinite re-rendering
+        // update saturdayEvents and sundayEvents arrays
+        setSaturdayEvents(satEvents);
+        setSundayEvents(sunEvents);
 
-		const interval = setInterval(() => {
-			setCurrentDateTime(new Date());
-		}, 1000);
+        setState("loaded");
+      } catch (e) {
+        console.error(e);
+        setState("error");
+      }
+    }
 
-		addEventListener("keydown", (event) => {
-			if (event.key === "Escape") {
-				setModalEvent(null);
-			}
-		});
+    fetchSchedule();
 
-		return () => clearInterval(interval);
-	}, []);
+    const interval = setInterval(() => {
+      setCurrentDateTime(new Date());
+    }, 1000);
+
+    const keydownHandler = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setModalEvent(null);
+      }
+    }
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("keydown", keydownHandler);
+    }
+  }, []);
 
 	return (
 		<div className="flex flex-col w-full h-fit min-h-screen items-center justify-center">
