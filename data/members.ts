@@ -1,8 +1,8 @@
 /* ===============================
    1. Import Team Images
 ================================ */
+
 import matthew from "../public/team/photos/matthew.jpeg";
-import shankar from "../public/team/photos/shankar.jpeg";
 import tobias from "../public/team/photos/tobias.jpeg";
 import jackson from "../public/team/photos/jackson.jpeg";
 import ethan from "../public/team/photos/EthanJR.png";
@@ -12,9 +12,37 @@ import jodie from "../public/team/photos/jodieJR.jpg";
 import lala from "../public/team/photos/lalaJR.jpg";
 
 /* ===============================
-   2. Team Color Lookup Table
+   2. Types
 ================================ */
-export const teamColors = {
+
+export interface TeamColor {
+  bg: string;
+  text: string;
+}
+
+export interface Director {
+  name: string;
+  role: string;
+  image: any; // image is filled from `executive[name]`
+  "team-color": TeamColor;
+  teamDescription: string;
+}
+
+export interface Organizer {
+  name: string;
+  team: "Technology" | "Logistics" | "Marketing" | "Outreach" | "Finance" | "Sponsorship";
+}
+
+export interface Team {
+  directors: Director[];
+  organizers: Organizer[];
+}
+
+/* ===============================
+   3. Team Color Lookup Table
+================================ */
+
+export const teamColors: Record<string, TeamColor> = {
   president: { bg: "#9e40ee", text: "#ffffff" },
   vicePresident: { bg: "#733dbe", text: "#ffffff" },
   Technology: { bg: "#e9bc59", text: "#ffffff" },
@@ -26,8 +54,9 @@ export const teamColors = {
 };
 
 /* ===============================
-   3. Auto Description Generator
+   4. Auto Description Generator
 ================================ */
+
 function autoDescription(role: string): string {
   if (role.includes("President"))
     return "Leads the overall planning and execution of the hackathon, coordinating all teams for success.";
@@ -54,21 +83,24 @@ function autoDescription(role: string): string {
 }
 
 /* ===============================
-   4. Auto Team-Color Picker
+   5. Auto Team-Color Picker
 ================================ */
-function findTeamColor(role: string) {
+
+function findTeamColor(role: string): TeamColor {
   for (const key of Object.keys(teamColors)) {
-    if (role.includes(key)) return teamColors[key];
+    if (role.toLowerCase().includes(key.toLowerCase())) {
+      return teamColors[key];
+    }
   }
   return teamColors.Marketing; // fallback
 }
 
 /* ===============================
-   5. Executive Photo Mapper
+   6. Executive Photo Mapper
 ================================ */
-export const executive = {
+
+export const executive: Record<string, any> = {
   "Matthew Treanor": matthew,
-  "Shankar Gowrisankar": shankar,
   "Devan Patel": devan,
   "Ethan Kusse": ethan,
   "Tobias Manayath": tobias,
@@ -79,22 +111,24 @@ export const executive = {
 };
 
 /* ===============================
-   6. DIRECTOR TEMPLATE FUNCTION
+   7. DIRECTOR TEMPLATE FUNCTION
 ================================ */
-function makeDirector(name: string, role: string) {
+
+function makeDirector(name: string, role: string): Director {
   return {
     name,
     role,
-    image: executive[name],
+    image: executive[name],         // still pulled from the map
     "team-color": findTeamColor(role),
     teamDescription: autoDescription(role),
   };
 }
 
 /* ===============================
-   7. FULL TEAM OBJECT
+   8. FULL TEAM OBJECT
 ================================ */
-export const team = {
+
+export const team: Team = {
   directors: [
     makeDirector("Tobias Manayath", "President"),
     makeDirector("Jackson Baimel", "Vice President"),

@@ -2,7 +2,7 @@
 
 import React, { useCallback, useEffect, useState } from "react";
 import HackRPILink from "../themed-components/hackrpi-link";
-import { Director, team, teamColors, executive } from "../../data/members";
+import { Director, team, teamColors } from "../../data/members";
 import Image from "next/image";
 
 export default function TeamComponent() {
@@ -153,7 +153,9 @@ export default function TeamComponent() {
 					onMouseEnter={() => setDirectorsAnim((p) => ({ ...p, hover: true, time: Date.now() }))}
 					onMouseLeave={() => setDirectorsAnim((p) => ({ ...p, hover: false, time: Date.now() }))}
 				>
-					{directorsAnim.directors.map((director) => DirectorCard(director, directorsAnim.offset))}
+					{directorsAnim.directors.map((director) => (
+						<DirectorCard key={director.name} director={director} offset={directorsAnim.offset} />
+					))}
 				</div>
 
 				{/* Organizers Section */}
@@ -186,12 +188,15 @@ export default function TeamComponent() {
 	);
 }
 
-function DirectorCard(director: Director, offset: number) {
+/* -----------------------------
+   Director Card Component (flip)
+----------------------------- */
+
+function DirectorCard({ director, offset }: { director: Director; offset: number }) {
 	const [hovered, setHovered] = useState(false);
 
 	return (
 		<div
-			key={director.name}
 			className="w-[200px] sm:w-[180px] md:w-[200px] flex-shrink-0 mr-8 flex flex-col items-center justify-center"
 			style={{ transform: `translate(${offset}%, 0%)`, perspective: "1000px" }}
 			onMouseEnter={() => setHovered(true)}
@@ -199,14 +204,20 @@ function DirectorCard(director: Director, offset: number) {
 		>
 			{/* Flip Wrapper */}
 			<div
-				className={`relative w-full aspect-square transition-transform duration-700 transform-style-preserve-3d ${
-					hovered ? "rotate-y-180" : ""
-				}`}
+				className="relative w-full aspect-square"
+				style={{
+					transformStyle: "preserve-3d",
+					transition: "transform 0.7s",
+					transform: hovered ? "rotateY(180deg)" : "rotateY(0deg)",
+				}}
 			>
 				{/* FRONT SIDE */}
-				<div className="absolute inset-0 rounded-full overflow-hidden backface-hidden">
+				<div
+					className="absolute inset-0 rounded-full overflow-hidden"
+					style={{ backfaceVisibility: "hidden" }}
+				>
 					<Image
-						src={executive[director.name]}
+						src={director.image}
 						alt={director.name}
 						width={200}
 						height={200}
@@ -217,10 +228,11 @@ function DirectorCard(director: Director, offset: number) {
 
 				{/* BACK SIDE */}
 				<div
-					className="absolute inset-0 rounded-full flex items-center justify-center p-2 sm:p-3 md:p-4 text-center backface-hidden"
+					className="absolute inset-0 rounded-full flex items-center justify-center p-2 sm:p-3 md:p-4 text-center"
 					style={{
 						backgroundColor: director["team-color"].bg,
 						color: director["team-color"].text,
+						backfaceVisibility: "hidden",
 						transform: "rotateY(180deg)",
 					}}
 				>
@@ -228,7 +240,7 @@ function DirectorCard(director: Director, offset: number) {
 						<p
 							className="break-words whitespace-normal text-center leading-tight font-medium"
 							style={{
-								fontSize: "clamp(10px, 1.5vw, 14px)", // 👈 responsive scaling
+								fontSize: "clamp(10px, 1.5vw, 14px)",
 								lineHeight: "1.2em",
 								wordBreak: "break-word",
 							}}
