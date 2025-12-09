@@ -106,14 +106,14 @@ function makeDirector(name: string, role: string) {
 ================================ */
 export const team = {
   directors: [
-    makeDirector("Xenia Khusid", "President"),
-    makeDirector("CJ Marino", "Vice President"),
+    makeDirector("Tobias Manayath", "President"),
+    makeDirector("Jackson Baimel", "Vice President"),
     makeDirector("Matthew Treanor", "Director of Outreach"),
-    makeDirector("Shankar Gowrisankar", "Director of Finance"),
-    makeDirector("Aaryan Gautam", "Director of Sponsorship"),
-    makeDirector("Tobias Manayath", "Director of Logistics"),
-    makeDirector("Jackson Baimel", "Director of Technology"),
-    makeDirector("Suyash Amatya", "Director of Marketing"),
+    makeDirector("Devan Patel", "Director of Finance"),
+    makeDirector("Ethan Kusse", "Director of Sponsorship"),
+    makeDirector("Lala Liu", "Director of Logistics"),
+    makeDirector("Caleb Liu", "Director of Technology"),
+    makeDirector("Jodie Cho", "Director of Marketing"),
   ],
 
   organizers: [
