@@ -1,20 +1,15 @@
 /* ===============================
    1. Import Team Images
 ================================ */
-import xenia from "../public/team/photos/xenia.jpeg";
-import cj from "../public/team/photos/cj.jpeg";
 import matthew from "../public/team/photos/matthew.jpeg";
 import shankar from "../public/team/photos/shankar.jpeg";
-import aaryan from "../public/team/photos/aaryan.jpeg";
 import tobias from "../public/team/photos/tobias.jpeg";
 import jackson from "../public/team/photos/jackson.jpeg";
-import suyash from "../public/team/photos/suyash.jpeg";
 import ethan from "../public/team/photos/EthanJR.png";
 import devan from "../public/team/photos/devanJR.jpg";
 import caleb from "../public/team/photos/calebJR.jpg";
 import jodie from "../public/team/photos/jodieJR.jpg";
 import lala from "../public/team/photos/lalaJR.jpg";
-import dakshesh from "../public/team/photos/daksheshJR.jpg";
 
 /* ===============================
    2. Team Color Lookup Table
@@ -72,19 +67,14 @@ function findTeamColor(role: string) {
    5. Executive Photo Mapper
 ================================ */
 export const executive = {
-  "Xenia Khusid": xenia,
-  "CJ Marino": cj,
   "Matthew Treanor": matthew,
-  "Dakshesh Amaram": dakshesh,
   "Shankar Gowrisankar": shankar,
   "Devan Patel": devan,
-  "Aaryan Gautam": aaryan,
   "Ethan Kusse": ethan,
   "Tobias Manayath": tobias,
   "Lala Liu": lala,
   "Caleb Liu": caleb,
   "Jackson Baimel": jackson,
-  "Suyash Amatya": suyash,
   "Jodie Cho": jodie,
 };
 
