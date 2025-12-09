@@ -109,17 +109,11 @@ export const team = {
     makeDirector("Xenia Khusid", "President"),
     makeDirector("CJ Marino", "Vice President"),
     makeDirector("Matthew Treanor", "Director of Outreach"),
-    makeDirector("Dakshesh Amaram", "Jr Director of Outreach"),
     makeDirector("Shankar Gowrisankar", "Director of Finance"),
-    makeDirector("Devan Patel", "Jr Director of Finance"),
     makeDirector("Aaryan Gautam", "Director of Sponsorship"),
-    makeDirector("Ethan Kusse", "Jr Director of Sponsorship"),
     makeDirector("Tobias Manayath", "Director of Logistics"),
-    makeDirector("Lala Liu", "Jr Director of Logistics"),
     makeDirector("Jackson Baimel", "Director of Technology"),
-    makeDirector("Caleb Liu", "Jr Director of Technology"),
     makeDirector("Suyash Amatya", "Director of Marketing"),
-    makeDirector("Jodie Cho", "Jr Director of Marketing"),
   ],
 
   organizers: [
