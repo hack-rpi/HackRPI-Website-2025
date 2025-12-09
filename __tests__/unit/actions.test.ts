@@ -1,11 +1,12 @@
 // Mock these modules before importing the functions
-import { generateClient } from "aws-amplify/api";
-import * as Auth from "@aws-amplify/auth";
+// import { generateClient } from "aws-amplify/api";
+// import * as Auth from "@aws-amplify/auth";
 import { Profanity } from "@2toad/profanity";
 
 // Remove this import as we'll move it below after setting up mocks
 // import { get_leaderboard, create_leaderboard_entry, fetchEvents, is_game_ready, LeaderboardEntry } from "@/app/actions";
 
+/*
 // This object will be defined inline in the mock instead of referencing mockClient
 jest.mock("aws-amplify/api", () => {
 	// Declare mock functions
@@ -27,7 +28,7 @@ jest.mock("aws-amplify/api", () => {
 			},
 		}),
 	};
-});
+}); */
 
 // Extract the mocked functions after mocking
 const mockGenerateClient = generateClient as jest.MockedFunction<typeof generateClient>;
@@ -36,6 +37,7 @@ const mockListByScore = mockClient.models.Leaderboard.listByScore;
 const mockCreate = mockClient.models.Leaderboard.create;
 const mockList = mockClient.models.event.list;
 
+/*
 // Mock Auth module
 jest.mock("@aws-amplify/auth", () => ({
 	fetchAuthSession: jest.fn().mockResolvedValue({
@@ -58,7 +60,7 @@ jest.mock("@2toad/profanity", () => {
 			}),
 		})),
 	};
-});
+}); */
 
 // Now import the functions being tested AFTER all mocks are set up
 import { get_leaderboard, create_leaderboard_entry, fetchEvents, is_game_ready, LeaderboardEntry } from "@/app/actions";

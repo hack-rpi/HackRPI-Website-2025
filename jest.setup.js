@@ -128,6 +128,7 @@ jest.mock("next/image", () => ({
 	},
 }));
 
+/*
 // Mock AWS Amplify with more detailed implementation
 jest.mock("aws-amplify", () => ({
 	Amplify: {
@@ -143,7 +144,7 @@ jest.mock("aws-amplify", () => ({
 		}),
 		signOut: jest.fn().mockResolvedValue({}),
 	},
-}));
+})); 
 
 // Mock generateClient with more useful default implementation
 jest.mock("aws-amplify/api", () => ({
@@ -162,7 +163,7 @@ jest.mock("aws-amplify/api", () => ({
 			},
 		},
 	}),
-}));
+}));*/
 
 // 2025 Best Practice: Enable automatic fake timers for all tests by default
 // This makes tests more predictable and faster
