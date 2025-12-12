@@ -3,37 +3,28 @@ import type { ProjectCarouselProps } from "@/components/prev-projects/project-ca
 
 export const podiumPrizes: ProjectDisplayProps[] = [
 	{
-		title: "WALKR",
-		authors: ["Ryan Dong", "Oliver Adams", "Jordyn Young"],
+		title: "TrashCam",
+		authors: [],
 		description:
-			"WALKR combines GPS coordinates with advanced geospatial mapping to instantly pinpoint the user’s location and provide guidance based on nearby landmarks. Our approach integrates real-time positioning with the angle and orientation of the user’s phone to project an accurate walking route displayed in a mixed-reality headset. Users can simply say their destination aloud, and WALKR’s hands-free voice recognition sets up a precise route without needing a glance at the screen. Notably, WALKR also offers a fully integrated wheelchair-accessible route option, ensuring that users with mobility challenges receive optimal path guidance.",
-		imageUrl: "/projectImages/Walkr.png",
+			"",
+		imageUrl: "/projectImages/.png",
 		prizeCategory: "First Place",
 		imageOnLeft: false,
 	},
 	{
-		title: "Shelfie",
-		authors: ["yasemin-et Turkoglu", "phanl2", "Rumeysa Kara", "drchubbington"],
+		title: "RetroBrainScan",
+		authors: [],
 		description:
-			"In today's fast-paced urban environment, traditional libraries and bookstores are facing challenges in engaging with the digital-native population. Our team was inspired to bridge this gap by creating Shelfie, a modern solution that makes literary discovery accessible. With many city residents facing time constraints and information overload, we wanted to create a tool that makes finding the right book as easy as using social media, thereby promoting literacy and cultural engagement in urban communities.",
-		imageUrl: "/projectImages/Shelfie.png",
+			"",
+		imageUrl: "/projectImages/.png",
 		imageOnLeft: true,
 		prizeCategory: "Second Place",
-	},
-	{
-		title: "Green",
-		authors: ["Mami Ravaloarison"],
-		description:
-			'"Green" is an app built to reduce traffic emissions by helping drivers find routes with minimal stops as possible. It analyzes current traffic for a route and dynamically recommends routes that avoid traffic hotspots, ensuring drivers spend less time in traffic even though, now the travel time has increased. Every time a user completes a route with fewer emissions, they earn points. These points can then be redeemed for discounts or rewards offered by environmentally conscious companies, such as WWF, National Geographic, and others dedicated to environmental causes.',
-		imageUrl: "/projectImages/GreenWinner.png",
-		prizeCategory: "Best Sustainability Hack",
-		imageOnLeft: false,
 	},
 ];
 
 export const carouselPrizes: ProjectCarouselProps[] = [
 	{
-		title: "EcoVision",
+		title: "ML",
 		authors: ["Nikul Patel", "Robert Acebedo", "Timothy Liakh", "Matteo Rathgeber"],
 		description:
 			"EcoVISION allows users to upload an image or video of items to identify which can be recycled, reused, or salvaged. For individual users, it provides actionable tips on repurposing items to promote sustainability at home. Additionally, EcoVision’s video processing feature can analyze footage from conveyor belts in waste management facilities, automatically detecting recyclable and reusable items on a larger scale. This capability could streamline sorting processes and boost recycling efficiency in industrial waste management, making EcoVISION adaptable from personal use to large-scale environmental solutions.",
