@@ -72,78 +72,78 @@
       "startMinutesFromDayStart": 840,
       "durationMinutes": 30
     },
-    {
-      "id": "sat-workshop1",
-      "title": "Intro to Tech Stack Workshop",
-      "description": "Learn everything you need to know about Git, Open Source Licensing, and the t3 tech stack to be able to build an amazing hackathon project!",
-      "location": "DCC 308",
-      "speaker": "Professor Turner, CJ Marino, Jackson Baimel",
-      "eventType": "workshop",
-      "visible": true,
-      "column": 2,
-      "startMinutesFromDayStart": 120,
-      "durationMinutes": 90
-    },
-    {
-      "id": "sat-workshop10",
-      "title": "Code Golf",
-      "description": "",
-      "location": "DCC 308",
-      "speaker": "Code Golf challenges participants to solve programming problems using the fewest possible characters. Compete to showcase your coding efficiency and creativity in a race to create the shortest, cleverest solutions!",
-      "eventType": "workshop",
-      "visible": true,
-      "column": 2,
-      "startMinutesFromDayStart": 720,
-      "durationMinutes": 60
-    },
-    {
-      "id": "sat-workshop11",
-      "title": "Ugliest Code Compeititon",
-      "description": "Show off your messiest, most chaotic code in the Ugliest Code Competition, where the least readable, most convoluted solutions win! Embrace bad habits and unleash your inner code gremlin for the ultimate anti-aesthetic challenge!",
-      "location": "DCC 308",
-      "speaker": "",
-      "eventType": "workshop",
-      "visible": true,
-      "column": 2,
-      "startMinutesFromDayStart": 780,
-      "durationMinutes": 60
-    },
-    {
-      "id": "sat-mentoring1",
-      "title": "Mentoring with Girls Who Code",
-      "description": "The Mentoring Desk is here to support you throughout HackRPI! Get guidance, troubleshoot problems, and ask questions at any stage of your project — our mentors are ready to help you bring your ideas to life.",
-      "location": "Great Hall Mentoring Desk",
-      "speaker": "",
-      "eventType": "constant",
-      "visible": true,
-      "column": 4,
-      "startMinutesFromDayStart": 180,
-      "durationMinutes": 90
-    },
-    {
-      "id": "sat-mentoring2",
-      "title": "Mentoring with ACM-W",
-      "description": "The Mentoring Desk is here to support you throughout HackRPI! Get guidance, troubleshoot problems, and ask questions at any stage of your project — our mentors are ready to help you bring your ideas to life.",
-      "location": "Great Hall Mentoring Desk",
-      "speaker": "",
-      "eventType": "constant",
-      "visible": true,
-      "column": 4,
-      "startMinutesFromDayStart": 270,
-      "durationMinutes": 90
-    },
-    {
-      "id": "sat-mentoring3",
-      "title": "General Mentoring",
-      "description": "The Mentoring Desk is here to support you throughout HackRPI! Get guidance, troubleshoot problems, and ask questions at any stage of your project — our mentors are ready to help you bring your ideas to life.",
-      "location": "Great Hall Mentoring Desk",
-      "speaker": "",
-      "eventType": "constant",
-      "visible": true,
-      "column": 4,
-      "startMinutesFromDayStart": 360,
-      "durationMinutes": 510
-    },
+    // {
+    //   "id": "sat-workshop1",
+    //   "title": "Intro to Tech Stack Workshop",
+    //   "description": "Learn everything you need to know about Git, Open Source Licensing, and the t3 tech stack to be able to build an amazing hackathon project!",
+    //   "location": "DCC 308",
+    //   "speaker": "Professor Turner, CJ Marino, Jackson Baimel",
+    //   "eventType": "workshop",
+    //   "visible": true,
+    //   "column": 2,
+    //   "startMinutesFromDayStart": 120,
+    //   "durationMinutes": 90
+    // },
+    // {
+    //   "id": "sat-workshop10",
+    //   "title": "Code Golf",
+    //   "description": "",
+    //   "location": "DCC 308",
+    //   "speaker": "Code Golf challenges participants to solve programming problems using the fewest possible characters. Compete to showcase your coding efficiency and creativity in a race to create the shortest, cleverest solutions!",
+    //   "eventType": "workshop",
+    //   "visible": true,
+    //   "column": 2,
+    //   "startMinutesFromDayStart": 720,
+    //   "durationMinutes": 60
+    // },
+    // {
+    //   "id": "sat-workshop11",
+    //   "title": "Ugliest Code Compeititon",
+    //   "description": "Show off your messiest, most chaotic code in the Ugliest Code Competition, where the least readable, most convoluted solutions win! Embrace bad habits and unleash your inner code gremlin for the ultimate anti-aesthetic challenge!",
+    //   "location": "DCC 308",
+    //   "speaker": "",
+    //   "eventType": "workshop",
+    //   "visible": true,
+    //   "column": 2,
+    //   "startMinutesFromDayStart": 780,
+    //   "durationMinutes": 60
+    // },
+    // {
+    //   "id": "sat-mentoring1",
+    //   "title": "Mentoring with Girls Who Code",
+    //   "description": "The Mentoring Desk is here to support you throughout HackRPI! Get guidance, troubleshoot problems, and ask questions at any stage of your project — our mentors are ready to help you bring your ideas to life.",
+    //   "location": "Great Hall Mentoring Desk",
+    //   "speaker": "",
+    //   "eventType": "constant",
+    //   "visible": true,
+    //   "column": 4,
+    //   "startMinutesFromDayStart": 180,
+    //   "durationMinutes": 90
+    // },
+    // {
+    //   "id": "sat-mentoring2",
+    //   "title": "Mentoring with ACM-W",
+    //   "description": "The Mentoring Desk is here to support you throughout HackRPI! Get guidance, troubleshoot problems, and ask questions at any stage of your project — our mentors are ready to help you bring your ideas to life.",
+    //   "location": "Great Hall Mentoring Desk",
+    //   "speaker": "",
+    //   "eventType": "constant",
+    //   "visible": true,
+    //   "column": 4,
+    //   "startMinutesFromDayStart": 270,
+    //   "durationMinutes": 90
+    // },
+    // {
+    //   "id": "sat-mentoring3",
+    //   "title": "General Mentoring",
+    //   "description": "The Mentoring Desk is here to support you throughout HackRPI! Get guidance, troubleshoot problems, and ask questions at any stage of your project — our mentors are ready to help you bring your ideas to life.",
+    //   "location": "Great Hall Mentoring Desk",
+    //   "speaker": "",
+    //   "eventType": "constant",
+    //   "visible": true,
+    //   "column": 4,
+    //   "startMinutesFromDayStart": 360,
+    //   "durationMinutes": 510
+    // },
     {
       "id": "sat-sleepingrooms",
       "title": "Sleeping Rooms",
@@ -156,30 +156,30 @@
       "startMinutesFromDayStart": 780,
       "durationMinutes": 120
     },
-    {
-      "id": "sat-velan",
-      "title": "Velan Studios Fireside Chat",
-      "description": "",
-      "location": "DCC 318",
-      "speaker": "",
-      "eventType": "workshop",
-      "visible": true,
-      "column": 2,
-      "startMinutesFromDayStart": 210,
-      "durationMinutes": 60
-    },
-    {
-      "id": "sat-globalFoundaries",
-      "title": "Global Foundries Fireside Chat",
-      "description": "",
-      "location": "DCC 318",
-      "speaker": "",
-      "eventType": "workshop",
-      "visible": true,
-      "column": 1,
-      "startMinutesFromDayStart": 420,
-      "durationMinutes": 60
-    }
+    // {
+    //   "id": "sat-velan",
+    //   "title": "Velan Studios Fireside Chat",
+    //   "description": "",
+    //   "location": "DCC 318",
+    //   "speaker": "",
+    //   "eventType": "workshop",
+    //   "visible": true,
+    //   "column": 2,
+    //   "startMinutesFromDayStart": 210,
+    //   "durationMinutes": 60
+    // },
+    // {
+    //   "id": "sat-globalFoundaries",
+    //   "title": "Global Foundries Fireside Chat",
+    //   "description": "",
+    //   "location": "DCC 318",
+    //   "speaker": "",
+    //   "eventType": "workshop",
+    //   "visible": true,
+    //   "column": 1,
+    //   "startMinutesFromDayStart": 420,
+    //   "durationMinutes": 60
+    // }
   ],
   "sundayEvents": [
     {
