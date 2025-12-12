@@ -3,7 +3,7 @@ import type { ProjectCarouselProps } from "@/components/prev-projects/project-ca
 
 export const podiumPrizes: ProjectDisplayProps[] = [
 	{
-		title: "TrashCam",
+		title: "1st Place",
 		authors: [],
 		description:
 			"",
@@ -12,7 +12,7 @@ export const podiumPrizes: ProjectDisplayProps[] = [
 		imageOnLeft: false,
 	},
 	{
-		title: "RetroBrainScan",
+		title: "2nd Place",
 		authors: [],
 		description:
 			"",
@@ -24,20 +24,20 @@ export const podiumPrizes: ProjectDisplayProps[] = [
 
 export const carouselPrizes: ProjectCarouselProps[] = [
 	{
-		title: "ML",
-		authors: ["Nikul Patel", "Robert Acebedo", "Timothy Liakh", "Matteo Rathgeber"],
+		title: "Best Use of AI",
+		authors: [""],
 		description:
-			"EcoVISION allows users to upload an image or video of items to identify which can be recycled, reused, or salvaged. For individual users, it provides actionable tips on repurposing items to promote sustainability at home. Additionally, EcoVision’s video processing feature can analyze footage from conveyor belts in waste management facilities, automatically detecting recyclable and reusable items on a larger scale. This capability could streamline sorting processes and boost recycling efficiency in industrial waste management, making EcoVISION adaptable from personal use to large-scale environmental solutions.",
-		imageUrl: "/projectImages/EcoVision.png",
-		prizeCategory: "Best AI Hack",
+			"",
+		imageUrl: "/projectImages/.png",
+		prizeCategory: "Best Use of AI",
 	},
 	{
-		title: "Emission Mission",
+		title: "Healthcare",
 		authors: ["Nick Ciuica", "Nyssa Gandhi", "Jeremy Goldberger", "Lyle Jaron Alcordo"],
 		description:
 			"Emission Mission provides an interactive experience for children to learn about energy sources in their local area. It allows users to input a zip code and will look up energy production information for that specific power grid. Then, it allows users to choose to add their own power plant and see how it affects their local region!",
 		imageUrl: "/projectImages/Emission Mission.png",
-		prizeCategory: " Best Education Hack",
+		prizeCategory: "Healthcare",
 	},
 	{
 		title: "Quantum Shor's Algorithm",
