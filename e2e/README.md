@@ -245,19 +245,16 @@ e2e/
 ### Test Types
 
 1. **Smoke Tests** (`smoke.spec.ts`):
-
    - Verify that core pages load correctly
    - Check meta tags and SEO elements
    - Verify accessibility basics
 
 2. **Navigation Tests** (`navigation.spec.ts`):
-
    - Test navigation between pages
    - Verify mobile navigation behavior
    - Check responsive design elements
 
 3. **Form Tests** (`forms.spec.ts`):
-
    - Test form submissions and validation
    - Verify error handling
    - Test success scenarios

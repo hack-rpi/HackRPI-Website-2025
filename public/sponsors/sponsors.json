@@ -1,53 +1,49 @@
 {
 	"OBSIDIAN": [
-    {
-      "name": "Nuvalence",
-      "logoPath": "/Nuvalence.png",
-      "url": "https://nuvalence.io/"
-    },
-    {
+		{
+			"name": "Nuvalence",
+			"logoPath": "/Nuvalence.png",
+			"url": "https://nuvalence.io/"
+		},
+		{
 			"name": "Severino Center for Technological Entrepreneurship",
 			"logoPath": "/Severino.jpg",
 			"url": "https://severinocenter.rpi.edu/"
 		}
-  ],
-	"GOLD": [
 	],
+	"GOLD": [],
 	"SILVER": [
-    { "name": "Accenture",
-      "logoPath": "/AccentureWhite.png",
-      "url": "https://www.accenture.com"
-    },
-    {
-      "name": "Global Foundries",
-      "logoPath": "/GlobalFoundries.png",
-      "url": "https://gf.com/"
-    },
-    {
-      "name": "RPI School of Science",
-      "logoPath": "/RPI_SOS.png",
-      "url": "https://science.rpi.edu/"
-    },
-    {
-      "name": "Velan Studios",
-      "logoPath": "/Velan_Studios_Logo.png",
-      "url": "https://www.velanstudios.com/"
-    }
+		{ "name": "Accenture", "logoPath": "/AccentureWhite.png", "url": "https://www.accenture.com" },
+		{
+			"name": "Global Foundries",
+			"logoPath": "/GlobalFoundries.png",
+			"url": "https://gf.com/"
+		},
+		{
+			"name": "RPI School of Science",
+			"logoPath": "/RPI_SOS.png",
+			"url": "https://science.rpi.edu/"
+		},
+		{
+			"name": "Velan Studios",
+			"logoPath": "/Velan_Studios_Logo.png",
+			"url": "https://www.velanstudios.com/"
+		}
 	],
 	"BRONZE": [
-    {
+		{
 			"name": "Troy Web Consulting",
 			"logoPath": "/troywebconsulting.png",
 			"url": "https://troyweb.com/"
 		}
 	],
 	"COLLABORATORS": [
-    {
+		{
 			"name": "Awake Chocolate",
 			"logoPath": "/Awake_Chocolate.png",
 			"url": "https://awakechocolate.com/"
 		},
-    {
+		{
 			"name": "DeFazio's Pizza",
 			"logoPath": "/DeFazios.png",
 			"url": "https://defaziospizza.com/"
@@ -62,12 +58,12 @@
 			"logoPath": "/github-logo.svg",
 			"url": "https://github.com/"
 		},
-    {
-      "name": "Monster Energy",
-      "logoPath": "/MonsterEnergy.png",
-      "url": "https://www.monsterenergy.com/en-us/"
-    },
-    {
+		{
+			"name": "Monster Energy",
+			"logoPath": "/MonsterEnergy.png",
+			"url": "https://www.monsterenergy.com/en-us/"
+		},
+		{
 			"name": "Photon",
 			"logoPath": "/Photon.png",
 			"url": "https://photon.codes/"
@@ -77,7 +73,7 @@
 			"logoPath": "/Pure-Buttons-Blue-Gradient-Logo-RGB.svg",
 			"url": "https://hackp.ac/mlh-standoutstickers-hackathons"
 		},
-    {
+		{
 			"name": "Taichi Bubble Tea",
 			"logoPath": "/Taichi.png",
 			"url": "https://www.taichibubbletea.com/"

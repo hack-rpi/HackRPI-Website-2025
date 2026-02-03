@@ -83,7 +83,6 @@ We use a hybrid testing approach with Jest for unit/component tests and Playwrig
 When contributing, please ensure that your code is well-tested by following these guidelines:
 
 1. **Write Tests for New Features**
-
    - All new functionality should have corresponding tests.
    - For utility functions, write unit tests in the `__tests__/unit/` directory.
    - For components, write component tests in the `__tests__/components/` directory.
@@ -91,7 +90,6 @@ When contributing, please ensure that your code is well-tested by following thes
    - For critical user journeys, write E2E tests in the `e2e/` directory.
 
 2. **Run Tests Before Submitting**
-
    - Before creating a pull request, run the test suite to make sure all tests pass:
      ```bash
      npm test
@@ -103,7 +101,6 @@ When contributing, please ensure that your code is well-tested by following thes
    - If your tests fail, fix the issues before submitting your PR.
 
 3. **Test Coverage**
-
    - Aim for high test coverage in your code changes.
    - You can check test coverage by running:
      ```bash
