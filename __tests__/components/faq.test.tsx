@@ -8,10 +8,16 @@ import "@testing-library/jest-dom";
 jest.mock("@/components/themed-components/registration-link", () => {
 	return {
 		__esModule: true,
-		default: ({ children, className }: { children?: React.ReactNode; className?: string }) => (
-			<div data-testid="registration-link" className={className} role="link" aria-label="Registration Link">
-				{children || "Registration Link"}
-			</div>
+		default: ({ className }: { className?: string }) => (
+			<a
+				data-testid="registration-link"
+				href="https://hackrpi2025.devpost.com/"
+				target="_blank"
+				rel="noopener noreferrer"
+				className={className}
+			>
+				Register Here!
+			</a>
 		),
 	};
 });
@@ -95,8 +101,9 @@ describe("FAQ Component", () => {
 		fireEvent.click(registrationFAQ);
 
 		// Check if the registration link is rendered
-		const registrationLink = screen.getByTestId("registration-link");
+		const registrationLink = screen.getByRole("link", { name: /register here!/i });
 		expect(registrationLink).toBeInTheDocument();
+		expect(registrationLink).toHaveAttribute("href", "https://hackrpi2025.devpost.com/");
 	});
 
 	it("renders the contact information at the bottom", () => {

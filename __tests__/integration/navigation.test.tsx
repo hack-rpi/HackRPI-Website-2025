@@ -3,7 +3,7 @@
  */
 import React from "react";
 import { screen, within, act } from "@testing-library/react";
-import Home from "@/app/page";
+import Home from "@/app/(without-layout)/page";
 import {
 	renderWithProviders,
 	resetAllMocks,
@@ -11,7 +11,7 @@ import {
 	mockScrollIntoView,
 	checkNavigationAccessibility,
 } from "../test-utils";
-import { MockIntersectionObserver, MockFooter } from "../__mocks__/mockRegistry";
+import { MockIntersectionObserver } from "../__mocks__/mockRegistry";
 import "@testing-library/jest-dom";
 import { fireEvent } from "@testing-library/react";
 
@@ -21,6 +21,14 @@ function MockTitle({ children }: { children: React.ReactNode }) {
 		<div data-testid="title" role="banner">
 			<h1>{children}</h1>
 			<div data-testid="title-animation" />
+		</div>
+	);
+}
+
+function MockFooterComponent() {
+	return (
+		<div data-testid="mock-footer" role="contentinfo">
+			Footer Component
 		</div>
 	);
 }
@@ -125,7 +133,7 @@ jest.mock("@/components/sponsors", () => {
 // Use centralized mock registry for Footer
 jest.mock("@/components/footer/footer", () => ({
 	__esModule: true,
-	default: MockFooter,
+	default: MockFooterComponent,
 }));
 
 jest.mock("@/components/faq/faq", () => {
