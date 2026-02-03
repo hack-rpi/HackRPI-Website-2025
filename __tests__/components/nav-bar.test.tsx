@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, cleanup } from "@testing-library/react";
-import NavBar from "@/components/nav-bar/nav-bar";
+import NavBar, { links as navLinks } from "@/components/nav-bar/nav-bar";
 import { renderWithProviders, resetAllMocks, setWindowDimensions } from "../test-utils";
 
 /**
@@ -39,29 +39,6 @@ jest.mock("@/data/nav-bar-links", () => {
 	return {
 		// The actual implementation uses NavGroup[] structure, not a flat array
 		NavGroup: jest.fn(),
-	};
-});
-
-// Mock the links directly in the NavBar component
-jest.mock("@/components/nav-bar/nav-bar", () => {
-	const originalModule = jest.requireActual("@/components/nav-bar/nav-bar");
-	return {
-		__esModule: true,
-		...originalModule,
-		links: [
-			{
-				name: "Home",
-				links: [
-					{ href: "/", children: "Home" },
-					{ href: "/#about", children: "About" },
-				],
-			},
-			{
-				name: "HackRPI XI",
-				links: [{ href: "/last-year#winners", children: "Winners" }],
-			},
-		],
-		default: originalModule.default,
 	};
 });
 
@@ -134,9 +111,10 @@ describe("NavBar Component", () => {
 		// Act - Render the component
 		renderWithProviders(<NavBar showOnScroll={true} />);
 
-		// Assert - Check if links are passed correctly - we expect 2 links based on our mock
+	// Assert - Check if links are passed correctly based on the exported navigation data
 		const mobileNav = screen.getByTestId("nav-bar-mobile");
-		expect(mobileNav.textContent).toContain("2 links");
+		const expectedCount = navLinks.length;
+		expect(mobileNav.textContent).toContain(`${expectedCount} links`);
 
 		// Clean up before rendering again
 		cleanup();
@@ -146,7 +124,7 @@ describe("NavBar Component", () => {
 		renderWithProviders(<NavBar showOnScroll={true} />);
 
 		const desktopNav = screen.getByTestId("nav-bar-desktop");
-		expect(desktopNav.textContent).toContain("2 links");
+		expect(desktopNav.textContent).toContain(`${expectedCount} links`);
 	});
 
 	it("should handle showOnScroll prop correctly", async () => {

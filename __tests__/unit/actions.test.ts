@@ -1,6 +1,5 @@
 // Mock these modules before importing the functions
 import { generateClient } from "aws-amplify/api";
-import * as Auth from "@aws-amplify/auth";
 import { Profanity } from "@2toad/profanity";
 
 // Remove this import as we'll move it below after setting up mocks
@@ -37,15 +36,25 @@ const mockCreate = mockClient.models.Leaderboard.create;
 const mockList = mockClient.models.event.list;
 
 // Mock Auth module
-jest.mock("@aws-amplify/auth", () => ({
-	fetchAuthSession: jest.fn().mockResolvedValue({
-		tokens: {
-			accessToken: {
-				payload: {},
+jest.mock(
+	"@aws-amplify/auth",
+	() => ({
+		fetchAuthSession: jest.fn().mockResolvedValue({
+			tokens: {
+				accessToken: {
+					payload: {},
+				},
 			},
-		},
+		}),
 	}),
-}));
+	{ virtual: true },
+);
+
+jest.mock("@/amplify_outputs.json", () => ({}), { virtual: true });
+
+const Auth = jest.requireMock("@aws-amplify/auth") as {
+	fetchAuthSession: jest.Mock;
+};
 
 // Mock Profanity module
 jest.mock("@2toad/profanity", () => {

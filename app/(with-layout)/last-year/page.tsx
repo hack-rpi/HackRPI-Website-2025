@@ -2,7 +2,6 @@
 
 import React from "react";
 import "@/app/globals.css";
-import NavBar from "@/components/nav-bar/nav-bar";
 import ProjectDisplay from "@/components/prev-projects/project-display";
 import { podiumPrizes, carouselPrizes } from "@/data/previous-prize-winners";
 import ProjectCarousel from "@/components/prev-projects/project-carousel";
@@ -15,7 +14,6 @@ export default function PastYearProjects() {
 
 	return (
 		<div className="w-full flex items-center justify-center flex-col" id="winners">
-			<NavBar showOnScroll={false} />
 			<ProgressBar />
 			<div className="w-11/12 lg:w-3/4 xl:w-2/3 pt-8 flex flex-col items-center justify-center">
 				<h2 className="text-3xl font-bold text-center mb-8 pt-20">Previous Projects From HackRPI XI</h2>

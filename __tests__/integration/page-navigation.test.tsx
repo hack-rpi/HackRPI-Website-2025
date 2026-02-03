@@ -6,10 +6,10 @@ import { render, screen, within, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 // Import the components
-import Home from "@/app/page";
-import EventPage from "@/app/event/page";
-import ResourcesPage from "@/app/resources/page";
-import PastYearProjects from "@/app/last-year/page";
+import Home from "@/app/(without-layout)/page";
+import EventPage from "@/app/(with-layout)/event/page";
+import ResourcesPage from "@/app/(with-layout)/resources/page";
+import PastYearProjects from "@/app/(with-layout)/last-year/page";
 
 // Mock CSS import
 jest.mock("@/app/globals.css", () => ({}), { virtual: true });
@@ -111,7 +111,7 @@ jest.mock("@/components/nav-bar/nav-bar", () => {
 });
 
 // Mock the pages to avoid DOM element access issues
-jest.mock("@/app/page", () => {
+jest.mock("@/app/(without-layout)/page", () => {
 	return () => (
 		<div className="flex flex-col" role="main">
 			<nav data-testid="nav-bar" role="navigation">
@@ -197,7 +197,7 @@ jest.mock("@/app/page", () => {
 	);
 });
 
-jest.mock("@/app/event/page", () => {
+jest.mock("@/app/(with-layout)/event/page", () => {
 	return () => (
 		<div role="main">
 			<nav data-testid="nav-bar" role="navigation">
@@ -219,7 +219,7 @@ jest.mock("@/app/event/page", () => {
 	);
 });
 
-jest.mock("@/app/resources/page", () => {
+jest.mock("@/app/(with-layout)/resources/page", () => {
 	return () => (
 		<div role="main">
 			<nav data-testid="nav-bar" role="navigation">
@@ -241,7 +241,7 @@ jest.mock("@/app/resources/page", () => {
 	);
 });
 
-jest.mock("@/app/last-year/page", () => {
+jest.mock("@/app/(with-layout)/last-year/page", () => {
 	return () => (
 		<div role="main">
 			<nav data-testid="nav-bar" role="navigation">

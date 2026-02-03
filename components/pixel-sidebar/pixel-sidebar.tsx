@@ -6,7 +6,7 @@ const links: Link[] = [
 	{ href: "/event", children: "Event Information" },
 	{ href: "/event/schedule", children: "Schedule" },
 	{ href: "/event/prizes", children: "Prizes" },
-	{ href: "/last-year", children: "HackRPI X" },
+	{ href: "/last-year", children: "HackRPI XI" },
 	{ href: "/sponsor-us", children: "Sponsor Us" },
 	{ href: "https://discord.com/invite/8vAQpFWCYH", children: "Discord" },
 ];
@@ -50,10 +50,10 @@ export default function PixelSideBar() {
 								className="mr-2 transition-transform duration-300 ease-in-out group-hover:scale-125"
 							/>
 						)}
-						{link.children === "HackRPI X" && (
+						{link.children === "HackRPI XI" && (
 							<Image
 								src="/resources_pixel.png"
-								alt="HackRPI X"
+								alt="HackRPI XI"
 								width={60}
 								height={60}
 								className="mr-2 transition-transform duration-300 ease-in-out group-hover:scale-125"

@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	// Enable small, safe production optimizations
+	swcMinify: true,
+	productionBrowserSourceMaps: false,
 	eslint: {
 		// Ignore ESLint during builds to avoid blocking developers,
 		// but consider setting up a separate CI workflow to catch these
