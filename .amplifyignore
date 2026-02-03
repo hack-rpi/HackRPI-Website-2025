@@ -1,0 +1,6 @@
+docs/
+documentation/
+e2e/
+.vscode/
+*.mp4
+*.psd

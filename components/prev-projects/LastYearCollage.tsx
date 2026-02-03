@@ -56,6 +56,7 @@ export default function LastYearCollage() {
 							alt="HackRPI XI Photo"
 							width={1600}
 							height={1600}
+              lazy={true}
 							className="w-full h-auto object-cover rounded-xl transition-transform duration-300 hover:scale-[1.02]"
 						/>
 					</div>

@@ -1,9 +1,4 @@
-# Run TypeScript check (excluding problematic test files)
-#echo "🧪 Checking TypeScript..."
-#npx tsc --noEmit
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
-# Run Prettier + ESLint on staged files
-#echo "🧹 Formatting and linting staged files..."
-#npx lint-staged
-
-#echo "✅ Pre-commit checks passed!"
+#npm test

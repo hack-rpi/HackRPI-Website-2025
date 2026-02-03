@@ -67,17 +67,17 @@ export default function AboutUs() {
 					height: "25vh",
 				}}
 			>
-				<div>
-					<div className="w-full flex flex-col items-center lg:items-startlg:mt-0 h-full lg:ml-4">
-						{/* Registration Banner */}
+				{/*<div>
+					<div className="w-full flex flex-col items-center lg:items-startlg:mt-0 h-full lg:ml-4 p-2 bg-gray-900 bg-opacity-100 m-2 hover:bg-opacity-100 rounded-xl">
+						{/* Registration Banner }
 						<div
 							data-testid="register-now-banner"
-							className="w-full lg:w-11/12 bg-hackrpi-secondary-orange text-white text-xl h-fit overflow-hidden whitespace-nowrap font-bold lg:mt-16\\ pl-1"
+							className="w-full bg-hackrpi-secondary-orange text-white text-xl h-fit overflow-hidden whitespace-nowrap font-bold lg:mt-16\\ pl-1"
 						>
 							REGISTER NOW!
 						</div>
-						{/* Event Info Box */}
-						<div className="w-full lg:w-11/12 bg-gray-900 text-white h-fit flex flex-col items-start justify-start font-modern">
+						{/* Event Info Box }
+						<div className="w-full bg-gray-900 text-white h-fit flex flex-col items-start justify-start font-modern">
 							<div className="w-full h-2 bg-white mt-4" />
 
 							<h2 className="flex items-center text-2xl xs:text-4xl font-semibold pl-2 mt-2 text-nowrap">
@@ -108,7 +108,7 @@ export default function AboutUs() {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div>{*/}
 			</div>
 		</div>
 	);

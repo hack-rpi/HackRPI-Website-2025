@@ -1,11 +1,27 @@
 {
-	"OBSIDIAN": [{ "name": "Nuvalence", "logoPath": "/Nuvalence.png", "url": "https://nuvalence.io/" }],
+	"OBSIDIAN": [
+    {
+      "name": "Nuvalence",
+      "logoPath": "/Nuvalence.png",
+      "url": "https://nuvalence.io/"
+    },
+    {
+			"name": "Severino Center for Technological Entrepreneurship",
+			"logoPath": "/Severino.jpg",
+			"url": "https://severinocenter.rpi.edu/"
+		}
+  ],
 	"GOLD": [
 	],
 	"SILVER": [
     { "name": "Accenture",
       "logoPath": "/AccentureWhite.png",
       "url": "https://www.accenture.com"
+    },
+    {
+      "name": "Global Foundries",
+      "logoPath": "/GlobalFoundries.png",
+      "url": "https://gf.com/"
     },
     {
       "name": "RPI School of Science",
@@ -51,15 +67,15 @@
       "logoPath": "/MonsterEnergy.png",
       "url": "https://www.monsterenergy.com/en-us/"
     },
+    {
+			"name": "Photon",
+			"logoPath": "/Photon.png",
+			"url": "https://photon.codes/"
+		},
 		{
 			"name": "Pure Buttons",
 			"logoPath": "/Pure-Buttons-Blue-Gradient-Logo-RGB.svg",
 			"url": "https://hackp.ac/mlh-standoutstickers-hackathons"
-		},
-    {
-			"name": "Severino Center for Technological Entrepreneurship",
-			"logoPath": "/Severino.jpg",
-			"url": "https://severinocenter.rpi.edu/"
 		},
     {
 			"name": "Taichi Bubble Tea",

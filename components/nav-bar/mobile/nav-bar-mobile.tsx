@@ -1,7 +1,7 @@
 import { NavGroup } from "@/data/nav-bar-links";
 import { useState, useEffect } from "react";
 import NextImg from "next/image";
-import hackrpi_logo from "@/public/HackRPI_Logo_Yellow_Arrow.png";
+import hackrpi_logo from "@/public/Retro_HackRPI_Logo.png";
 import NavGroupComponent from "./nav-group";
 import Link from "next/link";
 
@@ -67,12 +67,21 @@ export default function MobileNavBar({ links }: { links: NavGroup[] }) {
 					>
 						2048 Leaderboard
 					</Link> */}
+
 					<Link
 						href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
 						className="w-11/12 whitespace-nowrap text-2xl p-2 bg-[length:0%_4px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-primary-blue to-hackrpi-primary-blue hover:bg-[length:100%_4px]"
 						target="_blank"
 					>
 						Code of Conduct
+					</Link>
+
+					<Link
+						href="https://securelb.imodules.com/s/1225/lg22/form.aspx?sid=1225&gid=1&pgid=6795&cid=15861&dids=257&bledit=1&sort=1"
+						className="w-11/12 whitespace-nowrap text-2xl p-2 bg-[length:0%_4px] bg-no-repeat bg-left-bottom transition-all duration-200 bg-gradient-to-r from-hackrpi-primary-blue to-hackrpi-primary-blue hover:bg-[length:100%_4px]"
+						target="_blank"
+					>
+						Give Now
 					</Link>
 				</div>
 			</div>

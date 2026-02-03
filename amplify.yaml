@@ -1,0 +1,23 @@
+version: 1
+applications:
+  - frontend:
+      phases:
+        preBuild:
+          commands:
+            # Install dependencies
+            - npm ci || npm install
+        build:
+          commands:
+            # Create a minimal placeholder .env to prevent build warnings
+            # The actual secret will be fetched from AWS Secrets Manager at runtime
+            - echo "# Placeholder - actual secrets loaded at runtime" > .env
+            - npm run build
+      artifacts:
+        # For Next.js the build output served by Amplify Hosting is in .next (not 'build' like CRA)
+        baseDirectory: .next
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
+          - .next/cache/**
